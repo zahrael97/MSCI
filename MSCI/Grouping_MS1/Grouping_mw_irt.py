@@ -21,7 +21,8 @@ class Grouping_mw_irt:
 
     The irt_grouping method further refines the grouping process by sorting and grouping values based on both MW and iRT. It uses the irt_grouper method to group values based on iRT after sorting them.
 
-    The primary method, group_sequences, orchestrates the entire grouping process. It first groups sequences based on MW using the group_and_delete_duplicates method. Then, it refines this grouping based on iRT using the my_attempt method. The final groups are then filtered to ensure uniqueness and are returned.
+    The primary method, group_sequences, orchestrates the entire grouping process. It first groups sequences based on MW using the group_and_delete_duplicates method. Then, it refines this grouping based 
+    on iRT using the my_attempt method. The final groups are then filtered to ensure uniqueness and are returned.
 
     Usage:
     mass_info = Grouping_MS1(data_frame)
