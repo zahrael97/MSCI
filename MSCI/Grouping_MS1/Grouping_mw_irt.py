@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from itertools import combinations
 
-def process_data(group):
+def get_pair(group):
     edges_set = set()
     for subgraph in group:
         edges_sub_graph = combinations(subgraph, 2)
