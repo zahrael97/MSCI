@@ -12,6 +12,30 @@ def get_pair(group):
 
 
 class Grouping_mw_irt:
+    """
+    This class is designed to process and group mass spectrometry data based on specific criteria. Upon initialization, the class accepts a pandas DataFrame, sorts it by molecular weight (MW), and resets its index.
+    The method group_and_delete_duplicates groups values from a list based on a given tolerance. This grouping can be done either in Daltons ('Da') or parts per million ('ppm'). 
+    The method identifies clusters of values that are close to each other within the specified tolerance.
+
+    The grouper method groups values from an iterable based on a given iRT (indexed retention time) tolerance. It yields groups of consecutive values that are within the tolerance of each other.
+
+    The irt_grouping method further refines the grouping process by sorting and grouping values based on both MW and iRT. It uses the irt_grouper method to group values based on iRT after sorting them.
+
+    The primary method, group_sequences, orchestrates the entire grouping process. It first groups sequences based on MW using the group_and_delete_duplicates method. Then, it refines this grouping based on iRT using the my_attempt method. The final groups are then filtered to ensure uniqueness and are returned.
+
+    Usage:
+    mass_info = Grouping_MS1(data_frame)
+    grouped_sequences = mass_info.group_sequences(tolerance1, tolerance2, unit='Da')
+
+
+    Key Methods and Parameters:
+
+    group_and_delete_duplicates(lst, tolerance1, unit): Groups values from lst based on tolerance1 and unit.
+    irt_grouper(iterable, tolerance2): Groups values from iterable based on tolerance2.
+    my_attempt(nested_list, tolerance2): Refines grouping of nested_list based on iRT using tolerance2.
+    group_sequences(tolerance1, tolerance2, unit): Orchestrates the grouping process using tolerance1, tolerance2, and unit.
+    The class provides a structured approach to group mass spectrometry data based on both molecular weight and indexed retention time, ensuring precise and meaningful groupings.
+"""
     def __init__(self, data_frame):
         self.df = data_frame
         #self.df = self.df.drop_duplicates(subset=['Name'])
