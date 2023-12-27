@@ -6,12 +6,6 @@ MSCI
 .. image:: https://img.shields.io/pypi/v/msci.svg
         :target: https://pypi.python.org/pypi/msci
 
-.. image:: https://img.shields.io/travis/zahrael97/msci.svg
-        :target: https://travis-ci.com/zahrael97/msci
-
-.. image:: https://readthedocs.org/projects/msci/badge/?version=latest
-        :target: https://msci.readthedocs.io/en/latest/?version=latest
-        :alt: Documentation Status
 
 * Free software: MIT license
 * Official Documentation available at: https://msci.readthedocs.io.
