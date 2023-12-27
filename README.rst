@@ -36,21 +36,26 @@ Example:
 Here is a small example of using MSCI to calculate pairwise normalized spectral angle 
 .. testcode::
 
-   from MSCI.Data.preprocessing_data import read_msp_file
-   from MSCI.grouping.groups import MassContentInformation, process_data
+   from MSCI.Data.preprocessing import read_msp_file
+   from MSCI.Grouping_MS1 import MassContentInformation, process_data
    from MSCI.similarity.Similarity import  process_combin
-   File= 'MSCA_Package/Tryptic_peptides/Dataset/msp_files/charge2_3myPrositLib.msp'
-   #spectra = list(load_from_msp(File))
-   #pickle.dump(spectra, open('MSCA_Package/Tryptic_peptides/Dataset/msp_files charge2_3myPrositLib.pkl', 'wb'))
+
+   File= '.msp'
    mz_irt_df = read_msp_file(File)
-   g = MassContentInformation(mz_irt_df)
+   g = Grouping_mw_irt(mz_irt_df)
    group = g.group_sequences(1,10, unit='Da')
    group = np.array(group, dtype=object)
    combin = process_data(group)
    np.save("MSCA_Package/Tryptic_peptides/Dataset/combin/charge2_3_LR.npy", combin)
+   # Create a partial function of process_combin with relevant_spectra and other parameters
+   process_combin_partial = partial(process_combin, spectra=relevant_spectra, tolerance=1, ppm=0)
+  # Process the data sequentially
+  results = [process_combin_partial(pair) for pair in updated_combin_chunk]
+  # Save the results
+  np.save(f'MSCA_Package/IMMUNO/output/HRLR_mutated_IMMUNO_spectra_angles_{subcombin_num}.npy', results)
 
 Should output 
-
+a list of peptides and their spectral angles
 * Free software: MIT license
 * Documentation: https://msci.readthedocs.io.
 
