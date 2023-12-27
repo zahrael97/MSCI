@@ -32,7 +32,7 @@ Here is a small example of using MSCI to calculate pairwise normalized spectral 
 .. testcode::
 
    from MSCI.Data.preprocessing import read_msp_file
-   from MSCI.Grouping_MS1 import MassContentInformation, process_data
+   from MSCI.Grouping_MS1 import MassContentInformation, get_pair
    from MSCI.similarity.Similarity import  process_combin
 
    File= '.msp'
