@@ -3,6 +3,12 @@ import numpy as np
 from itertools import combinations
 
 def get_pair(group):
+    """
+    This function is designed to process a collection of subgraphs and generate edges between nodes within each subgraph. 
+    Specifically, for each subgraph in the provided group, the function identifies all possible pairwise combinations of nodes, treating them as edges. 
+    These edges are then added to a set, ensuring uniqueness. The function leverages Python's combinations method from the itertools module to generate these pairwise combinations, 
+    ensuring that each pair is treated as an undirected edge (i.e., the order of nodes in the edge doesn't matter).
+    """
     edges_set = set()
     for subgraph in group:
         edges_sub_graph = combinations(subgraph, 2)
