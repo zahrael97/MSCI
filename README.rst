@@ -41,7 +41,7 @@ Here is a small example of using MSCI to calculate pairwise normalized spectral 
    group = g.group_sequences(1,10, unit='Da')
    group = np.array(group, dtype=object)
    combin = process_data(group)
-   np.save("MSCA_Package/Tryptic_peptides/Dataset/combin/charge2_3_LR.npy", combin)
+   np.save("MSCA_Package/Tryptic_peptides/Dataset/combin/charge2_3_Low_Resolution.npy", combin)
    # Create a partial function of process_combin with relevant_spectra and other parameters
    process_combin_partial = partial(process_combin, spectra=relevant_spectra, tolerance=1, ppm=0)
   # Process the data sequentially
