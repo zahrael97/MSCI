@@ -13,7 +13,8 @@ MSCI
         :target: https://msci.readthedocs.io/en/latest/?version=latest
         :alt: Documentation Status
 
-
+* Free software: MIT license
+* Documentation: https://msci.readthedocs.io.
 
 
 Peptide identification by mass spectrometry relies on the interpretation of fragmentation spectra based on the m/z pattern, relative intensities, and retention time (RT). Given a proteome, we wondered how many peptides generate very similar fragmentation spectra with current MS methods. MSCI is a Python package built to assess the information content of peptide fragmentation spectra, we aimed calculating an information-content index for all peptides in a given proteome would enable us to design data acquisition and data analysis strategies that generate and prioritize the most informative fragment ions to be queried for peptide quantification.
@@ -56,8 +57,7 @@ Here is a small example of using MSCI to calculate pairwise normalized spectral 
 
 Should output 
 a list of peptides and their spectral angles
-* Free software: MIT license
-* Documentation: https://msci.readthedocs.io.
+
 
 
 
