@@ -1,5 +1,5 @@
 ====
-MSCI
+# MSCI ![Image Alt Text](docs/MSCI_logo.png)
 ====
 
 
