@@ -34,7 +34,7 @@ joinPeaks
 
    >>> 
 
- process_combin 
+process_combin 
 -----
 
 
@@ -43,7 +43,7 @@ joinPeaks
 
    >>> 
 
- tryptic_digest
+tryptic_digest
 -----
 
 
