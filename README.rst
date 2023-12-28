@@ -53,6 +53,42 @@ Here is a small example of using MSCI to calculate pairwise normalized spectral 
 
 Should output 
 a list of peptides and their spectral angles
+Installation
+------------
+
+You can install *mass_content_information* via pip_ from PyPI_:
+
+.. code:: console
+
+   $ pip install mass_content_information
+
+
+Usage
+-----
+
+After installation, you can use the package by importing it in your Python code:
+
+.. code:: console
+
+    import mass_content_information
+
+
+Then, you can use the calculate_similarity() function to calculate the similarity score of an MSP file:
+
+.. code:: console
+
+    mass_content_information.similarity('path_to_pairs')
+
+
+The function takes the path to the MSP file as input and returns a list of tuples, where each tuple contains the pair of spectra within the MS1 and MS2 tolerance along with their SA.
+
+The package also includes the intermediate features such as reading the MSP file, filtering spectra, grouping spectra within a tolerance range, and post-processing the similarity scores of each pair.
+
+
+Contribution
+-----
+
+If you would like to contribute to this project, feel free to fork the repository on GitHub and submit a pull request.
 
 
 
@@ -60,8 +96,5 @@ a list of peptides and their spectral angles
 
 Credits
 -------
-
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
-
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
