@@ -5,7 +5,7 @@
 
 Welcome to MSCI's documentation!
 ================================
-.. image:: docs/MSCI_logo.png
+.. image:: https://github.com/zahrael97/MSCI/blob/master/docs/MSCI_logo.png
    :align: center
    :width: 300
    :height: 300
