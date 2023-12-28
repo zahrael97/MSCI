@@ -2,14 +2,13 @@ Functions
 ==========
 
 
-.. _starter:
 
 read_msp_file
 ---------------------
+.. code::
 
-.. _startpoke:
+   >>>
 
-.. figure:: 
 
 
 
