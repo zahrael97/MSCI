@@ -54,8 +54,10 @@ Here is a small example of using MSCI to calculate pairwise normalized spectral 
 
 Should output 
 a list of peptides and their spectral angles
+
+
 Installation
-------------
+==================
 
 You can install *MSCI* via pip_ from PyPI_:
 
@@ -64,7 +66,7 @@ You can install *MSCI* via pip_ from PyPI_:
    $ pip install MSCI
 
 Contribution
------
+==================
 
 If you would like to contribute to this project, feel free to fork the repository on GitHub and submit a pull request.
 
@@ -73,7 +75,8 @@ If you would like to contribute to this project, feel free to fork the repositor
 
 
 Credits
--------
+==================
+
 This package was created with cookietemple_
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
