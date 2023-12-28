@@ -74,5 +74,6 @@ If you would like to contribute to this project, feel free to fork the repositor
 Credits
 -------
 This package was created with cookietemple_
+
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
