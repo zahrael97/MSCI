@@ -2,7 +2,10 @@
 MSCI 
 ====
 .. image:: docs/MSCI_logo.png
-
+   :alt: logo
+   :align: center
+   :width: 300
+   :height: 300
 
 .. image:: https://img.shields.io/pypi/v/msci.svg
         :target: https://pypi.python.org/pypi/msci
