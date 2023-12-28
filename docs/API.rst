@@ -1,4 +1,4 @@
-API
+Functions
 ==========
 
 
@@ -16,6 +16,34 @@ read_msp_file
 
 
 Grouping_mw_rt 
+-----
+
+
+
+.. code::
+
+   >>> 
+
+
+joinPeaks
+-----
+
+
+
+.. code::
+
+   >>> 
+
+ process_combin 
+-----
+
+
+
+.. code::
+
+   >>> 
+
+ tryptic_digest
 -----
 
 
