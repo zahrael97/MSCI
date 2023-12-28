@@ -1,7 +1,7 @@
 ====
 MSCI 
-.. image:: docs/MSCI_logo.png
 ====
+.. image:: docs/MSCI_logo.png
 
 
 .. image:: https://img.shields.io/pypi/v/msci.svg
