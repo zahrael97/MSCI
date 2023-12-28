@@ -1,7 +1,7 @@
 
 .. image:: docs/MSCI_logo.png
    :alt: logo
-   :align: center
+   :align: middle
    :width: 300
    :height: 300
 
