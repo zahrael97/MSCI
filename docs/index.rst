@@ -5,6 +5,11 @@
 
 Welcome to MSCI's documentation!
 ================================
+.. image:: docs/MSCI_logo.png
+   :align: center
+   :width: 300
+   :height: 300
+
 
 .. toctree::
    :maxdepth: 3
