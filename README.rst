@@ -1,6 +1,4 @@
-====
-MSCI 
-====
+
 .. image:: docs/MSCI_logo.png
    :alt: logo
    :align: center
