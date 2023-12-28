@@ -56,34 +56,11 @@ a list of peptides and their spectral angles
 Installation
 ------------
 
-You can install *mass_content_information* via pip_ from PyPI_:
+You can install *MSCI* via pip_ from PyPI_:
 
 .. code:: console
 
-   $ pip install mass_content_information
-
-
-Usage
------
-
-After installation, you can use the package by importing it in your Python code:
-
-.. code:: console
-
-    import mass_content_information
-
-
-Then, you can use the calculate_similarity() function to calculate the similarity score of an MSP file:
-
-.. code:: console
-
-    mass_content_information.similarity('path_to_pairs')
-
-
-The function takes the path to the MSP file as input and returns a list of tuples, where each tuple contains the pair of spectra within the MS1 and MS2 tolerance along with their SA.
-
-The package also includes the intermediate features such as reading the MSP file, filtering spectra, grouping spectra within a tolerance range, and post-processing the similarity scores of each pair.
-
+   $ pip install MSCI
 
 Contribution
 -----
