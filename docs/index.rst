@@ -6,8 +6,9 @@
 MSCI : Mass Spectrometry Content Information python Library
 ================================
 .. toctree::
-   :maxdepth: 3
-   :caption: 
+   :hidden:
+   :maxdepth: 2
+   :caption: Contents: 
    
    API
 
