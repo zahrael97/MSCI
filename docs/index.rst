@@ -7,7 +7,7 @@ MSCI : Mass Spectrometry Content Information
 ================================
 .. toctree::
    :maxdepth: 3
-   :caption: Contents:
+   :caption: 
    
    API
 
