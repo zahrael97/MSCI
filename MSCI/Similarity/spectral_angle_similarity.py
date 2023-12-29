@@ -13,16 +13,8 @@ Usage:
 # For functions
 dot_product_value = ndotproduct(x, y)
 angle_value = nspectraangle(x, y)
-# For the class
 joiner = joinPeaks(tolerance=value1, ppm=value2)
 matched_x, matched_y = joiner.match(x, y)
-
-Key Parameters:
-
-x, y: DataFrames representing two spectra, each containing m/z and intensity columns.
-m, n: Weighting parameters for the dot product and spectral angle calculations.
-tolerance, ppm: Parameters for the joinPeaks class to define the matching criteria.
-The module offers a structured approach to compare and match spectral data, facilitating the identification of similarities and differences between spectra.
 """
 def ndotproduct(x, y, m=0, n=0.5, na_rm=True):
     wx = _weightxy(x.iloc[:,0], x.iloc[:,1], m, n)
