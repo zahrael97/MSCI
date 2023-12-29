@@ -20,7 +20,7 @@ Peptide identification by mass spectrometry relies on the interpretation of frag
   :alt: matchms workflow illustration
 
 
-Installation:
+Installation
 ==================
 prerequisites:
 
@@ -30,7 +30,7 @@ prerequisites:
 
 
 
-Example:
+Example
 ==================
 Here is a small example of using MSCI to calculate pairwise normalized spectral angle 
 .. testcode::
