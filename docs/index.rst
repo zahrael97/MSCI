@@ -3,14 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to MSCI's documentation!
+MSCI : Mass Spectrometry Content Information
 ================================
-.. image:: MSCI_logo.png
-   :align: center
-   :width: 300
-   :height: 300
-
-
 .. toctree::
    :maxdepth: 3
    :caption: Contents:
