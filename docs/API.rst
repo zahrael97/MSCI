@@ -12,6 +12,14 @@ read_msp_file
 
    >>>
 
+read_mzml_file
+---------------------
+
+
+
+.. code::
+
+   >>>
 
 
 
@@ -45,7 +53,7 @@ process_combin
 
    >>> 
 
-tryptic_digest
+tryptic_digestion
 -----
 
 
@@ -53,3 +61,25 @@ tryptic_digest
 .. code::
 
    >>> 
+
+
+create_mutated_sequence
+-----
+
+
+
+.. code::
+
+   >>> 
+
+
+Generate_hla
+---------------------
+
+
+
+.. code::
+
+   >>>
+
+
