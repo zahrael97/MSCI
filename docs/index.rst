@@ -36,9 +36,10 @@ Example
 Here is a small example of using MSCI to calculate the pairwise normalized spectral angle 
 .. testcode::
 
-   from MSCI.Data.preprocessing_data import read_msp_file, parallel_function
+   from MSCI.Preprocessing_data import read_msp_file
    from MSCI.grouping.groups import MassContentInformation, process_data
-   from MSCI.similarity.Similarity import  process_combin
+   from MSCI.similarity.Similarity import  joinPeaks, nspectraangle
+   from MSCI.utils import process_combin, parallel_function
    File= 'MSCA_Package/Tryptic_peptides/Dataset/msp_files/charge2_3myPrositLib.msp'
    mz_irt_df = read_msp_file(File)
    g = MassContentInformation(mz_irt_df)
@@ -57,7 +58,7 @@ Here is a small example of using MSCI to calculate the pairwise normalized spect
     np.save(f'MSCA_Package/mutation/output/28CE/LRLRmutation_spectra_angles_ch2_3.npy', results)
 
 Should output 
-
+a dataframe 
 
 
 
