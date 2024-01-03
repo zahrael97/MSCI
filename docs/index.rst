@@ -15,7 +15,7 @@ MSCI : Mass Spectrometry Content Information python Library
 
 
 
-Peptide identification by mass spectrometry relies on the interpretation of fragmentation spectra based on the m/z pattern, relative intensities, and retention time (RT). Given a proteome, we wondered how many peptides generate very similar fragmentation spectra with current MS methods. *MSCI*  is a python package built to assess the information content of peptide fragmentation spectra, we aimed calculating an information-content index for all peptides in a given proteome would enable us to design data acquisition and data analysis strategies that generate and prioritize the most informative fragment ions to be queried for peptide quantification.
+Peptide identification by mass spectrometry relies on the interpretation of fragmentation spectra based on the m/z pattern, relative intensities, and retention time (RT). Given a proteome, we wondered how many peptides generate very similar fragmentation spectra with current MS methods. *MSCI*  is a Python package built to assess the information content of peptide fragmentation spectra, we aimed to calculate an information-content index for all peptides in a given proteome that would enable us to design data acquisition and data analysis strategies that generate and prioritize the most informative fragment ions to be queried for peptide quantification.
 
 .. image:: INTRODUCTION.png
   :alt: matchms workflow illustration
@@ -36,7 +36,7 @@ Example
 Here is a small example of using MSCI to calculate the pairwise normalized spectral angle 
 .. testcode::
 
-   from MSCI.Data.preprocessing_data import read_msp_file
+   from MSCI.Data.preprocessing_data import read_msp_file, parallel_function
    from MSCI.grouping.groups import MassContentInformation, process_data
    from MSCI.similarity.Similarity import  process_combin
    File= 'MSCA_Package/Tryptic_peptides/Dataset/msp_files/charge2_3myPrositLib.msp'
@@ -45,21 +45,16 @@ Here is a small example of using MSCI to calculate the pairwise normalized spect
    group = g.group_sequences(1,10, unit='Da')
    group = np.array(group, dtype=object)
    combin = process_data(group)
-   np.save("MSCA_Package/Tryptic_peptides/Dataset/combin/charge2_3_LR.npy", combin)
-    def parallel_function(pair):
-        return process_combin_partial(pair)
-
     # Create a partial function of process_combin with relevant_spectra and other parameters
     process_combin_partial = partial(process_combin, spectra=relevant_spectra, tolerance=1, ppm=0)
     # Determine the number of CPU cores available
     num_cores = cpu_count()
-
     # Use a Pool to parallelize the processing
     start_time = time.time()
     with Pool(num_cores) as pool:
         results = pool.map(parallel_function, updated_combin_chunk)
 
-    np.save(f'MSCA_Package/mutation/output/28CE/LRLRmutation_spectra_angles_{subcombin_num}ch2_3.npy', results)
+    np.save(f'MSCA_Package/mutation/output/28CE/LRLRmutation_spectra_angles_ch2_3.npy', results)
 
 Should output 
 
