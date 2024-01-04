@@ -65,14 +65,7 @@ process_combin
 
    >>> 
 
-tryptic_digestion
------
 
-
-
-.. code::
-
-   >>> 
 
 
 create_mutated_sequence
