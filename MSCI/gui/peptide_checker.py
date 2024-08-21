@@ -17,9 +17,9 @@ DATASETS = {
 #    "Immunopeptidome": {
 #        28: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE28.csv",
 #    },
-    "Human proteome Natural variants with all possible combinations": {
-        28: "https://github.com/zahrael97/MSCI/blob/master/Database/mutated_NSA_HRHR_NCE28.csv"
-    }
+    "Mutated human proteome": {
+        28: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE28.csv",
+#    }
 }
 
 
