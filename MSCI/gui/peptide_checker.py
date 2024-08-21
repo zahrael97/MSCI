@@ -88,7 +88,7 @@ def peptide_twins_checker():
                 df_path = DATASETS[organism][energy]
                 with st.spinner(f"Loading data for NCE {energy}..."):
                     try:
-                        df = pd.read_csv(df_path, delimiter=';')
+                        df = pd.read_csv(df_path, delimiter=',')
                     except pd.errors.ParserError as e:
                         st.error(f"Failed to parse the CSV file for NCE {energy}. Error: {e}")
                         continue
