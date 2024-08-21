@@ -133,6 +133,8 @@ import tempfile
 
 import requests
 
+import requests
+
 def peptide_twins_analysis():
     """Render the Peptide Twins Analysis page."""
     st.session_state.setdefault('spectra_cache', None)
@@ -145,7 +147,8 @@ def peptide_twins_analysis():
     uploaded_file = st.file_uploader("Upload your peptide file or use the example dataset", type=["txt"])
     use_example = st.checkbox("Use Example Dataset", value=False)
 
-    if use_example:
+    # Load example dataset if checkbox is checked
+    if use_example and not uploaded_file:
         example_url = "https://raw.githubusercontent.com/zahrael97/MSCI/master/random_tryptic_peptides.txt"
         response = requests.get(example_url)
         if response.status_code == 200:
@@ -163,18 +166,19 @@ def peptide_twins_analysis():
             temp_file.write(st.session_state.peptide_data)
             st.session_state.temp_file_path = temp_file.name
 
+    # Show the rest of the interface even if no file is uploaded
+    st.subheader("Prediction Settings")
+
+    model_intensity = st.selectbox("Select Intensity Model", INTENSITY_MODELS)
+    model_irt = st.selectbox("Select iRT Model", IRT_MODELS)
+    collision_energy = st.number_input("Set Collision Energy", min_value=1, step=1, value=30)
+    charge = st.number_input("Set Charge", min_value=1, step=1, value=2)
+
+    filter_option = st.selectbox("Filter Option", ["None", "Top N Peaks", "Intensity Threshold"])
+    n_peaks = st.number_input("Number of Peaks to Keep", min_value=1, step=1, value=6, key="n_peaks")
+    intensity_threshold = st.number_input("Intensity Threshold", min_value=0.0, max_value=1.0, step=0.01, value=0.1, key="intensity_threshold")
+
     if st.session_state.temp_file_path:
-        st.subheader("Prediction Results")
-
-        model_intensity = st.selectbox("Select Intensity Model", INTENSITY_MODELS)
-        model_irt = st.selectbox("Select iRT Model", IRT_MODELS)
-        collision_energy = st.number_input("Set Collision Energy", min_value=1, step=1, value=30)
-        charge = st.number_input("Set Charge", min_value=1, step=1, value=2)
-
-        filter_option = st.selectbox("Filter Option", ["None", "Top N Peaks", "Intensity Threshold"])
-        n_peaks = st.number_input("Number of Peaks to Keep", min_value=1, step=1, value=6, key="n_peaks")
-        intensity_threshold = st.number_input("Intensity Threshold", min_value=0.0, max_value=1.0, step=0.01, value=0.1, key="intensity_threshold")
-
         processor = PeptideProcessor(
             input_file=st.session_state.temp_file_path,
             collision_energy=collision_energy,
@@ -249,7 +253,7 @@ def peptide_twins_analysis():
         except Exception as e:
             st.error(f"An error occurred during prediction: {e}")
     else:
-        st.info("Please upload a peptide text file to proceed, or use the example dataset by checking the box above.")
+        st.info("Please upload a peptide text file or use the example dataset to proceed.")
 
 def plot_spectra():
     # Show the DataFrame if it exists in the session state
