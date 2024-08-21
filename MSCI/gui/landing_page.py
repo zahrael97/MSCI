@@ -15,7 +15,7 @@ def landing_page():
     workflow_url = "https://github.com/proteomicsunitcrg/MSCI/raw/main/docs/INTRODUCTION.png"
 
     st.write("""
-    Peptide identification by mass spectrometry relies on the interpretation of fragmentation spectra based on the m/z pattern, relative intensities, and retention time (RT). Given a proteome, we wondered how many peptides generate very similar fragmentation spectra with current MS methods. MSCI is a Python package built to assess the information content of peptide fragmentation spectra. We aimed to calculate an information-content index for all peptides in a given proteome, which would enable us to design data acquisition and data analysis strategies that generate and prioritize the most informative fragment ions to be queried for peptide quantification.
+    The MSCI Python library was developed to address the challenges of peptide identification in mass spectrometry-based proteomics, particularly regarding the issue of indistinguishable peptides that exhibit similar analytical values and fragmentation patterns. MSCI provides a comprehensive toolset to streamline the workflow from data import to spectral analysis, enabling researchers to effectively evaluate fragmentation similarity scores, identify indistinguishable peptide pairs, and design data acquisition and analysis strategies that prioritize the most informative fragment ions for accurate peptide quantification
     """)
 
     # Load image from URL
