@@ -131,8 +131,6 @@ def perform_analysis(mz_tolerance: float, irt_tolerance: float, use_ppm: bool):
 
 import tempfile
 
-import requests
-
 def peptide_twins_analysis():
     """Render the Peptide Twins Analysis page."""
     st.session_state.setdefault('spectra_cache', None)
@@ -141,41 +139,25 @@ def peptide_twins_analysis():
 
     st.header("Peptide Twins Analysis")
 
-    # Option to use the provided dataset or upload a new one
-    dataset_option = st.radio("Choose Dataset Option", ["Upload Your Own File", "Use Example Dataset"])
+    uploaded_file = st.file_uploader("Upload your peptide file", type=["txt"])
+    model_intensity = st.selectbox("Select Intensity Model", INTENSITY_MODELS)
+    model_irt = st.selectbox("Select iRT Model", IRT_MODELS)
+    collision_energy = st.number_input("Set Collision Energy", min_value=1, step=1, value=30)
+    charge = st.number_input("Set Charge", min_value=1, step=1, value=2)
 
-    if dataset_option == "Upload Your Own File":
-        uploaded_file = st.file_uploader("Upload your peptide file", type=["txt"])
-    else:
-        example_url = "https://raw.githubusercontent.com/zahrael97/MSCI/master/random_tryptic_peptides.txt"
-        response = requests.get(example_url)
-        if response.status_code == 200:
-            st.success("Loaded example dataset successfully!")
-            st.session_state.peptide_data = response.text
+    filter_option = st.selectbox("Filter Option", ["None", "Top N Peaks", "Intensity Threshold"])
+    n_peaks = st.number_input("Number of Peaks to Keep", min_value=1, step=1, value=6, key="n_peaks")
+    intensity_threshold = st.number_input("Intensity Threshold", min_value=0.0, max_value=1.0, step=0.01, value=0.1, key="intensity_threshold")
+
+    if uploaded_file:
+        st.session_state.peptide_data = uploaded_file.read().decode("utf-8")
+
+        if not st.session_state.temp_file_path:
             with tempfile.NamedTemporaryFile(delete=False, suffix=".txt", mode='w') as temp_file:
                 temp_file.write(st.session_state.peptide_data)
                 st.session_state.temp_file_path = temp_file.name
-        else:
-            st.error("Failed to load the example dataset. Please try again.")
-            return
 
-    if dataset_option == "Upload Your Own File" and uploaded_file:
-        st.session_state.peptide_data = uploaded_file.read().decode("utf-8")
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".txt", mode='w') as temp_file:
-            temp_file.write(st.session_state.peptide_data)
-            st.session_state.temp_file_path = temp_file.name
-
-    if st.session_state.temp_file_path:
         st.subheader("Prediction Results")
-
-        model_intensity = st.selectbox("Select Intensity Model", INTENSITY_MODELS)
-        model_irt = st.selectbox("Select iRT Model", IRT_MODELS)
-        collision_energy = st.number_input("Set Collision Energy", min_value=1, step=1, value=30)
-        charge = st.number_input("Set Charge", min_value=1, step=1, value=2)
-
-        filter_option = st.selectbox("Filter Option", ["None", "Top N Peaks", "Intensity Threshold"])
-        n_peaks = st.number_input("Number of Peaks to Keep", min_value=1, step=1, value=6, key="n_peaks")
-        intensity_threshold = st.number_input("Intensity Threshold", min_value=0.0, max_value=1.0, step=0.01, value=0.1, key="intensity_threshold")
 
         processor = PeptideProcessor(
             input_file=st.session_state.temp_file_path,
@@ -252,7 +234,6 @@ def peptide_twins_analysis():
             st.error(f"An error occurred during prediction: {e}")
     else:
         st.info("Please upload a peptide text file to proceed.")
-
 
 def plot_spectra():
     # Show the DataFrame if it exists in the session state
