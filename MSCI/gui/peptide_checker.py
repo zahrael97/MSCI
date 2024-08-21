@@ -7,19 +7,19 @@ from Bio import SeqIO
 import io
 
 DATASETS = {
-    "Human": {
+    "Reference Human Canonical proteome": {
         25: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE25.csv",
         28: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE28.csv",
         30: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE30.csv",
         32: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE32.csv",
         35: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE35.csv"
     },
-    "Immunopeptidome": {
-        28: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE28.csv",
-    },
-    "Mutated human proteome": {
-        28: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE28.csv",
-    }
+#    "Immunopeptidome": {
+#        28: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE28.csv",
+#    },
+#    "Mutated human proteome": {
+#        28: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE28.csv",
+#    }
 }
 
 
@@ -69,7 +69,7 @@ def peptide_twins_checker():
     """Render the Peptide Twins Checker page."""
     st.header("Peptide Twins Checker")
 
-    organism = st.selectbox("Select Organism:", options=list(DATASETS.keys()), key='organism')
+    organism = st.selectbox("Select Universe:", options=list(DATASETS.keys()), key='Universe')
     energies = st.multiselect("Select Collision Energies:", options=list(DATASETS[organism].keys()), key='energies')
 
     peptide = st.text_input("Enter Peptide:", key='peptide', value="SDPYGIIR")
