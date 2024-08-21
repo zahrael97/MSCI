@@ -69,6 +69,12 @@ def peptide_twins_checker():
     """Render the Peptide Twins Checker page."""
     st.header("Peptide Twins Checker")
 
+    # Add a note about the datasets and analysis
+    st.markdown("""
+    **Note:** The datasets used in this tool and the detailed analysis can be found in our paper. 
+    Please refer to the paper for more information on the methodology and the data sources.
+    """)
+
     organism = st.selectbox("Select Universe:", options=list(DATASETS.keys()), key='Universe')
     energies = st.multiselect("Select Collision Energies:", options=list(DATASETS[organism].keys()), key='energies')
 
@@ -120,4 +126,3 @@ def peptide_twins_checker():
                 st.success("No twin peptides detected in the selected energies.")
         else:
             st.warning("Please enter a peptide, charge, and upload a FASTA file to check.")
-
