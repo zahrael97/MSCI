@@ -53,8 +53,7 @@ def find_colliding_peptides(df: pd.DataFrame, peptide: str, charge: int) -> set:
         return set()
 
     matches = df[((df['x_peptide'].apply(lambda x: extract_peptide_and_charge(x) == (peptide, charge))) |
-                  (df['y_peptide'].apply(lambda x: extract_peptide_and_charge(x) == (peptide, charge)))) &
-                 (df['angle'] > 0.7)]
+                  (df['y_peptide'].apply(lambda x: extract_peptide_and_charge(x) == (peptide, charge))))]
 
     colliding_peptides = {
         (row['x_peptide'].rsplit('/', 1)[0], int(row['x_peptide'].rsplit('/', 1)[1]))
