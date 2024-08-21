@@ -129,6 +129,8 @@ def perform_analysis(mz_tolerance: float, irt_tolerance: float, use_ppm: bool):
             st.error(f"An error occurred during analysis: {str(e)}")
 
 
+import tempfile
+
 def peptide_twins_analysis():
     """Render the Peptide Twins Analysis page."""
     st.session_state.setdefault('spectra_cache', None)
@@ -167,7 +169,9 @@ def peptide_twins_analysis():
 
         try:
             with st.spinner("Running prediction..."):
-                processor.process('Z:/zelhamraoui/MSCA_Package/MSCI_package/MSCI/output.msp')
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".msp") as temp_output:
+                    output_msp_path = temp_output.name
+                    processor.process(output_msp_path)
                 st.success("Prediction Completed Successfully")
 
             st.subheader("Spectra Analysis")
@@ -186,30 +190,32 @@ def peptide_twins_analysis():
             if st.button("Start Analysis"):
                 st.session_state.similarity_method = similarity_method
 
-                spectra_file = 'Z:/zelhamraoui/MSCA_Package/MSCI_package/MSCI/output.msp'
+                spectra_file = output_msp_path
                 
                 if filter_option == "Top N Peaks":
                     try:
-                        filtered_file = 'Z:/zelhamraoui/MSCA_Package/MSCI_package/MSCI/filtered_output.msp'
-                        filter_spectra_by_top_peaks(
-                            spectra_file,
-                            filtered_file,
-                            st.session_state.n_peaks
-                        )
-                        spectra_file = filtered_file
+                        with tempfile.NamedTemporaryFile(delete=False, suffix=".msp") as temp_filtered:
+                            filtered_file = temp_filtered.name
+                            filter_spectra_by_top_peaks(
+                                spectra_file,
+                                filtered_file,
+                                st.session_state.n_peaks
+                            )
+                            spectra_file = filtered_file
                     except Exception as e:
                         st.error(f"An error occurred while filtering spectra: {e}")
                         return
 
                 elif filter_option == "Intensity Threshold":
                     try:
-                        filtered_file = 'Z:/zelhamraoui/MSCA_Package/MSCI_package/MSCI/filtered_output.msp'
-                        filter_spectra_by_intensity(
-                            spectra_file,
-                            filtered_file,
-                            st.session_state.intensity_threshold
-                        )
-                        spectra_file = filtered_file
+                        with tempfile.NamedTemporaryFile(delete=False, suffix=".msp") as temp_filtered:
+                            filtered_file = temp_filtered.name
+                            filter_spectra_by_intensity(
+                                spectra_file,
+                                filtered_file,
+                                st.session_state.intensity_threshold
+                            )
+                            spectra_file = filtered_file
                     except Exception as e:
                         st.error(f"An error occurred while filtering spectra: {e}")
                         return
