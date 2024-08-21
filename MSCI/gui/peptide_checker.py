@@ -9,16 +9,16 @@ import io
 DATASETS = {
     "Human": {
         25: "https://github.com/zahrael97/MSCI/blob/master/Database/NSA_HRHR_NCE28.csv",
-        28: "Z:/zelhamraoui/MSCA_Package/results/Tryptic/01_08_2024/NSA_HRHR_NCE28.csv",
-        30: "Z:/zelhamraoui/MSCA_Package/results/Tryptic/01_08_2024/NSA_HRHR_NCE30.csv",
-        32: "Z:/zelhamraoui/MSCA_Package/results/Tryptic/01_08_2024/NSA_HRHR_NCE32.csv",
-        35: "Z:/zelhamraoui/MSCA_Package/results/Tryptic/01_08_2024/NSA_HRHR_NCE35.csv"
+        28:  "https://github.com/zahrael97/MSCI/blob/master/Database/NSA_HRHR_NCE28.csv",
+        30: "https://github.com/zahrael97/MSCI/blob/master/Database/NSA_HRHR_NCE28.csv",
+        32: "https://github.com/zahrael97/MSCI/blob/master/Database/NSA_HRHR_NCE28.csv",
+        35: "https://github.com/zahrael97/MSCI/blob/master/Database/NSA_HRHR_NCE28.csv"
     },
     "Immunopeptidome": {
-        28: "Z:/zelhamraoui/MSCA_Package/results/Tryptic/01_08_2024/NSA_HRHR_NCE28.csv",
+        28:  "https://github.com/zahrael97/MSCI/blob/master/Database/NSA_HRHR_NCE28.csv",
     },
     "Mutated human proteome": {
-        28: "Z:/zelhamraoui/MSCA_Package/results/Tryptic/01_08_2024/NSA_HRHR_NCE28.csv",
+        28:  "https://github.com/zahrael97/MSCI/blob/master/Database/NSA_HRHR_NCE28.csv",
     }
 }
 
