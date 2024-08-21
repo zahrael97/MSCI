@@ -145,7 +145,7 @@ def peptide_twins_analysis():
 
     # File uploader with an option to load example data
     uploaded_file = st.file_uploader("Upload your peptide file or use the example dataset", type=["txt"])
-    use_example = st.checkbox("Use Example Dataset", value=False)
+    use_example = st.checkbox("Use our example Dataset", value=False)
 
     # Load example dataset if checkbox is checked
     if use_example and not uploaded_file:
