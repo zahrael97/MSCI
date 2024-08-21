@@ -8,19 +8,20 @@ import io
 
 DATASETS = {
     "Human": {
-        25: "https://github.com/zahrael97/MSCI/blob/master/Database/NSA_HRHR_NCE28.csv",
-        28:  "https://github.com/zahrael97/MSCI/blob/master/Database/NSA_HRHR_NCE28.csv",
-        30: "https://github.com/zahrael97/MSCI/blob/master/Database/NSA_HRHR_NCE28.csv",
-        32: "https://github.com/zahrael97/MSCI/blob/master/Database/NSA_HRHR_NCE28.csv",
-        35: "https://github.com/zahrael97/MSCI/blob/master/Database/NSA_HRHR_NCE28.csv"
+        25: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE28.csv",
+        28: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE28.csv",
+        30: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE28.csv",
+        32: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE28.csv",
+        35: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE28.csv"
     },
     "Immunopeptidome": {
-        28:  "https://github.com/zahrael97/MSCI/blob/master/Database/NSA_HRHR_NCE28.csv",
+        28: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE28.csv",
     },
     "Mutated human proteome": {
-        28:  "https://github.com/zahrael97/MSCI/blob/master/Database/NSA_HRHR_NCE28.csv",
+        28: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE28.csv",
     }
 }
+
 
 def parse_fasta(fasta_file) -> Dict[str, str]:
     """Parse a FASTA file and return a dictionary of protein sequences."""
@@ -87,7 +88,14 @@ def peptide_twins_checker():
             for energy in energies:
                 df_path = DATASETS[organism][energy]
                 with st.spinner(f"Loading data for NCE {energy}..."):
-                    df = pd.read_csv(df_path)
+                    try:
+                        df = pd.read_csv(df_path, delimiter=';')
+                    except pd.errors.ParserError as e:
+                        st.error(f"Failed to parse the CSV file for NCE {energy}. Error: {e}")
+                        continue
+                    except Exception as e:
+                        st.error(f"An error occurred while loading the CSV file: {e}")
+                        continue
 
                 if df.empty:
                     st.warning(f"No data found in the file for NCE {energy}. Skipping.")
