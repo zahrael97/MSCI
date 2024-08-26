@@ -17,12 +17,12 @@ DATASETS = {
 #    "Immunopeptidome": {
 #        28: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE28.csv",
 #    },
-    "Mutated human proteome": {
-        28: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/mutated_NSA_HRHR_NCE28.csv",
-    },
-    "Human Oral microbiome": {
-        28: "https://github.com/zahrael97/MSCI/blob/master/Database/Oral_microbiom.csv",
-    }
+#    "Mutated human proteome": {
+#        28: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE28.csv",
+#    }
+#    "Human Oral microbiome": {
+#        28: "https://github.com/zahrael97/MSCI/blob/master/Database/Oral_microbiom.csv",
+#    }
 }
 
 
