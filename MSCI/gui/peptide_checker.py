@@ -14,11 +14,16 @@ DATASETS = {
         32: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE32.csv",
         35: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE35.csv"
     },
+#    "Immunopeptidome": {
+#        28: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE28.csv",
+#    },
+#    "Mutated human proteome": {
+#        28: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE28.csv",
+#    }
     "Human Oral microbiome": {
         28: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/Oral_microbiom.csv",
     }
 }
-
 
 
 def parse_fasta(fasta_file) -> Dict[str, str]:
