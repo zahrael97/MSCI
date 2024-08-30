@@ -81,6 +81,7 @@ This module provides functions for grouping MS1 peptides based on mass-to-charge
 
 Functions
 ---------
+.. code-block:: python
 
 **make_data_compatible(index_df)**
 
