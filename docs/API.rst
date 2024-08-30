@@ -18,66 +18,6 @@
 .. role:: green
 .. role:: bold
 
-Multiprocessing Module
-======================
-
-:blue:`This module provides functionality to read and process mass spectrometry files, including MSP, MGF, and MZML formats.`
-
-Functions
-=========
-
-:brown:`**read_msp_file(filename)**`
-
-    :blue:`Reads an MSP file and returns a DataFrame containing the spectra information.`
-
-    :green:`**Parameters:**`
-    - :bold:`filename` (:red:`str`): The path to the MSP file.
-
-    :green:`**Returns:**`
-    - :bold:`pandas.DataFrame`: A DataFrame containing the following columns:
-        - :bold:`Name`: The name of the spectrum.
-        - :bold:`MW`: Molecular weight of the spectrum.
-        - :bold:`iRT`: Indexed retention time.
-
-:brown:`**process_spectrum(spectrum)**`
-
-    :blue:`Processes a single spectrum from an MZML file.`
-
-    :green:`**Parameters:**`
-    - :bold:`spectrum` (:red:`pyopenms.MSSpectrum`): A single spectrum object from an MZML file.
-
-    :green:`**Returns:**`
-    - :bold:`dict`: A dictionary containing the processed spectrum data with keys `MW`, `RT`, `Num Peaks`, and `Peaks`.
-
-:brown:`**read_mgf_file(filename)**`
-
-    :blue:`Reads an MGF file and returns a list of spectra data.`
-
-    :green:`**Parameters:**`
-    - :bold:`filename` (:red:`str`): The path to the MGF file.
-
-    :green:`**Returns:**`
-    - :bold:`list`: A list of dictionaries, each containing `mz_values`, `intensities`, `MW`, and `RT` for a spectrum.
-
-:brown:`**read_mzml_file(filename)**`
-
-    :blue:`Reads an MZML file and returns a list of processed spectrum data.`
-
-    :green:`**Parameters:**`
-    - :bold:`filename` (:red:`str`): The path to the MZML file.
-
-    :green:`**Returns:**`
-    - :bold:`list`: A list of dictionaries containing processed spectrum data.
-
-:brown:`**read_ms_file(filename)**`
-
-    :blue:`Determines the file format and calls the appropriate function to read the mass spectrometry file.`
-
-    :green:`**Parameters:**`
-    - :bold:`filename` (:red:`str`): The path to the mass spectrometry file.
-
-    :green:`**Returns:**`
-    - :bold:`pandas.DataFrame` or :bold:`list`: Depending on the file format, returns either a DataFrame or a list of dictionaries.
 
 Grouping MS1 Module
 ===================
@@ -146,6 +86,68 @@ Functions
 
     :green:`**Returns:**`
     - :bold:`pandas.DataFrame`: A DataFrame containing the resulting valid peptide pairs with their indices, names, m/z values, and iRT values.
+
+Multiprocessing Module
+======================
+
+:blue:`This module provides functionality to read and process mass spectrometry files, including MSP, MGF, and MZML formats.`
+
+Functions
+=========
+
+:brown:`**read_msp_file(filename)**`
+
+    :blue:`Reads an MSP file and returns a DataFrame containing the spectra information.`
+
+    :green:`**Parameters:**`
+    - :bold:`filename` (:red:`str`): The path to the MSP file.
+
+    :green:`**Returns:**`
+    - :bold:`pandas.DataFrame`: A DataFrame containing the following columns:
+        - :bold:`Name`: The name of the spectrum.
+        - :bold:`MW`: Molecular weight of the spectrum.
+        - :bold:`iRT`: Indexed retention time.
+
+:brown:`**process_spectrum(spectrum)**`
+
+    :blue:`Processes a single spectrum from an MZML file.`
+
+    :green:`**Parameters:**`
+    - :bold:`spectrum` (:red:`pyopenms.MSSpectrum`): A single spectrum object from an MZML file.
+
+    :green:`**Returns:**`
+    - :bold:`dict`: A dictionary containing the processed spectrum data with keys `MW`, `RT`, `Num Peaks`, and `Peaks`.
+
+:brown:`**read_mgf_file(filename)**`
+
+    :blue:`Reads an MGF file and returns a list of spectra data.`
+
+    :green:`**Parameters:**`
+    - :bold:`filename` (:red:`str`): The path to the MGF file.
+
+    :green:`**Returns:**`
+    - :bold:`list`: A list of dictionaries, each containing `mz_values`, `intensities`, `MW`, and `RT` for a spectrum.
+
+:brown:`**read_mzml_file(filename)**`
+
+    :blue:`Reads an MZML file and returns a list of processed spectrum data.`
+
+    :green:`**Parameters:**`
+    - :bold:`filename` (:red:`str`): The path to the MZML file.
+
+    :green:`**Returns:**`
+    - :bold:`list`: A list of dictionaries containing processed spectrum data.
+
+:brown:`**read_ms_file(filename)**`
+
+    :blue:`Determines the file format and calls the appropriate function to read the mass spectrometry file.`
+
+    :green:`**Parameters:**`
+    - :bold:`filename` (:red:`str`): The path to the mass spectrometry file.
+
+    :green:`**Returns:**`
+    - :bold:`pandas.DataFrame` or :bold:`list`: Depending on the file format, returns either a DataFrame or a list of dictionaries.
+
 
 Similarity Module
 =================
