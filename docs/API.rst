@@ -245,4 +245,51 @@ Functions and Classes
     - `pandas.DataFrame`: A DataFrame containing the similarity scores for the processed spectra pairs.
 
 
+Mutation Module
+===============
+
+This module provides tools for processing proteins by simulating peptide digestion and introducing mutations based on input data. The primary class, `ProteinMutator`, handles the loading, processing, and mutation of proteins.
+
+Classes and Functions
+---------------------
+
+.. autoclass:: ProteinMutator
+    :module: MSCI.mutation
+    :members:
+
+    A class for handling protein mutations and peptide generation based on a provided proteome and mutation data.
+
+    **Parameters:**
+    - `proteome_file` (str): Path to the FASTA file containing the proteome sequences.
+    - `mutations_file` (str): Path to the TSV file containing mutation data.
+    - `output_dir` (str): Directory where output files (peptides and mutated peptides) will be saved.
+    - `digestion_method` (callable): A function that takes a protein sequence and returns a list of peptides.
+
+    **Methods:**
+
+    - **load_proteome()**:
+        Loads the proteome sequences from the FASTA file into memory.
+
+    - **load_mutations()**:
+        Loads the mutation data from the TSV file into a DataFrame.
+
+    - **process_protein(target_protein_accession)**:
+        Processes a single protein by digesting it into peptides and applying mutations based on the mutation data.
+
+        **Parameters:**
+        - `target_protein_accession` (str): The accession number of the target protein to be processed.
+
+    - **process_all_proteins()**:
+        Processes all proteins in the loaded proteome, applying digestion and mutation steps for each.
+
+.. autofunction:: tryptic_digest
+    :module: MSCI.mutation
+
+    Simulates the tryptic digestion of a protein sequence.
+
+    **Parameters:**
+    - `sequence` (str): The protein sequence to be digested.
+
+    **Returns:**
+    - `list`: A list of peptides resulting from the tryptic digestion.
 
