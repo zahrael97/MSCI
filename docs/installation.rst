@@ -53,9 +53,9 @@ If you're using Google Colab, you can execute the following code to install the 
 
 .. code-block:: python
 
-    !pip install MSCI==0.2.0
-    !pip install biopython
-    !pip install matchms
+    pip install MSCI==0.2.0
+    pip install biopython
+    pip install matchms
 
 Remember to cancel any restart prompts from Colab to avoid disrupting your environment.
 
