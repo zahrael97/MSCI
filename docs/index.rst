@@ -15,7 +15,7 @@ Installation
 
    installation
 
-API Reference
+API 
 =============
 
 .. toctree::
