@@ -14,9 +14,9 @@ DATASETS = {
         32: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE32.csv",
         35: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE35.csv"
     },
-#    "Immunopeptidome": {
-#        28: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE28.csv",
-#    },
+    "Immunopeptidome": {
+        28: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/HLA_peptides_HRHR_NSA_score.csv",
+    },
 #    "Mutated human proteome": {
 #        28: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/NSA_HRHR_NCE28.csv",
 #    }
