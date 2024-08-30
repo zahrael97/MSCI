@@ -1,277 +1,280 @@
 .. MSCI Documentation
 
-Contents
 ========
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: **Contents**
+   :titlesonly:
 
    preprocessing
    grouping_ms1
    similarity
    mutation
 
+.. role:: red
+.. role:: blue
+.. role:: green
+.. role:: bold
+
 Multiprocessing Module
 ======================
 
-This module provides functionality to read and process mass spectrometry files, including MSP, MGF, and MZML formats.
+:blue:`This module provides functionality to read and process mass spectrometry files, including MSP, MGF, and MZML formats.`
 
 Functions
 =========
-**read_msp_file(filename)**
 
-    Reads an MSP file and returns a DataFrame containing the spectra information.
+:brown:`**read_msp_file(filename)**`
 
-    **Parameters:**
-    - `filename` (str): The path to the MSP file.
+    :blue:`Reads an MSP file and returns a DataFrame containing the spectra information.`
 
-    **Returns:**
-    - `pandas.DataFrame`: A DataFrame containing the following columns:
-        - `Name`: The name of the spectrum.
-        - `MW`: Molecular weight of the spectrum.
-        - `iRT`: Indexed retention time.
+    :green:`**Parameters:**`
+    - :bold:`filename` (:red:`str`): The path to the MSP file.
 
-**process_spectrum(spectrum)**
+    :green:`**Returns:**`
+    - :bold:`pandas.DataFrame`: A DataFrame containing the following columns:
+        - :bold:`Name`: The name of the spectrum.
+        - :bold:`MW`: Molecular weight of the spectrum.
+        - :bold:`iRT`: Indexed retention time.
 
-    Processes a single spectrum from an MZML file.
+:brown:`**process_spectrum(spectrum)**`
 
-    **Parameters:**
-    - `spectrum` (pyopenms.MSSpectrum): A single spectrum object from an MZML file.
+    :blue:`Processes a single spectrum from an MZML file.`
 
-    **Returns:**
-    - `dict`: A dictionary containing the processed spectrum data with keys 'MW', 'RT', 'Num Peaks', and 'Peaks'.
+    :green:`**Parameters:**`
+    - :bold:`spectrum` (:red:`pyopenms.MSSpectrum`): A single spectrum object from an MZML file.
 
-**read_mgf_file(filename)**
+    :green:`**Returns:**`
+    - :bold:`dict`: A dictionary containing the processed spectrum data with keys `MW`, `RT`, `Num Peaks`, and `Peaks`.
 
-    Reads an MGF file and returns a list of spectra data.
+:brown:`**read_mgf_file(filename)**`
 
-    **Parameters:**
-    - `filename` (str): The path to the MGF file.
+    :blue:`Reads an MGF file and returns a list of spectra data.`
 
-    **Returns:**
-    - `list`: A list of dictionaries, each containing `mz_values`, `intensities`, `MW`, and `RT` for a spectrum.
+    :green:`**Parameters:**`
+    - :bold:`filename` (:red:`str`): The path to the MGF file.
 
-**read_mzml_file(filename)**
+    :green:`**Returns:**`
+    - :bold:`list`: A list of dictionaries, each containing `mz_values`, `intensities`, `MW`, and `RT` for a spectrum.
 
-    Reads an MZML file and returns a list of processed spectrum data.
+:brown:`**read_mzml_file(filename)**`
 
-    **Parameters:**
-    - `filename` (str): The path to the MZML file.
+    :blue:`Reads an MZML file and returns a list of processed spectrum data.`
 
-    **Returns:**
-    - `list`: A list of dictionaries containing processed spectrum data.
+    :green:`**Parameters:**`
+    - :bold:`filename` (:red:`str`): The path to the MZML file.
 
-**read_ms_file(filename)**
+    :green:`**Returns:**`
+    - :bold:`list`: A list of dictionaries containing processed spectrum data.
 
-    Determines the file format and calls the appropriate function to read the mass spectrometry file.
+:brown:`**read_ms_file(filename)**`
 
-    **Parameters:**
-    - `filename` (str): The path to the mass spectrometry file.
+    :blue:`Determines the file format and calls the appropriate function to read the mass spectrometry file.`
 
-    **Returns:**
-    - `pandas.DataFrame` or `list`: Depending on the file format, returns either a DataFrame or a list of dictionaries.
+    :green:`**Parameters:**`
+    - :bold:`filename` (:red:`str`): The path to the mass spectrometry file.
 
+    :green:`**Returns:**`
+    - :bold:`pandas.DataFrame` or :bold:`list`: Depending on the file format, returns either a DataFrame or a list of dictionaries.
 
 Grouping MS1 Module
 ===================
 
-This module provides functions for grouping MS1 peptides based on mass-to-charge ratio (m/z) and indexed retention time (iRT) using k-d tree data structures and tolerance calculations.
+:blue:`This module provides functions for grouping MS1 peptides based on mass-to-charge ratio (m/z) and indexed retention time (iRT) using k-d tree data structures and tolerance calculations.`
 
 Functions
 =========
-**make_data_compatible(index_df)**
 
-    Converts a DataFrame into a list of tuples compatible with further processing.
+:brown:`**make_data_compatible(index_df)**`
 
-    **Parameters:**
-    - `index_df` (pandas.DataFrame): DataFrame containing the mass spectrometry data with columns 'MW' (m/z) and 'iRT'.
+    :blue:`Converts a DataFrame into a list of tuples compatible with further processing.`
 
-    **Returns:**
-    - `list`: A list of tuples in the format `(index, MW, iRT)`.
+    :green:`**Parameters:**`
+    - :bold:`index_df` (:red:`pandas.DataFrame`): DataFrame containing the mass spectrometry data with columns `MW` (m/z) and `iRT`.
 
-**within_ppm(pair, ppm_tolerance1, ppm_tolerance2)**
+    :green:`**Returns:**`
+    - :bold:`list`: A list of tuples in the format `(index, MW, iRT)`.
 
-    Checks if two peptide pairs are within a specified ppm (parts per million) tolerance for m/z and absolute tolerance for iRT.
+:brown:`**within_ppm(pair, ppm_tolerance1, ppm_tolerance2)**`
 
-    **Parameters:**
-    - `pair` (tuple): A tuple containing two peptide tuples in the format `((index1, MW1, iRT1), (index2, MW2, iRT2))`.
-    - `ppm_tolerance1` (float): The ppm tolerance for the m/z values.
-    - `ppm_tolerance2` (float): The absolute tolerance for the iRT values.
+    :blue:`Checks if two peptide pairs are within a specified ppm (parts per million) tolerance for m/z and absolute tolerance for iRT.`
 
-    **Returns:**
-    - `bool`: True if the pair is within the specified tolerances, False otherwise.
+    :green:`**Parameters:**`
+    - :bold:`pair` (:red:`tuple`): A tuple containing two peptide tuples in the format `((index1, MW1, iRT1), (index2, MW2, iRT2))`.
+    - :bold:`ppm_tolerance1` (:red:`float`): The ppm tolerance for the m/z values.
+    - :bold:`ppm_tolerance2` (:red:`float`): The absolute tolerance for the iRT values.
 
-**within_tolerance(pair, tolerance1, tolerance2)**
+    :green:`**Returns:**`
+    - :bold:`bool`: True if the pair is within the specified tolerances, False otherwise.
 
-    Checks if two peptide pairs are within specified absolute tolerances for both m/z and iRT.
+:brown:`**within_tolerance(pair, tolerance1, tolerance2)**`
 
-    **Parameters:**
-    - `pair` (tuple): A tuple containing two peptide tuples in the format `((index1, MW1, iRT1), (index2, MW2, iRT2))`.
-    - `tolerance1` (float): The absolute tolerance for the m/z values.
-    - `tolerance2` (float): The absolute tolerance for the iRT values.
+    :blue:`Checks if two peptide pairs are within specified absolute tolerances for both m/z and iRT.`
 
-    **Returns:**
-    - `bool`: True if the pair is within the specified tolerances, False otherwise.
+    :green:`**Parameters:**`
+    - :bold:`pair` (:red:`tuple`): A tuple containing two peptide tuples in the format `((index1, MW1, iRT1), (index2, MW2, iRT2))`.
+    - :bold:`tolerance1` (:red:`float`): The absolute tolerance for the m/z values.
+    - :bold:`tolerance2` (:red:`float`): The absolute tolerance for the iRT values.
 
-**find_combinations_kdtree(data, tolerance1, tolerance2, use_ppm=True)**
+    :green:`**Returns:**`
+    - :bold:`bool`: True if the pair is within the specified tolerances, False otherwise.
 
-    Finds valid peptide combinations within specified tolerances using a k-d tree for efficient querying.
+:brown:`**find_combinations_kdtree(data, tolerance1, tolerance2, use_ppm=True)**`
 
-    **Parameters:**
-    - `data` (list): A list of tuples containing peptide data in the format `(index, MW, iRT)`.
-    - `tolerance1` (float): The tolerance for the m/z values.
-    - `tolerance2` (float): The tolerance for the iRT values.
-    - `use_ppm` (bool): If True, use ppm tolerance for m/z values; otherwise, use absolute tolerance.
+    :blue:`Finds valid peptide combinations within specified tolerances using a k-d tree for efficient querying.`
 
-    **Returns:**
-    - `list`: A list of valid peptide pairs within the specified tolerances.
+    :green:`**Parameters:**`
+    - :bold:`data` (:red:`list`): A list of tuples containing peptide data in the format `(index, MW, iRT)`.
+    - :bold:`tolerance1` (:red:`float`): The tolerance for the m/z values.
+    - :bold:`tolerance2` (:red:`float`): The tolerance for the iRT values.
+    - :bold:`use_ppm` (:red:`bool`): If True, use ppm tolerance for m/z values; otherwise, use absolute tolerance.
 
-**process_peptide_combinations(mz_irt_df, tolerance1, tolerance2, use_ppm=True)**
+    :green:`**Returns:**`
+    - :bold:`list`: A list of valid peptide pairs within the specified tolerances.
 
-    Processes peptide combinations from the mass spectrometry data, finding valid pairs within specified tolerances.
+:brown:`**process_peptide_combinations(mz_irt_df, tolerance1, tolerance2, use_ppm=True)**`
 
-    **Parameters:**
-    - `mz_irt_df` (pandas.DataFrame): DataFrame containing peptide data with columns 'Name', 'MW', and 'iRT'.
-    - `tolerance1` (float): The tolerance for the m/z values.
-    - `tolerance2` (float): The tolerance for the iRT values.
-    - `use_ppm` (bool): If True, use ppm tolerance for m/z values; otherwise, use absolute tolerance.
+    :blue:`Processes peptide combinations from the mass spectrometry data, finding valid pairs within specified tolerances.`
 
-    **Returns:**
-    - `pandas.DataFrame`: A DataFrame containing the resulting valid peptide pairs with their indices, names, m/z values, and iRT values.
+    :green:`**Parameters:**`
+    - :bold:`mz_irt_df` (:red:`pandas.DataFrame`): DataFrame containing peptide data with columns `Name`, `MW`, and `iRT`.
+    - :bold:`tolerance1` (:red:`float`): The tolerance for the m/z values.
+    - :bold:`tolerance2` (:red:`float`): The tolerance for the iRT values.
+    - :bold:`use_ppm` (:red:`bool`): If True, use ppm tolerance for m/z values; otherwise, use absolute tolerance.
 
+    :green:`**Returns:**`
+    - :bold:`pandas.DataFrame`: A DataFrame containing the resulting valid peptide pairs with their indices, names, m/z values, and iRT values.
 
 Similarity Module
 =================
 
-This module provides functions and classes to calculate similarity between mass spectrometry spectra using various methods such as dot product, spectral angle, and cosine similarity.
+:blue:`This module provides functions and classes to calculate similarity between mass spectrometry spectra using various methods such as dot product, spectral angle, and cosine similarity.`
 
 Functions and Classes
 =====================
 
-**ndotproduct(x, y, m=0, n=0.5, na_rm=True)**
+:brown:`**ndotproduct(x, y, m=0, n=0.5, na_rm=True)**`
 
-    Calculates the normalized dot product between two spectra.
+    :blue:`Calculates the normalized dot product between two spectra.`
 
-    **Parameters:**
-    - `x` (pandas.DataFrame): DataFrame containing the first spectrum with columns for m/z and intensities.
-    - `y` (pandas.DataFrame): DataFrame containing the second spectrum with columns for m/z and intensities.
-    - `m` (float): Exponent for the m/z values in the weight calculation. Default is 0.
-    - `n` (float): Exponent for the intensity values in the weight calculation. Default is 0.5.
-    - `na_rm` (bool): If True, removes missing values (not used in current implementation). Default is True.
+    :green:`**Parameters:**`
+    - :bold:`x` (:red:`pandas.DataFrame`): DataFrame containing the first spectrum with columns for m/z and intensities.
+    - :bold:`y` (:red:`pandas.DataFrame`): DataFrame containing the second spectrum with columns for m/z and intensities.
+    - :bold:`m` (:red:`float`): Exponent for the m/z values in the weight calculation. Default is 0.
+    - :bold:`n` (:red:`float`): Exponent for the intensity values in the weight calculation. Default is 0.5.
+    - :bold:`na_rm` (:red:`bool`): If True, removes missing values (not used in current implementation). Default is True.
 
-    **Returns:**
-    - `float`: The normalized dot product between the two spectra.
+    :green:`**Returns:**`
+    - :bold:`float`: The normalized dot product between the two spectra.
 
-**nspectraangle(x, y, m=0, n=0.5, na_rm=True)**
+:brown:`**nspectraangle(x, y, m=0, n=0.5, na_rm=True)**`
 
-    Calculates the normalized spectral angle between two spectra.
+    :blue:`Calculates the normalized spectral angle between two spectra.`
 
-    **Parameters:**
-    - `x` (pandas.DataFrame): DataFrame containing the first spectrum with columns for m/z and intensities.
-    - `y` (pandas.DataFrame): DataFrame containing the second spectrum with columns for m/z and intensities.
-    - `m` (float): Exponent for the m/z values in the weight calculation. Default is 0.
-    - `n` (float): Exponent for the intensity values in the weight calculation. Default is 0.5.
-    - `na_rm` (bool): If True, removes missing values (not used in current implementation). Default is True.
+    :green:`**Parameters:**`
+    - :bold:`x` (:red:`pandas.DataFrame`): DataFrame containing the first spectrum with columns for m/z and intensities.
+    - :bold:`y` (:red:`pandas.DataFrame`): DataFrame containing the second spectrum with columns for m/z and intensities.
+    - :bold:`m` (:red:`float`): Exponent for the m/z values in the weight calculation. Default is 0.
+    - :bold:`n` (:red:`float`): Exponent for the intensity values in the weight calculation. Default is 0.5.
+    - :bold:`na_rm` (:red:`bool`): If True, removes missing values (not used in current implementation). Default is True.
 
-    **Returns:**
-    - `float`: The normalized spectral angle between the two spectra.
+    :green:`**Returns:**`
+    - :bold:`float`: The normalized spectral angle between the two spectra.
 
-**joinPeaks(tolerance=0, ppm=0)**
+:brown:`**joinPeaks(tolerance=0, ppm=0)**`
 
-    A class to join peaks from two spectra based on m/z and intensity values using tolerance and ppm values.
+    :blue:`A class to join peaks from two spectra based on m/z and intensity values using tolerance and ppm values.`
 
-    **Parameters:**
-    - `tolerance` (float): Absolute tolerance for matching m/z values. Default is 0.
-    - `ppm` (float): Parts per million (ppm) tolerance for matching m/z values. Default is 0.
+    :green:`**Parameters:**`
+    - :bold:`tolerance` (:red:`float`): Absolute tolerance for matching m/z values. Default is 0.
+    - :bold:`ppm` (:red:`float`): Parts per million (ppm) tolerance for matching m/z values. Default is 0.
 
-    **Methods:**
+    :green:`**Methods:**`
 
     - **match(x, y)**:
-        Matches peaks from two spectra based on the specified tolerance and ppm values.
+        :blue:`Matches peaks from two spectra based on the specified tolerance and ppm values.`
 
-        **Parameters:**
-        - `x` (pandas.DataFrame): DataFrame containing the first spectrum with columns for m/z and intensities.
-        - `y` (pandas.DataFrame): DataFrame containing the second spectrum with columns for m/z and intensities.
+        :green:`**Parameters:**`
+        - :bold:`x` (:red:`pandas.DataFrame`): DataFrame containing the first spectrum with columns for m/z and intensities.
+        - :bold:`y` (:red:`pandas.DataFrame`): DataFrame containing the second spectrum with columns for m/z and intensities.
 
-        **Returns:**
-        - `tuple`: Two DataFrames containing the matched peaks from `x` and `y`.
+        :green:`**Returns:**`
+        - :bold:`tuple`: Two DataFrames containing the matched peaks from `x` and `y`.
 
-**process_spectra_pairs(chunk, spectra, mz_irt_df, tolerance=0, ppm=0, m=0, n=0.5)**
+:brown:`**process_spectra_pairs(chunk, spectra, mz_irt_df, tolerance=0, ppm=0, m=0, n=0.5)**`
 
-    Processes pairs of spectra and calculates the similarity score using the spectral angle method.
+    :blue:`Processes pairs of spectra and calculates the similarity score using the spectral angle method.`
 
-    **Parameters:**
-    - `chunk` (list): List of index pairs to process.
-    - `spectra` (list): List of spectra objects.
-    - `mz_irt_df` (pandas.DataFrame): DataFrame containing peptide data with columns 'Name', 'MW', and 'iRT'.
-    - `tolerance` (float): Absolute tolerance for m/z matching. Default is 0.
-    - `ppm` (float): Parts per million (ppm) tolerance for m/z matching. Default is 0.
-    - `m` (float): Exponent for the m/z values in the weight calculation. Default is 0.
-    - `n` (float): Exponent for the intensity values in the weight calculation. Default is 0.5.
+    :green:`**Parameters:**`
+    - :bold:`chunk` (:red:`list`): List of index pairs to process.
+    - :bold:`spectra` (:red:`list`): List of spectra objects.
+    - :bold:`mz_irt_df` (:red:`pandas.DataFrame`): DataFrame containing peptide data with columns `Name`, `MW`, and `iRT`.
+    - :bold:`tolerance` (:red:`float`): Absolute tolerance for m/z matching. Default is 0.
+    - :bold:`ppm` (:red:`float`): Parts per million (ppm) tolerance for m/z matching. Default is 0.
+    - :bold:`m` (:red:`float`): Exponent for the m/z values in the weight calculation. Default is 0.
+    - :bold:`n` (:red:`float`): Exponent for the intensity values in the weight calculation. Default is 0.5.
 
-    **Returns:**
-    - `pandas.DataFrame`: A DataFrame containing the similarity scores for the processed spectra pairs.
+    :green:`**Returns:**`
+    - :bold:`pandas.DataFrame`: A DataFrame containing the similarity scores for the processed spectra pairs.
 
-**process_spectra_pairs_cosine(chunk, spectra, mz_irt_df, tolerance=0)**
+:brown:`**process_spectra_pairs_cosine(chunk, spectra, mz_irt_df, tolerance=0)**`
 
-    Processes pairs of spectra and calculates the similarity score using the CosineGreedy method.
+    :blue:`Processes pairs of spectra and calculates the similarity score using the CosineGreedy method.`
 
-    **Parameters:**
-    - `chunk` (list): List of index pairs to process.
-    - `spectra` (list): List of spectra objects.
-    - `mz_irt_df` (pandas.DataFrame): DataFrame containing peptide data with columns 'Name', 'MW', and 'iRT'.
-    - `tolerance` (float): Tolerance for m/z matching in the CosineGreedy method. Default is 0.
+    :green:`**Parameters:**`
+    - :bold:`chunk` (:red:`list`): List of index pairs to process.
+    - :bold:`spectra` (:red:`list`): List of spectra objects.
+    - :bold:`mz_irt_df` (:red:`pandas.DataFrame`): DataFrame containing peptide data with columns `Name`, `MW`, and `iRT`.
+    - :bold:`tolerance` (:red:`float`): Tolerance for m/z matching in the CosineGreedy method. Default is 0.
 
-    **Returns:**
-    - `pandas.DataFrame`: A DataFrame containing the similarity scores for the processed spectra pairs.
-
+    :green:`**Returns:**`
+    - :bold:`pandas.DataFrame`: A DataFrame containing the similarity scores for the processed spectra pairs.
 
 Mutation Module
 ===============
 
-This module provides tools for processing proteins by simulating peptide digestion and introducing mutations based on input data. The primary class, `ProteinMutator`, handles the loading, processing, and mutation of proteins.
+:blue:`This module provides tools for processing proteins by simulating peptide digestion and introducing mutations based on input data. The primary class, `ProteinMutator`, handles the loading, processing, and mutation of proteins.`
 
 Classes and Functions
 =====================
 
-**ProteinMutator(proteome_file, mutations_file, output_dir, digestion_method)**
+:brown:`**ProteinMutator(proteome_file, mutations_file, output_dir, digestion_method)**`
 
-    A class for handling protein mutations and peptide generation based on a provided proteome and mutation data.
+    :blue:`A class for handling protein mutations and peptide generation based on a provided proteome and mutation data.`
 
-    **Parameters:**
-    - `proteome_file` (str): Path to the FASTA file containing the proteome sequences.
-    - `mutations_file` (str): Path to the TSV file containing mutation data.
-    - `output_dir` (str): Directory where output files (peptides and mutated peptides) will be saved.
-    - `digestion_method` (callable): A function that takes a protein sequence and returns a list of peptides.
+    :green:`**Parameters:**`
+    - :bold:`proteome_file` (:red:`str`): Path to the FASTA file containing the proteome sequences.
+    - :bold:`mutations_file` (:red:`str`): Path to the TSV file containing mutation data.
+    - :bold:`output_dir` (:red:`str`): Directory where output files (peptides and mutated peptides) will be saved.
+    - :bold:`digestion_method` (:red:`callable`): A function that takes a protein sequence and returns a list of peptides.
 
-    **Methods:**
+    :green:`**Methods:**`
 
     - **load_proteome()**:
-        Loads the proteome sequences from the FASTA file into memory.
+        :blue:`Loads the proteome sequences from the FASTA file into memory.`
 
     - **load_mutations()**:
-        Loads the mutation data from the TSV file into a DataFrame.
+        :blue:`Loads the mutation data from the TSV file into a DataFrame.`
 
     - **process_protein(target_protein_accession)**:
-        Processes a single protein by digesting it into peptides and applying mutations based on the mutation data.
+        :blue:`Processes a single protein by digesting it into peptides and applying mutations based on the mutation data.`
 
-        **Parameters:**
-        - `target_protein_accession` (str): The accession number of the target protein to be processed.
+        :green:`**Parameters:**`
+        - :bold:`target_protein_accession` (:red:`str`): The accession number of the target protein to be processed.
 
     - **process_all_proteins()**:
-        Processes all proteins in the loaded proteome, applying digestion and mutation steps for each.
+        :blue:`Processes all proteins in the loaded proteome, applying digestion and mutation steps for each.`
 
-**tryptic_digest(sequence)**
+:brown:`**tryptic_digest(sequence)**`
 
-    Simulates the tryptic digestion of a protein sequence.
+    :blue:`Simulates the tryptic digestion of a protein sequence.`
 
-    **Parameters:**
-    - `sequence` (str): The protein sequence to be digested.
+    :green:`**Parameters:**`
+    - :bold:`sequence` (:red:`str`): The protein sequence to be digested.
 
-    **Returns:**
-    - `list`: A list of peptides resulting from the tryptic digestion.
-
+    :green:`**Returns:**`
+    - :bold:`list`: A list of peptides resulting from the tryptic digestion.
 
 Example Usage
 =============
