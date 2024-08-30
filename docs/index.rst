@@ -11,6 +11,8 @@ MSCI : Mass Spectrometry Content Information python Library
    :caption: Contents: 
    
    API
+   installation 
+
 
 
 
