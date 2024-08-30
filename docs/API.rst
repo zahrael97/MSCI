@@ -19,7 +19,6 @@ This module provides functionality to read and process mass spectrometry files, 
 
 Functions
 =========
-
 **read_msp_file(filename)**
 
     Reads an MSP file and returns a DataFrame containing the spectra information.
