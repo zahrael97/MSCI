@@ -20,7 +20,7 @@ This module provides functionality to read and process mass spectrometry files, 
 Functions
 ---------
 
-**read_msp_file(filename)**
+read_msp_file(filename)
 
     Reads an MSP file and returns a DataFrame containing the spectra information.
 
@@ -33,7 +33,7 @@ Functions
         - `MW`: Molecular weight of the spectrum.
         - `iRT`: Indexed retention time.
 
-**process_spectrum(spectrum)**
+process_spectrum(spectrum)
 
     Processes a single spectrum from an MZML file.
 
@@ -43,7 +43,7 @@ Functions
     **Returns:**
     - `dict`: A dictionary containing the processed spectrum data with keys 'MW', 'RT', 'Num Peaks', and 'Peaks'.
 
-**read_mgf_file(filename)**
+read_mgf_file(filename)
 
     Reads an MGF file and returns a list of spectra data.
 
@@ -53,7 +53,7 @@ Functions
     **Returns:**
     - `list`: A list of dictionaries, each containing `mz_values`, `intensities`, `MW`, and `RT` for a spectrum.
 
-**read_mzml_file(filename)**
+read_mzml_file(filename)
 
     Reads an MZML file and returns a list of processed spectrum data.
 
@@ -63,7 +63,7 @@ Functions
     **Returns:**
     - `list`: A list of dictionaries containing processed spectrum data.
 
-**read_ms_file(filename)**
+read_ms_file(filename)
 
     Determines the file format and calls the appropriate function to read the mass spectrometry file.
 
