@@ -62,5 +62,3 @@ Remember to cancel any restart prompts from Colab to avoid disrupting your envir
 Conclusion
 ----------
 Once installed, you can start using the MSCI package to process mass spectrometry data, perform peptide grouping, and calculate similarity scores.
-
-If you encounter any issues during installation or setup, please refer to the troubleshooting section or contact the support team.
