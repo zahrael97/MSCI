@@ -21,10 +21,7 @@ API Reference
 .. toctree::
    :maxdepth: 2
 
-   preprocessing
-   grouping_ms1
-   similarity
-   mutation
+   API
 
 
 
