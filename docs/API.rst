@@ -30,12 +30,12 @@ Functions
     **Returns:**
     - `pandas.DataFrame`: A DataFrame containing the following columns:
         - `Name`: The name of the spectrum.
-        - `MW`: Molecular weight of the spectrum.
+        - `MW`: Mass/charge of the spectrum.
         - `iRT`: Indexed retention time.
 
 **process_spectrum(spectrum)**
 
-    Processes a single spectrum from an MZML file.
+    Reads an MZML file and returns a list of spectra data.
 
     **Parameters:**
     - `spectrum` (pyopenms.MSSpectrum): A single spectrum object from an MZML file.
