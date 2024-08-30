@@ -33,16 +33,6 @@ Functions
         - `MW`: Mass/charge of the spectrum.
         - `iRT`: Indexed retention time.
 
-**process_spectrum(spectrum)**
-
-    Reads an MZML file and returns a list of spectra data.
-
-    **Parameters:**
-    - `spectrum` (pyopenms.MSSpectrum): A single spectrum object from an MZML file.
-
-    **Returns:**
-    - `dict`: A dictionary containing the processed spectrum data with keys `MW`, `RT`, `Num Peaks`, and `Peaks`.
-
 **read_mgf_file(filename)**
 
     Reads an MGF file and returns a list of spectra data.
