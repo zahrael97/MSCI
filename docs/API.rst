@@ -17,9 +17,10 @@ Multiprocessing Module
 
 This module provides functionality to read and process mass spectrometry files, including MSP, MGF, and MZML formats.
 
+Functions
+=========
 
-
-read_msp_file(filename)
+**read_msp_file(filename)**
 
     Reads an MSP file and returns a DataFrame containing the spectra information.
 
@@ -32,7 +33,7 @@ read_msp_file(filename)
         - `MW`: Molecular weight of the spectrum.
         - `iRT`: Indexed retention time.
 
-process_spectrum(spectrum)
+**process_spectrum(spectrum)**
 
     Processes a single spectrum from an MZML file.
 
@@ -42,7 +43,7 @@ process_spectrum(spectrum)
     **Returns:**
     - `dict`: A dictionary containing the processed spectrum data with keys 'MW', 'RT', 'Num Peaks', and 'Peaks'.
 
-read_mgf_file(filename)
+**read_mgf_file(filename)**
 
     Reads an MGF file and returns a list of spectra data.
 
@@ -52,7 +53,7 @@ read_mgf_file(filename)
     **Returns:**
     - `list`: A list of dictionaries, each containing `mz_values`, `intensities`, `MW`, and `RT` for a spectrum.
 
-read_mzml_file(filename)
+**read_mzml_file(filename)**
 
     Reads an MZML file and returns a list of processed spectrum data.
 
@@ -62,7 +63,7 @@ read_mzml_file(filename)
     **Returns:**
     - `list`: A list of dictionaries containing processed spectrum data.
 
-read_ms_file(filename)
+**read_ms_file(filename)**
 
     Determines the file format and calls the appropriate function to read the mass spectrometry file.
 
@@ -79,7 +80,7 @@ Grouping MS1 Module
 This module provides functions for grouping MS1 peptides based on mass-to-charge ratio (m/z) and indexed retention time (iRT) using k-d tree data structures and tolerance calculations.
 
 Functions
----------
+=========
 **make_data_compatible(index_df)**
 
     Converts a DataFrame into a list of tuples compatible with further processing.
@@ -147,7 +148,7 @@ Similarity Module
 This module provides functions and classes to calculate similarity between mass spectrometry spectra using various methods such as dot product, spectral angle, and cosine similarity.
 
 Functions and Classes
----------------------
+=====================
 
 **ndotproduct(x, y, m=0, n=0.5, na_rm=True)**
 
@@ -233,7 +234,7 @@ Mutation Module
 This module provides tools for processing proteins by simulating peptide digestion and introducing mutations based on input data. The primary class, `ProteinMutator`, handles the loading, processing, and mutation of proteins.
 
 Classes and Functions
----------------------
+=====================
 
 **ProteinMutator(proteome_file, mutations_file, output_dir, digestion_method)**
 
@@ -274,7 +275,7 @@ Classes and Functions
 
 
 Example Usage
--------------
+=============
 
 The following example demonstrates how to use various modules in the MSCI package to process mass spectrometry data, group peptides, and calculate similarity scores:
 
