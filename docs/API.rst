@@ -20,7 +20,7 @@ This module provides functionality to read and process mass spectrometry files, 
 Functions
 ---------
 
-.. autofunction:: MSCI.multiprocessing.read_msp_file
+**read_msp_file(filename)**
 
     Reads an MSP file and returns a DataFrame containing the spectra information.
 
@@ -33,7 +33,7 @@ Functions
         - `MW`: Molecular weight of the spectrum.
         - `iRT`: Indexed retention time.
 
-.. autofunction:: MSCI.multiprocessing.process_spectrum
+**process_spectrum(spectrum)**
 
     Processes a single spectrum from an MZML file.
 
@@ -43,7 +43,7 @@ Functions
     **Returns:**
     - `dict`: A dictionary containing the processed spectrum data with keys 'MW', 'RT', 'Num Peaks', and 'Peaks'.
 
-.. autofunction:: MSCI.multiprocessing.read_mgf_file
+**read_mgf_file(filename)**
 
     Reads an MGF file and returns a list of spectra data.
 
@@ -53,7 +53,7 @@ Functions
     **Returns:**
     - `list`: A list of dictionaries, each containing `mz_values`, `intensities`, `MW`, and `RT` for a spectrum.
 
-.. autofunction:: MSCI.multiprocessing.read_mzml_file
+**read_mzml_file(filename)**
 
     Reads an MZML file and returns a list of processed spectrum data.
 
@@ -63,7 +63,7 @@ Functions
     **Returns:**
     - `list`: A list of dictionaries containing processed spectrum data.
 
-.. autofunction:: MSCI.multiprocessing.read_ms_file
+**read_ms_file(filename)**
 
     Determines the file format and calls the appropriate function to read the mass spectrometry file.
 
@@ -82,7 +82,7 @@ This module provides functions for grouping MS1 peptides based on mass-to-charge
 Functions
 ---------
 
-.. autofunction:: MSCI.grouping_ms1.make_data_compatible
+**make_data_compatible(index_df)**
 
     Converts a DataFrame into a list of tuples compatible with further processing.
 
@@ -92,7 +92,7 @@ Functions
     **Returns:**
     - `list`: A list of tuples in the format `(index, MW, iRT)`.
 
-.. autofunction:: MSCI.grouping_ms1.within_ppm
+**within_ppm(pair, ppm_tolerance1, ppm_tolerance2)**
 
     Checks if two peptide pairs are within a specified ppm (parts per million) tolerance for m/z and absolute tolerance for iRT.
 
@@ -104,7 +104,7 @@ Functions
     **Returns:**
     - `bool`: True if the pair is within the specified tolerances, False otherwise.
 
-.. autofunction:: MSCI.grouping_ms1.within_tolerance
+**within_tolerance(pair, tolerance1, tolerance2)**
 
     Checks if two peptide pairs are within specified absolute tolerances for both m/z and iRT.
 
@@ -116,7 +116,7 @@ Functions
     **Returns:**
     - `bool`: True if the pair is within the specified tolerances, False otherwise.
 
-.. autofunction:: MSCI.grouping_ms1.find_combinations_kdtree
+**find_combinations_kdtree(data, tolerance1, tolerance2, use_ppm=True)**
 
     Finds valid peptide combinations within specified tolerances using a k-d tree for efficient querying.
 
@@ -129,7 +129,7 @@ Functions
     **Returns:**
     - `list`: A list of valid peptide pairs within the specified tolerances.
 
-.. autofunction:: MSCI.grouping_ms1.process_peptide_combinations
+**process_peptide_combinations(mz_irt_df, tolerance1, tolerance2, use_ppm=True)**
 
     Processes peptide combinations from the mass spectrometry data, finding valid pairs within specified tolerances.
 
@@ -151,7 +151,7 @@ This module provides functions and classes to calculate similarity between mass 
 Functions and Classes
 ---------------------
 
-.. autofunction:: MSCI.similarity.ndotproduct
+**ndotproduct(x, y, m=0, n=0.5, na_rm=True)**
 
     Calculates the normalized dot product between two spectra.
 
@@ -165,7 +165,7 @@ Functions and Classes
     **Returns:**
     - `float`: The normalized dot product between the two spectra.
 
-.. autofunction:: MSCI.similarity.nspectraangle
+**nspectraangle(x, y, m=0, n=0.5, na_rm=True)**
 
     Calculates the normalized spectral angle between two spectra.
 
@@ -179,9 +179,8 @@ Functions and Classes
     **Returns:**
     - `float`: The normalized spectral angle between the two spectra.
 
-.. autoclass:: MSCI.similarity.joinPeaks
-    :members:
-    
+**joinPeaks(tolerance=0, ppm=0)**
+
     A class to join peaks from two spectra based on m/z and intensity values using tolerance and ppm values.
 
     **Parameters:**
@@ -200,7 +199,7 @@ Functions and Classes
         **Returns:**
         - `tuple`: Two DataFrames containing the matched peaks from `x` and `y`.
 
-.. autofunction:: MSCI.similarity.process_spectra_pairs
+**process_spectra_pairs(chunk, spectra, mz_irt_df, tolerance=0, ppm=0, m=0, n=0.5)**
 
     Processes pairs of spectra and calculates the similarity score using the spectral angle method.
 
@@ -216,7 +215,7 @@ Functions and Classes
     **Returns:**
     - `pandas.DataFrame`: A DataFrame containing the similarity scores for the processed spectra pairs.
 
-.. autofunction:: MSCI.similarity.process_spectra_pairs_cosine
+**process_spectra_pairs_cosine(chunk, spectra, mz_irt_df, tolerance=0)**
 
     Processes pairs of spectra and calculates the similarity score using the CosineGreedy method.
 
@@ -238,8 +237,7 @@ This module provides tools for processing proteins by simulating peptide digesti
 Classes and Functions
 ---------------------
 
-.. autoclass:: MSCI.mutation.ProteinMutator
-    :members:
+**ProteinMutator(proteome_file, mutations_file, output_dir, digestion_method)**
 
     A class for handling protein mutations and peptide generation based on a provided proteome and mutation data.
 
@@ -266,7 +264,7 @@ Classes and Functions
     - **process_all_proteins()**:
         Processes all proteins in the loaded proteome, applying digestion and mutation steps for each.
 
-.. autofunction:: MSCI.mutation.tryptic_digest
+**tryptic_digest(sequence)**
 
     Simulates the tryptic digestion of a protein sequence.
 
