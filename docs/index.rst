@@ -4,14 +4,28 @@
    contain the root `toctree` directive.
 
 MSCI : Mass Spectrometry Content Information python Library
-================================
+Contents
+--------
+
+Installation
+============
+
 .. toctree::
-   :hidden:
+   :maxdepth: 1
+
+   installation
+
+API Reference
+=============
+
+.. toctree::
    :maxdepth: 2
-   :caption: Contents: 
-   
-   API
-   installation 
+
+   preprocessing
+   grouping_ms1
+   similarity
+   mutation
+
 
 
 
