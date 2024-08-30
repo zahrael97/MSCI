@@ -9,7 +9,6 @@ Contents:
    preprocessing
    grouping_ms1
    similarity
-   data
 
 .. note::
 
