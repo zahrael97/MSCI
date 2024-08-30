@@ -17,8 +17,7 @@ Multiprocessing Module
 
 This module provides functionality to read and process mass spectrometry files, including MSP, MGF, and MZML formats.
 
-Functions
----------
+
 
 read_msp_file(filename)
 
