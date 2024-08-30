@@ -1,6 +1,7 @@
+.. MSCI Documentation
 
-
-Contents:
+Contents
+========
 
 .. toctree::
    :maxdepth: 2
@@ -9,8 +10,7 @@ Contents:
    preprocessing
    grouping_ms1
    similarity
-
-.. note::
+   mutation
 
 Multiprocessing Module
 ======================
@@ -20,8 +20,7 @@ This module provides functionality to read and process mass spectrometry files, 
 Functions
 ---------
 
-.. autofunction:: read_msp_file
-    :module: MSCI.multiprocessing
+.. autofunction:: MSCI.multiprocessing.read_msp_file
 
     Reads an MSP file and returns a DataFrame containing the spectra information.
 
@@ -34,8 +33,7 @@ Functions
         - `MW`: Molecular weight of the spectrum.
         - `iRT`: Indexed retention time.
 
-.. autofunction:: process_spectrum
-    :module: MSCI.multiprocessing
+.. autofunction:: MSCI.multiprocessing.process_spectrum
 
     Processes a single spectrum from an MZML file.
 
@@ -45,8 +43,7 @@ Functions
     **Returns:**
     - `dict`: A dictionary containing the processed spectrum data with keys 'MW', 'RT', 'Num Peaks', and 'Peaks'.
 
-.. autofunction:: read_mgf_file
-    :module: MSCI.multiprocessing
+.. autofunction:: MSCI.multiprocessing.read_mgf_file
 
     Reads an MGF file and returns a list of spectra data.
 
@@ -56,8 +53,7 @@ Functions
     **Returns:**
     - `list`: A list of dictionaries, each containing `mz_values`, `intensities`, `MW`, and `RT` for a spectrum.
 
-.. autofunction:: read_mzml_file
-    :module: MSCI.multiprocessing
+.. autofunction:: MSCI.multiprocessing.read_mzml_file
 
     Reads an MZML file and returns a list of processed spectrum data.
 
@@ -67,8 +63,7 @@ Functions
     **Returns:**
     - `list`: A list of dictionaries containing processed spectrum data.
 
-.. autofunction:: read_ms_file
-    :module: MSCI.multiprocessing
+.. autofunction:: MSCI.multiprocessing.read_ms_file
 
     Determines the file format and calls the appropriate function to read the mass spectrometry file.
 
@@ -87,8 +82,7 @@ This module provides functions for grouping MS1 peptides based on mass-to-charge
 Functions
 ---------
 
-.. autofunction:: make_data_compatible
-    :module: MSCI.grouping_ms1
+.. autofunction:: MSCI.grouping_ms1.make_data_compatible
 
     Converts a DataFrame into a list of tuples compatible with further processing.
 
@@ -98,8 +92,7 @@ Functions
     **Returns:**
     - `list`: A list of tuples in the format `(index, MW, iRT)`.
 
-.. autofunction:: within_ppm
-    :module: MSCI.grouping_ms1
+.. autofunction:: MSCI.grouping_ms1.within_ppm
 
     Checks if two peptide pairs are within a specified ppm (parts per million) tolerance for m/z and absolute tolerance for iRT.
 
@@ -111,8 +104,7 @@ Functions
     **Returns:**
     - `bool`: True if the pair is within the specified tolerances, False otherwise.
 
-.. autofunction:: within_tolerance
-    :module: MSCI.grouping_ms1
+.. autofunction:: MSCI.grouping_ms1.within_tolerance
 
     Checks if two peptide pairs are within specified absolute tolerances for both m/z and iRT.
 
@@ -124,8 +116,7 @@ Functions
     **Returns:**
     - `bool`: True if the pair is within the specified tolerances, False otherwise.
 
-.. autofunction:: find_combinations_kdtree
-    :module: MSCI.grouping_ms1
+.. autofunction:: MSCI.grouping_ms1.find_combinations_kdtree
 
     Finds valid peptide combinations within specified tolerances using a k-d tree for efficient querying.
 
@@ -138,8 +129,7 @@ Functions
     **Returns:**
     - `list`: A list of valid peptide pairs within the specified tolerances.
 
-.. autofunction:: process_peptide_combinations
-    :module: MSCI.grouping_ms1
+.. autofunction:: MSCI.grouping_ms1.process_peptide_combinations
 
     Processes peptide combinations from the mass spectrometry data, finding valid pairs within specified tolerances.
 
@@ -161,8 +151,7 @@ This module provides functions and classes to calculate similarity between mass 
 Functions and Classes
 ---------------------
 
-.. autofunction:: ndotproduct
-    :module: MSCI.similarity
+.. autofunction:: MSCI.similarity.ndotproduct
 
     Calculates the normalized dot product between two spectra.
 
@@ -176,8 +165,7 @@ Functions and Classes
     **Returns:**
     - `float`: The normalized dot product between the two spectra.
 
-.. autofunction:: nspectraangle
-    :module: MSCI.similarity
+.. autofunction:: MSCI.similarity.nspectraangle
 
     Calculates the normalized spectral angle between two spectra.
 
@@ -191,8 +179,7 @@ Functions and Classes
     **Returns:**
     - `float`: The normalized spectral angle between the two spectra.
 
-.. autoclass:: joinPeaks
-    :module: MSCI.similarity
+.. autoclass:: MSCI.similarity.joinPeaks
     :members:
     
     A class to join peaks from two spectra based on m/z and intensity values using tolerance and ppm values.
@@ -213,8 +200,7 @@ Functions and Classes
         **Returns:**
         - `tuple`: Two DataFrames containing the matched peaks from `x` and `y`.
 
-.. autofunction:: process_spectra_pairs
-    :module: MSCI.similarity
+.. autofunction:: MSCI.similarity.process_spectra_pairs
 
     Processes pairs of spectra and calculates the similarity score using the spectral angle method.
 
@@ -230,8 +216,7 @@ Functions and Classes
     **Returns:**
     - `pandas.DataFrame`: A DataFrame containing the similarity scores for the processed spectra pairs.
 
-.. autofunction:: process_spectra_pairs_cosine
-    :module: MSCI.similarity
+.. autofunction:: MSCI.similarity.process_spectra_pairs_cosine
 
     Processes pairs of spectra and calculates the similarity score using the CosineGreedy method.
 
@@ -253,8 +238,7 @@ This module provides tools for processing proteins by simulating peptide digesti
 Classes and Functions
 ---------------------
 
-.. autoclass:: ProteinMutator
-    :module: MSCI.mutation
+.. autoclass:: MSCI.mutation.ProteinMutator
     :members:
 
     A class for handling protein mutations and peptide generation based on a provided proteome and mutation data.
@@ -282,8 +266,7 @@ Classes and Functions
     - **process_all_proteins()**:
         Processes all proteins in the loaded proteome, applying digestion and mutation steps for each.
 
-.. autofunction:: tryptic_digest
-    :module: MSCI.mutation
+.. autofunction:: MSCI.mutation.tryptic_digest
 
     Simulates the tryptic digestion of a protein sequence.
 
@@ -293,3 +276,57 @@ Classes and Functions
     **Returns:**
     - `list`: A list of peptides resulting from the tryptic digestion.
 
+
+Example Usage
+-------------
+
+The following example demonstrates how to use various modules in the MSCI package to process mass spectrometry data, group peptides, and calculate similarity scores:
+
+.. code-block:: python
+
+    from MSCI.Preprocessing.Koina import PeptideProcessor
+    from MSCI.Grouping_MS1.Grouping_mw_irt import process_peptide_combinations
+    from MSCI.Preprocessing.read_msp_file import read_msp_file
+    from MSCI.Similarity.spectral_angle_similarity import process_spectra_pairs
+    from MSCI.data.digest import parse_fasta_and_digest, tryptic_digest, peptides_to_csv
+    from matchms.importing import load_from_msp
+    import random
+    import numpy as np
+    import pandas as pd
+    
+    # Parse FASTA file and perform tryptic digestion
+    result = parse_fasta_and_digest("/content/sp_human_2023_04.fasta", digest_type="trypsin")
+    peptides_to_csv(result, "random_tryptic_peptides.txt")
+    
+    # Initialize and process peptides using PeptideProcessor
+    processor = PeptideProcessor(
+        input_file="random_tryptic_peptides.txt",
+        collision_energy=30,
+        charge=2,
+        model_intensity="Prosit_2020_intensity_HCD",
+        model_irt="Prosit_2019_irt"
+    )
+    processor.process('random_tryptic_peptides.msp')
+    
+    # Load spectra from MSP file
+    File = 'random_tryptic_peptides.msp'
+    spectra = list(load_from_msp(File))
+    mz_tolerance = 1
+    irt_tolerance = 5
+    
+    # Read MSP file and group peptides
+    mz_irt_df = read_msp_file(File)
+    Groups_df = process_peptide_combinations(mz_irt_df, mz_tolerance, irt_tolerance, use_ppm=False)
+    
+    # Process similarity pairs and save results
+    Groups_df.columns = Groups_df.columns.str.strip()
+    index_array = Groups_df[['index1','index2']].values.astype(int)
+    result = process_spectra_pairs(index_array, spectra, mz_irt_df, tolerance=0, ppm=10)
+    result.to_csv("output.csv", index=False)
+    
+    # Plot and compare spectra
+    import matplotlib.pyplot as plt
+    print(mz_irt_df.iloc[19])
+    print(mz_irt_df.iloc[36])
+    spectra[19].plot_against(spectra[36])
+    plt.savefig('spectra_comparison.png')
