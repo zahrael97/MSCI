@@ -102,7 +102,7 @@ def perform_analysis(mz_tolerance: float, irt_tolerance: float, use_ppm: bool):
 #            st.write(Groups_df.head())  # Log the first few rows for debugging
 
             if not {'index1', 'index2'}.issubset(Groups_df.columns):
-                st.error("Unexpected DataFrame structure. 'index1' and 'index2' columns not found.")
+                st.error("No indistinguishable pairs")
                 return
 
             index_array = Groups_df[['index1', 'index2']].values.astype(int)
