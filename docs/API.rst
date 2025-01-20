@@ -283,7 +283,7 @@ The following example demonstrates how to use various modules in the MSCI packag
     import pandas as pd
     
     # Parse FASTA file and perform tryptic digestion
-    result = parse_fasta_and_digest("/content/sp_human_2023_04.fasta", digest_type="trypsin")
+    result = parse_fasta_and_digest("https://github.com/proteomicsunitcrg/MSCI/blob/main/tutorial/sp_human_2023_04.fasta", digest_type="trypsin")
     peptides_to_csv(result, "random_tryptic_peptides.txt")
     
     # Initialize and process peptides using PeptideProcessor
