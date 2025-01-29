@@ -80,15 +80,6 @@ To analyze a set of peptide spectra, follow these steps:
    similarity_scores = msci.compute_similarity(spectra)
    msci.export_results("output.csv")
 
-API
-===
-
-For a complete reference of all available functions, see the :ref:`API documentation <API>`.
-
-Examples
-========
-
-For detailed examples and use cases, refer to the :ref:`examples <examples>` section.
 
 Contributing
 ============
