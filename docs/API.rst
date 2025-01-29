@@ -1,274 +1,220 @@
-.. MSCI Documentation
+MSCI Documentation
+=================
 
-
-========
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
-   preprocessing
-   grouping_ms1
-   similarity
-   mutation
+.. contents:: Table of Contents
+   :depth: 2
+   :local:
 
 Multiprocessing Module
-======================
+---------------------
 
 This module provides functionality to read and process mass spectrometry files, including MSP, MGF, and MZML formats.
 
 Functions
----------
+~~~~~~~~
 
-**read_msp_file(filename)**
+read_msp_file(filename)
+**********************
 
-    Reads an MSP file and returns a DataFrame containing the spectra information.
+Reads an MSP file and returns a DataFrame containing the spectra information.
 
-    **Parameters:**
-    - `filename` (str): The path to the MSP file.
+:Parameters:
+    - **filename** (*str*) -- The path to the MSP file
 
-    **Returns:**
-    - `pandas.DataFrame`: A DataFrame containing the following columns:
-        - `Name`: The name of the spectrum.
-        - `MW`: Mass/charge of the spectrum.
-        - `iRT`: Indexed retention time.
+:Returns:
+    **pandas.DataFrame** with columns:
+        - **Name** -- The name of the spectrum
+        - **MW** -- Mass/charge of the spectrum
+        - **iRT** -- Indexed retention time
 
-**read_mgf_file(filename)**
+read_mgf_file(filename)
+**********************
 
-    Reads an MGF file and returns a list of spectra data.
+Reads an MGF file and returns a list of spectra data.
 
-    **Parameters:**
-    - `filename` (str): The path to the MGF file.
+:Parameters:
+    - **filename** (*str*) -- The path to the MGF file
 
-    **Returns:**
-    - `list`: A list of dictionaries, each containing `mz_values`, `intensities`, `MW`, and `RT` for a spectrum.
+:Returns:
+    **list** of dictionaries containing:
+        - mz_values
+        - intensities
+        - MW
+        - RT
 
-**read_mzml_file(filename)**
+read_mzml_file(filename)
+***********************
 
-    Reads an MZML file and returns a list of processed spectrum data.
+Reads an MZML file and returns a list of processed spectrum data.
 
-    **Parameters:**
-    - `filename` (str): The path to the MZML file.
+:Parameters:
+    - **filename** (*str*) -- The path to the MZML file
 
-    **Returns:**
-    - `list`: A list of dictionaries containing processed spectrum data.
+:Returns:
+    **list** of dictionaries containing processed spectrum data
 
-**read_ms_file(filename)**
+read_ms_file(filename)
+*********************
 
-    Determines the file format and calls the appropriate function to read the mass spectrometry file.
+Determines the file format and calls the appropriate function to read the mass spectrometry file.
 
-    **Parameters:**
-    - `filename` (str): The path to the mass spectrometry file.
+:Parameters:
+    - **filename** (*str*) -- The path to the mass spectrometry file
 
-    **Returns:**
-    - `pandas.DataFrame` or `list`: Depending on the file format, returns either a DataFrame or a list of dictionaries.
-
+:Returns:
+    **pandas.DataFrame** or **list** depending on the file format
 
 Grouping MS1 Module
-===================
+------------------
 
 This module provides functions for grouping MS1 peptides based on mass-to-charge ratio (m/z) and indexed retention time (iRT) using k-d tree data structures and tolerance calculations.
 
 Functions
----------
+~~~~~~~~
 
-**make_data_compatible(index_df)**
+make_data_compatible(index_df)
+*****************************
 
-    Converts a DataFrame into a list of tuples compatible with further processing.
+Converts a DataFrame into a list of tuples compatible with further processing.
 
-    **Parameters:**
-    - `index_df` (pandas.DataFrame): DataFrame containing the mass spectrometry data with columns `MW` (m/z) and `iRT`.
+:Parameters:
+    - **index_df** (*pandas.DataFrame*) -- DataFrame containing mass spectrometry data with columns ``MW`` and ``iRT``
 
-    **Returns:**
-    - `list`: A list of tuples in the format `(index, MW, iRT)`.
+:Returns:
+    **list** of tuples in format ``(index, MW, iRT)``
 
-**within_ppm(pair, ppm_tolerance1, ppm_tolerance2)**
+within_ppm(pair, ppm_tolerance1, ppm_tolerance2)
+**********************************************
 
-    Checks if two peptide pairs are within a specified ppm (parts per million) tolerance for m/z and absolute tolerance for iRT.
+Checks if two peptide pairs are within specified tolerances.
 
-    **Parameters:**
-    - `pair` (tuple): A tuple containing two peptide tuples in the format `((index1, MW1, iRT1), (index2, MW2, iRT2))`.
-    - `ppm_tolerance1` (float): The ppm tolerance for the m/z values.
-    - `ppm_tolerance2` (float): The absolute tolerance for the iRT values.
+:Parameters:
+    - **pair** (*tuple*) -- Two peptide tuples ``((index1, MW1, iRT1), (index2, MW2, iRT2))``
+    - **ppm_tolerance1** (*float*) -- PPM tolerance for m/z values
+    - **ppm_tolerance2** (*float*) -- Absolute tolerance for iRT values
 
-    **Returns:**
-    - `bool`: True if the pair is within the specified tolerances, False otherwise.
+:Returns:
+    **bool** -- True if within tolerances, False otherwise
 
-**within_tolerance(pair, tolerance1, tolerance2)**
+within_tolerance(pair, tolerance1, tolerance2)
+*******************************************
 
-    Checks if two peptide pairs are within specified absolute tolerances for both m/z and iRT.
+Checks if peptide pairs are within absolute tolerances.
 
-    **Parameters:**
-    - `pair` (tuple): A tuple containing two peptide tuples in the format `((index1, MW1, iRT1), (index2, MW2, iRT2))`.
-    - `tolerance1` (float): The absolute tolerance for the m/z values.
-    - `tolerance2` (float): The absolute tolerance for the iRT values.
+:Parameters:
+    - **pair** (*tuple*) -- Two peptide tuples ``((index1, MW1, iRT1), (index2, MW2, iRT2))``
+    - **tolerance1** (*float*) -- Absolute tolerance for m/z values
+    - **tolerance2** (*float*) -- Absolute tolerance for iRT values
 
-    **Returns:**
-    - `bool`: True if the pair is within the specified tolerances, False otherwise.
+:Returns:
+    **bool** -- True if within tolerances, False otherwise
 
-**find_combinations_kdtree(data, tolerance1, tolerance2, use_ppm=True)**
+find_combinations_kdtree(data, tolerance1, tolerance2, use_ppm=True)
+*****************************************************************
 
-    Finds valid peptide combinations within specified tolerances using a k-d tree for efficient querying.
+Uses k-d tree for efficient querying of valid peptide combinations.
 
-    **Parameters:**
-    - `data` (list): A list of tuples containing peptide data in the format `(index, MW, iRT)`.
-    - `tolerance1` (float): The tolerance for the m/z values.
-    - `tolerance2` (float): The tolerance for the iRT values.
-    - `use_ppm` (bool): If True, use ppm tolerance for m/z values; otherwise, use absolute tolerance.
+:Parameters:
+    - **data** (*list*) -- Peptide data tuples ``(index, MW, iRT)``
+    - **tolerance1** (*float*) -- Tolerance for m/z values
+    - **tolerance2** (*float*) -- Tolerance for iRT values
+    - **use_ppm** (*bool*) -- Use PPM tolerance if True, absolute if False
 
-    **Returns:**
-    - `list`: A list of valid peptide pairs within the specified tolerances.
-
-**process_peptide_combinations(mz_irt_df, tolerance1, tolerance2, use_ppm=True)**
-
-    Processes peptide combinations from the mass spectrometry data, finding valid pairs within specified tolerances.
-
-    **Parameters:**
-    - `mz_irt_df` (pandas.DataFrame): DataFrame containing peptide data with columns `Name`, `MW`, and `iRT`.
-    - `tolerance1` (float): The tolerance for the m/z values.
-    - `tolerance2` (float): The tolerance for the iRT values.
-    - `use_ppm` (bool): If True, use ppm tolerance for m/z values; otherwise, use absolute tolerance.
-
-    **Returns:**
-    - `pandas.DataFrame`: A DataFrame containing the resulting valid peptide pairs with their indices, names, m/z values, and iRT values.
-
+:Returns:
+    **list** of valid peptide pairs
 
 Similarity Module
-=================
+---------------
 
-This module provides functions and classes to calculate similarity between mass spectrometry spectra using various methods such as dot product, spectral angle, and cosine similarity.
+This module calculates similarity between mass spectrometry spectra using various methods.
 
 Functions and Classes
----------------------
+~~~~~~~~~~~~~~~~~~~
 
-**ndotproduct(x, y, m=0, n=0.5, na_rm=True)**
+ndotproduct(x, y, m=0, n=0.5, na_rm=True)
+****************************************
 
-    Calculates the normalized dot product between two spectra.
+Calculates normalized dot product between spectra.
 
-    **Parameters:**
-    - `x` (pandas.DataFrame): DataFrame containing the first spectrum with columns for m/z and intensities.
-    - `y` (pandas.DataFrame): DataFrame containing the second spectrum with columns for m/z and intensities.
-    - `m` (float): Exponent for the m/z values in the weight calculation. Default is 0.
-    - `n` (float): Exponent for the intensity values in the weight calculation. Default is 0.5.
-    - `na_rm` (bool): If True, removes missing values (not used in current implementation). Default is True.
+:Parameters:
+    - **x** (*pandas.DataFrame*) -- First spectrum (m/z and intensities)
+    - **y** (*pandas.DataFrame*) -- Second spectrum (m/z and intensities)
+    - **m** (*float*) -- M/z values exponent (default: 0)
+    - **n** (*float*) -- Intensity values exponent (default: 0.5)
+    - **na_rm** (*bool*) -- Remove missing values (default: True)
 
-    **Returns:**
-    - `float`: The normalized dot product between the two spectra.
+:Returns:
+    **float** -- Normalized dot product
 
-**nspectraangle(x, y, m=0, n=0.5, na_rm=True)**
+nspectraangle(x, y, m=0, n=0.5, na_rm=True)
+*****************************************
 
-    Calculates the normalized spectral angle between two spectra.
+Calculates normalized spectral angle between spectra.
 
-    **Parameters:**
-    - `x` (pandas.DataFrame): DataFrame containing the first spectrum with columns for m/z and intensities.
-    - `y` (pandas.DataFrame): DataFrame containing the second spectrum with columns for m/z and intensities.
-    - `m` (float): Exponent for the m/z values in the weight calculation. Default is 0.
-    - `n` (float): Exponent for the intensity values in the weight calculation. Default is 0.5.
-    - `na_rm` (bool): If True, removes missing values (not used in current implementation). Default is True.
+:Parameters:
+    - **x** (*pandas.DataFrame*) -- First spectrum (m/z and intensities)
+    - **y** (*pandas.DataFrame*) -- Second spectrum (m/z and intensities)
+    - **m** (*float*) -- M/z values exponent (default: 0)
+    - **n** (*float*) -- Intensity values exponent (default: 0.5)
+    - **na_rm** (*bool*) -- Remove missing values (default: True)
 
-    **Returns:**
-    - `float`: The normalized spectral angle between the two spectra.
+:Returns:
+    **float** -- Normalized spectral angle
 
-**joinPeaks(tolerance=0, ppm=0)**
+joinPeaks(tolerance=0, ppm=0)
+***************************
 
-    A class to join peaks from two spectra based on m/z and intensity values using tolerance and ppm values.
+Class that joins peaks from two spectra based on m/z and intensity values.
 
-    **Parameters:**
-    - `tolerance` (float): Absolute tolerance for matching m/z values. Default is 0.
-    - `ppm` (float): Parts per million (ppm) tolerance for matching m/z values. Default is 0.
+:Parameters:
+    - **tolerance** (*float*) -- Absolute tolerance for m/z matching
+    - **ppm** (*float*) -- PPM tolerance for m/z matching
 
-    **Methods:**
-
-    - **match(x, y)**:
-        Matches peaks from two spectra based on the specified tolerance and ppm values.
-
-        **Parameters:**
-        - `x` (pandas.DataFrame): DataFrame containing the first spectrum with columns for m/z and intensities.
-        - `y` (pandas.DataFrame): DataFrame containing the second spectrum with columns for m/z and intensities.
-
-        **Returns:**
-        - `tuple`: Two DataFrames containing the matched peaks from `x` and `y`.
-
-**process_spectra_pairs(chunk, spectra, mz_irt_df, tolerance=0, ppm=0, m=0, n=0.5)**
-
-    Processes pairs of spectra and calculates the similarity score using the spectral angle method.
-
-    **Parameters:**
-    - `chunk` (list): List of index pairs to process.
-    - `spectra` (list): List of spectra objects.
-    - `mz_irt_df` (pandas.DataFrame): DataFrame containing peptide data with columns `Name`, `MW`, and `iRT`.
-    - `tolerance` (float): Absolute tolerance for m/z matching. Default is 0.
-    - `ppm` (float): Parts per million (ppm) tolerance for m/z matching. Default is 0.
-    - `m` (float): Exponent for the m/z values in the weight calculation. Default is 0.
-    - `n` (float): Exponent for the intensity values in the weight calculation. Default is 0.5.
-
-    **Returns:**
-    - `pandas.DataFrame`: A DataFrame containing the similarity scores for the processed spectra pairs.
-
-**process_spectra_pairs_cosine(chunk, spectra, mz_irt_df, tolerance=0)**
-
-    Processes pairs of spectra and calculates the similarity score using the CosineGreedy method.
-
-    **Parameters:**
-    - `chunk` (list): List of index pairs to process.
-    - `spectra` (list): List of spectra objects.
-    - `mz_irt_df` (pandas.DataFrame): DataFrame containing peptide data with columns `Name`, `MW`, and `iRT`.
-    - `tolerance` (float): Tolerance for m/z matching in the CosineGreedy method. Default is 0.
-
-    **Returns:**
-    - `pandas.DataFrame`: A DataFrame containing the similarity scores for the processed spectra pairs.
-
+Methods:
+    - **match(x, y)** -- Matches peaks from two spectra
+        - Parameters: Two DataFrames with m/z and intensities
+        - Returns: Tuple of matched peaks DataFrames
 
 Mutation Module
-===============
-
-This module provides tools for processing proteins by simulating peptide digestion and introducing mutations based on input data. The primary class, `ProteinMutator`, handles the loading, processing, and mutation of proteins.
-
-Classes and Functions
----------------------
-
-**ProteinMutator(proteome_file, mutations_file, output_dir, digestion_method)**
-
-    A class for handling protein mutations and peptide generation based on a provided proteome and mutation data.
-
-    **Parameters:**
-    - `proteome_file` (str): Path to the FASTA file containing the proteome sequences.
-    - `mutations_file` (str): Path to the TSV file containing mutation data.
-    - `output_dir` (str): Directory where output files (peptides and mutated peptides) will be saved.
-    - `digestion_method` (callable): A function that takes a protein sequence and returns a list of peptides.
-
-    **Methods:**
-
-    - **load_proteome()**:
-        Loads the proteome sequences from the FASTA file into memory.
-
-    - **load_mutations()**:
-        Loads the mutation data from the TSV file into a DataFrame.
-
-    - **process_protein(target_protein_accession)**:
-        Processes a single protein by digesting it into peptides and applying mutations based on the mutation data.
-
-        **Parameters:**
-        - `target_protein_accession` (str): The accession number of the target protein to be processed.
-
-    - **process_all_proteins()**:
-        Processes all proteins in the loaded proteome, applying digestion and mutation steps for each.
-
-**tryptic_digest(sequence)**
-
-    Simulates the tryptic digestion of a protein sequence.
-
-    **Parameters:**
-    - `sequence` (str): The protein sequence to be digested.
-
-    **Returns:**
-    - `list`: A list of peptides resulting from the tryptic digestion.
-
-
-Example Usage
 -------------
 
-The following example demonstrates how to use various modules in the MSCI package to process mass spectrometry data, group peptides, and calculate similarity scores:
+Tools for processing proteins by simulating peptide digestion and introducing mutations.
+
+Classes and Functions
+~~~~~~~~~~~~~~~~~~~
+
+ProteinMutator
+*************
+
+.. class:: ProteinMutator(proteome_file, mutations_file, output_dir, digestion_method)
+
+    Handles protein mutations and peptide generation.
+
+    :Parameters:
+        - **proteome_file** (*str*) -- Path to FASTA proteome file
+        - **mutations_file** (*str*) -- Path to TSV mutations file
+        - **output_dir** (*str*) -- Output directory path
+        - **digestion_method** (*callable*) -- Function returning peptide list
+
+    Methods:
+        - **load_proteome()** -- Loads proteome sequences
+        - **load_mutations()** -- Loads mutation data
+        - **process_protein(target_protein_accession)** -- Processes single protein
+        - **process_all_proteins()** -- Processes all proteins
+
+tryptic_digest(sequence)
+**********************
+
+Simulates tryptic digestion of protein sequence.
+
+:Parameters:
+    - **sequence** (*str*) -- Protein sequence
+
+:Returns:
+    **list** -- Resulting peptides
+
+Example Usage
+-----------
 
 .. code-block:: python
 
@@ -281,12 +227,15 @@ The following example demonstrates how to use various modules in the MSCI packag
     import random
     import numpy as np
     import pandas as pd
-    
-    # Parse FASTA file and perform tryptic digestion
-    result = parse_fasta_and_digest("https://github.com/proteomicsunitcrg/MSCI/blob/main/tutorial/sp_human_2023_04.fasta", digest_type="trypsin")
+
+    # Parse FASTA and perform digestion
+    result = parse_fasta_and_digest(
+        "https://github.com/proteomicsunitcrg/MSCI/blob/main/tutorial/sp_human_2023_04.fasta",
+        digest_type="trypsin"
+    )
     peptides_to_csv(result, "random_tryptic_peptides.txt")
-    
-    # Initialize and process peptides using PeptideProcessor
+
+    # Initialize and process peptides
     processor = PeptideProcessor(
         input_file="random_tryptic_peptides.txt",
         collision_energy=30,
@@ -295,24 +244,23 @@ The following example demonstrates how to use various modules in the MSCI packag
         model_irt="Prosit_2019_irt"
     )
     processor.process('random_tryptic_peptides.msp')
-    
-    # Load spectra from MSP file
+
+    # Load and process spectra
     File = 'random_tryptic_peptides.msp'
     spectra = list(load_from_msp(File))
     mz_tolerance = 1
     irt_tolerance = 5
-    
-    # Read MSP file and group peptides
+
     mz_irt_df = read_msp_file(File)
     Groups_df = process_peptide_combinations(mz_irt_df, mz_tolerance, irt_tolerance, use_ppm=False)
-    
-    # Process similarity pairs and save results
+
+    # Process similarity pairs
     Groups_df.columns = Groups_df.columns.str.strip()
     index_array = Groups_df[['index1','index2']].values.astype(int)
     result = process_spectra_pairs(index_array, spectra, mz_irt_df, tolerance=0, ppm=10)
     result.to_csv("output.csv", index=False)
-    
-    # Plot and compare spectra
+
+    # Plot spectra comparison
     import matplotlib.pyplot as plt
     print(mz_irt_df.iloc[19])
     print(mz_irt_df.iloc[36])
