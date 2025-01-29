@@ -26,14 +26,6 @@ If you're working in a Jupyter notebook or a Colab environment, you may need to 
     import sys
     sys.path.append('/path/to/MSCI')
 
-Installing Additional Dependencies
-----------------------------------
-The MSCI package depends on several other Python packages. The core dependencies can be installed using pip:
-
-.. code-block:: bash
-
-    pip install biopython
-    pip install matchms
 
 **Note**: If you already have `matchms` installed and your environment prompts you to restart the session, select 'Cancel' to avoid any disruptions.
 
@@ -54,8 +46,6 @@ If you're using Google Colab, you can execute the following code to install the 
 .. code-block:: python
 
     pip install MSCI==0.2.0
-    pip install biopython
-    pip install matchms
 
 Remember to cancel any restart prompts from Colab to avoid disrupting your environment.
 
