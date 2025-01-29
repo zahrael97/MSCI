@@ -3,42 +3,100 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-MSCI : Mass Spectrometry Content Information python Library
+==================================================
+MSCI: Mass Spectrometry Content Information Python Library
+==================================================
+
+MSCI (Mass Spectrometry Content Information) is a Python package designed for the evaluation of peptide fragmentation spectra information content. The library provides a comprehensive toolset to analyze spectral similarities and aid in the selection of the most informative fragment ions, facilitating improved peptide identification in mass spectrometry-based proteomics.
+
 Contents
 --------
-
-Installation
-============
-
-.. toctree::
-   :maxdepth: 1
-
-   installation
-
-API 
-=============
 
 .. toctree::
    :maxdepth: 2
 
+   installation
+   usage
    API
-
-
-
-
-
-
-Peptide identification by mass spectrometry relies on the interpretation of fragmentation spectra based on the m/z pattern, relative intensities, and retention time (RT). Given a proteome, we wondered how many peptides generate very similar fragmentation spectra with current MS methods. *MSCI*  is a Python package built to assess the information content of peptide fragmentation spectra, we aimed to calculate an information-content index for all peptides in a given proteome that would enable us to design data acquisition and data analysis strategies that generate and prioritize the most informative fragment ions to be queried for peptide quantification.
-
-.. image:: INTRODUCTION.png
-  :alt: matchms workflow illustration
-
+   examples
+   contributing
+   references
 
 Installation
-==================
-prerequisites:
+============
 
-- Python 3.8 -3.11
+Prerequisites
+-------------
+
+- Python 3.8 - 3.11
 - Anaconda
-- Matchms
+- matchms
+- Pyteomics
+- OpenMS
 
+Installation via pip
+--------------------
+
+You can install MSCI directly from PyPI using pip:
+
+.. code-block:: bash
+
+   pip install msci
+
+Alternatively, you can install MSCI from source:
+
+.. code-block:: bash
+
+   git clone https://github.com/zahrael97/MSCI.git
+   cd MSCI
+   pip install .
+
+For an interactive tutorial, you can explore the MSCI Google Colab notebook:
+
+`Google Colab Tutorial <https://colab.research.google.com/drive/1ny97RNgvnpD7ZrHW8TTRXWCAQvIcavkk>`_
+
+Usage
+=====
+
+MSCI enables researchers to analyze peptide fragmentation spectra and assess similarities between peptide sequences. The package includes functionalities for:
+
+- **Proteome Import**: Supports FASTA and peptide list formats for in-silico digestion and spectral library import.
+- **Spectra Prediction & Processing**: Uses Koina for spectra prediction and supports filtering and preprocessing of spectra.
+- **Spectra Grouping**: Clusters peptide sequences based on user-defined MS1 m/z and indexed retention time (iRT) tolerances.
+- **Similarity Measurement**: Implements spectral comparison methods such as normalized dot product, spectral angle, and greedy cosine similarity.
+- **Output & Visualization**: Exports results as CSV, TSV, or Excel files and generates mirror plots for spectral comparison.
+
+Quick Start
+-----------
+
+To analyze a set of peptide spectra, follow these steps:
+
+.. code-block:: python
+
+   from msci import MSCI
+   msci = MSCI()
+   peptides = msci.import_proteome("proteome.fasta")
+   spectra = msci.predict_spectra(peptides)
+   similarity_scores = msci.compute_similarity(spectra)
+   msci.export_results("output.csv")
+
+API
+===
+
+For a complete reference of all available functions, see the :ref:`API documentation <API>`.
+
+Examples
+========
+
+For detailed examples and use cases, refer to the :ref:`examples <examples>` section.
+
+Contributing
+============
+
+Contributions are welcome! Please see our `GitHub repository <https://github.com/zahrael97/MSCI>`_ for guidelines on how to contribute.
+
+References
+==========
+
+
+For more information, visit the `MSCI documentation <https://msci.readthedocs.io/en/latest/>`_.
