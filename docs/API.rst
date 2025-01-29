@@ -14,7 +14,7 @@ Functions
 ~~~~~~~~
 
 read_msp_file(filename)
-**********************
+--------------------
 
 Reads an MSP file and returns a DataFrame containing the spectra information.
 
@@ -28,7 +28,7 @@ Reads an MSP file and returns a DataFrame containing the spectra information.
         - **iRT** -- Indexed retention time
 
 read_mgf_file(filename)
-**********************
+--------------------
 
 Reads an MGF file and returns a list of spectra data.
 
@@ -43,7 +43,7 @@ Reads an MGF file and returns a list of spectra data.
         - RT
 
 read_mzml_file(filename)
-***********************
+--------------------
 
 Reads an MZML file and returns a list of processed spectrum data.
 
@@ -54,7 +54,7 @@ Reads an MZML file and returns a list of processed spectrum data.
     **list** of dictionaries containing processed spectrum data
 
 read_ms_file(filename)
-*********************
+--------------------
 
 Determines the file format and calls the appropriate function to read the mass spectrometry file.
 
@@ -65,7 +65,7 @@ Determines the file format and calls the appropriate function to read the mass s
     **pandas.DataFrame** or **list** depending on the file format
 
 Grouping MS1 Module
-------------------
+--------------------
 
 This module provides functions for grouping MS1 peptides based on mass-to-charge ratio (m/z) and indexed retention time (iRT) using k-d tree data structures and tolerance calculations.
 
@@ -73,7 +73,7 @@ Functions
 ~~~~~~~~
 
 make_data_compatible(index_df)
-*****************************
+--------------------
 
 Converts a DataFrame into a list of tuples compatible with further processing.
 
@@ -84,7 +84,7 @@ Converts a DataFrame into a list of tuples compatible with further processing.
     **list** of tuples in format ``(index, MW, iRT)``
 
 within_ppm(pair, ppm_tolerance1, ppm_tolerance2)
-**********************************************
+--------------------
 
 Checks if two peptide pairs are within specified tolerances.
 
@@ -97,7 +97,7 @@ Checks if two peptide pairs are within specified tolerances.
     **bool** -- True if within tolerances, False otherwise
 
 within_tolerance(pair, tolerance1, tolerance2)
-*******************************************
+--------------------
 
 Checks if peptide pairs are within absolute tolerances.
 
@@ -110,7 +110,7 @@ Checks if peptide pairs are within absolute tolerances.
     **bool** -- True if within tolerances, False otherwise
 
 find_combinations_kdtree(data, tolerance1, tolerance2, use_ppm=True)
-*****************************************************************
+--------------------
 
 Uses k-d tree for efficient querying of valid peptide combinations.
 
@@ -132,7 +132,7 @@ Functions and Classes
 ~~~~~~~~~~~~~~~~~~~
 
 ndotproduct(x, y, m=0, n=0.5, na_rm=True)
-****************************************
+--------------------
 
 Calculates normalized dot product between spectra.
 
@@ -147,7 +147,7 @@ Calculates normalized dot product between spectra.
     **float** -- Normalized dot product
 
 nspectraangle(x, y, m=0, n=0.5, na_rm=True)
-*****************************************
+--------------------
 
 Calculates normalized spectral angle between spectra.
 
@@ -162,7 +162,7 @@ Calculates normalized spectral angle between spectra.
     **float** -- Normalized spectral angle
 
 joinPeaks(tolerance=0, ppm=0)
-***************************
+--------------------
 
 Class that joins peaks from two spectra based on m/z and intensity values.
 
@@ -184,7 +184,7 @@ Classes and Functions
 ~~~~~~~~~~~~~~~~~~~
 
 ProteinMutator
-*************
+--------------------
 
 .. class:: ProteinMutator(proteome_file, mutations_file, output_dir, digestion_method)
 
@@ -203,7 +203,7 @@ ProteinMutator
         - **process_all_proteins()** -- Processes all proteins
 
 tryptic_digest(sequence)
-**********************
+--------------------
 
 Simulates tryptic digestion of protein sequence.
 
