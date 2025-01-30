@@ -281,7 +281,7 @@ def plot_spectra():
         # Add a download button
         csv = st.session_state.analysis_results.to_csv(index=False).encode('utf-8')
         st.download_button(label="Download results as CSV", data=csv, file_name='spectra_similarity_results.csv', mime='text/csv')
-                st.markdown("""
+        st.markdown("""
         ### Explanation of Spectra Similarity Results:
 
         The table below contains the results of the peptide twins analysis. Each row represents a pair of spectra and their similarity score based on the chosen similarity method (e.g., Spectral Angle or Greedy Cosine Similarity).
