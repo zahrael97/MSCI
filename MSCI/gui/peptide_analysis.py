@@ -1,14 +1,3 @@
-"""
-Peptide Twins Analysis - Input File Format
-
-The input file should be a plain text (.txt) file containing a list of peptide sequences, 
-one per line, with no headers or additional formatting.
-
-### Expected Format:
-- Each sequence consists of **standard amino acids** (A, C, D, E, F, G, H, I, K, L, M, N, P, Q, R, S, T, V, W, Y).
-- Peptide length should be **5 to 20 amino acids**.
-"""
-
 # peptide_analysis.py
 import streamlit as st
 import tempfile
@@ -153,6 +142,21 @@ def peptide_twins_analysis():
     st.session_state.setdefault('temp_file_path', None)
 
     st.header("Peptide Twins Analysis")
+    # Input File Format Description
+    st.markdown("""
+    ### Peptide Twins Analysis - Input File Format
+
+    The input file should be a plain text (.txt) file containing a list of peptide sequences, 
+    one per line, with no headers or additional formatting.
+
+    #### Expected Format:
+    - Each sequence consists of **standard amino acids** (A, C, D, E, F, G, H, I, K, L, M, N, P, Q, R, S, T, V, W, Y).
+    - Peptides should **end with K (Lysine) or R (Arginine)** (tryptic digestion rule).
+    - Peptide length should be **5 to 20 amino acids**.
+    - The file may contain **permuted peptide pairs**, where two sequences differ only by swapped positions of amino acids.
+
+    Please ensure your file follows this format for accurate analysis.
+    """)
 
     # File uploader with an option to load example data
     uploaded_file = st.file_uploader("Upload your peptide file or use the example dataset", type=["txt"])
