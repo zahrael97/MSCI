@@ -276,11 +276,6 @@ def plot_spectra():
     # Show the DataFrame if it exists in the session state
     if 'analysis_results' in st.session_state:
         st.subheader("Spectra Similarity Results:")
-        st.dataframe(st.session_state.analysis_results)
-
-        # Add a download button
-        csv = st.session_state.analysis_results.to_csv(index=False).encode('utf-8')
-        st.download_button(label="Download results as CSV", data=csv, file_name='spectra_similarity_results.csv', mime='text/csv')
         st.markdown("""
         ### Explanation of Spectra Similarity Results:
 
@@ -300,6 +295,12 @@ def plot_spectra():
 
         You can also download the results as a CSV file for further analysis or reporting.
         """)
+        st.dataframe(st.session_state.analysis_results)
+
+        # Add a download button
+        csv = st.session_state.analysis_results.to_csv(index=False).encode('utf-8')
+        st.download_button(label="Download results as CSV", data=csv, file_name='spectra_similarity_results.csv', mime='text/csv')
+
 
     
     if st.session_state.spectra_cache is None or len(st.session_state.spectra_cache) == 0:
