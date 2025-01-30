@@ -15,10 +15,8 @@ Peptide identification by mass spectrometry relies on the interpretation of frag
 
 Installation:
 ==================
-prerequisites:
+pip install MSCI==0.2.0
 
-- Python 3.8 -3.11
-- Matchms
 
 Implementation and example :
 ==================
