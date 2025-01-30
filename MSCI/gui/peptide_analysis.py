@@ -164,6 +164,13 @@ def peptide_twins_analysis():
         if response.status_code == 200:
             st.success("Loaded example dataset successfully!")
             st.session_state.peptide_data = response.text
+            
+            # Show the first 3 lines of the dataset
+            example_lines = response.text.splitlines()[:3]
+            st.write("### First 3 lines of the Example Dataset:")
+            st.text("\n".join(example_lines))  # Display the first 3 lines
+
+            # Save the example data to a temporary file
             with tempfile.NamedTemporaryFile(delete=False, suffix=".txt", mode='w') as temp_file:
                 temp_file.write(st.session_state.peptide_data)
                 st.session_state.temp_file_path = temp_file.name
