@@ -5,7 +5,89 @@ MSCI Documentation
    :depth: 2
    :local:
 
-Multiprocessing Module
+Preprocessing Data
+==================
+
+This module provides functionality to generate variable-length peptides from protein sequences
+and extract peptides from a FASTA file.
+
+Functions
+---------
+
+generate_variable_length_peptides(protein_sequence, min_length=8, max_length=11)
+-------------------------------------------------------------------------------
+
+Generates all possible peptides of varying lengths from a given protein sequence.
+
+**Parameters:**
+    - **protein_sequence** (*str*) -- The protein sequence from which peptides are generated.
+    - **min_length** (*int, optional*) -- The minimum length of peptides to generate (default: 8).
+    - **max_length** (*int, optional*) -- The maximum length of peptides to generate (default: 11).
+
+**Returns:**
+    - **list** -- A list of generated peptides of varying lengths.
+
+**Example:**
+    .. code-block:: python
+
+        peptides = generate_variable_length_peptides("ABCDEFG", min_length=3, max_length=5)
+        print(peptides)
+        # Output: ['ABC', 'BCD', 'CDE', 'DEF', 'EFG', 'ABCD', 'BCDE', 'CDEF', 'DEFG', 'ABCDE', 'BCDEF', 'CDEFG']
+
+
+extract_peptides_from_fasta(fasta_path, min_length=8, max_length=11)
+--------------------------------------------------------------------
+
+Reads a FASTA file and extracts peptides from each protein sequence.
+
+**Parameters:**
+    - **fasta_path** (*str*) -- The path to the FASTA file.
+    - **min_length** (*int, optional*) -- The minimum length of peptides to extract (default: 8).
+    - **max_length** (*int, optional*) -- The maximum length of peptides to extract (default: 11).
+
+**Returns:**
+    - **list** -- A list of peptides extracted from the protein sequences in the FASTA file.
+
+**Example:**
+    .. code-block:: python
+
+        peptides = extract_peptides_from_fasta("example.fasta", min_length=3, max_length=5)
+        print(peptides)
+        # Output: ['ABC', 'BCD', 'CDE', 'DEF', 'EFG', ...]
+
+keep_top_n_peaks(spectrum, n)
+------------------------------
+
+Filters a spectrum to retain only the top `n` most intense peaks.
+
+**Parameters:**
+    - **spectrum** (*object*) -- A spectrum object containing mass-to-charge ratio (m/z) peaks.
+    - **n** (*int*) -- The number of top peaks to retain.
+
+**Returns:**
+    - **object** -- A spectrum object with only the top `n` peaks.
+
+**Example:**
+    .. code-block:: python
+
+        filtered_spectrum = keep_top_n_peaks(spectrum, n=5)
+        print(filtered_spectrum)
+
+filter_spectra_by_top_peaks(input_file_path, output_file_path, n_peaks)
+------------------------------------------------------------------------
+
+Reads a pickled list of spectra, processes each spectrum to keep only the top `n` peaks, and saves the results.
+
+**Parameters:**
+    - **input_file_path** (*str*) -- Path to the input pickle file containing spectra.
+    - **output_file_path** (*str*) -- Path to save the processed spectra as a pickle file.
+    - **n_peaks** (*int*) -- The number of top peaks to retain in each spectrum.
+
+**Returns:**
+    - **list** -- A list of processed spectra with only the top `n` peaks.
+
+
+reading MS spectra
 ---------------------
 
 This module provides functionality to read and process mass spectrometry files, including MSP, MGF, and MZML formats.
