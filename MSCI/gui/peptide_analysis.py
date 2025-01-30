@@ -281,6 +281,27 @@ def plot_spectra():
         # Add a download button
         csv = st.session_state.analysis_results.to_csv(index=False).encode('utf-8')
         st.download_button(label="Download results as CSV", data=csv, file_name='spectra_similarity_results.csv', mime='text/csv')
+                st.markdown("""
+        ### Explanation of Spectra Similarity Results:
+
+        The table below contains the results of the peptide twins analysis. Each row represents a pair of spectra and their similarity score based on the chosen similarity method (e.g., Spectral Angle or Greedy Cosine Similarity).
+
+        #### Columns in the Spectra Similarity Results:
+
+        - **index1**: The index of the first spectrum compared.
+        - **index2**: The index of the second spectrum compared.
+        - **similarity_score**: The similarity score between the two spectra. A higher value indicates a greater similarity between the spectra.
+        - **mz_difference**: The difference in m/z (mass-to-charge ratio) values between the two spectra, representing how well the peaks align.
+        - **intensity_difference**: The difference in intensity values between the two spectra, indicating how similar the intensity distributions are.
+        - **combined_score**: A combined score based on the similarity score, m/z difference, and intensity difference, which provides an overall measure of similarity.
+        - **similarity_method**: The method used to calculate the similarity between the spectra, such as "Spectral Angle" or "Greedy Cosine Similarity."
+
+        The similarity scores and differences can help you identify peptide pairs that are likely to be identical or highly similar, which is crucial in identifying and confirming peptide identifications in mass spectrometry data.
+
+        You can also download the results as a CSV file for further analysis or reporting.
+        """)
+
+    
     if st.session_state.spectra_cache is None or len(st.session_state.spectra_cache) == 0:
         st.warning("Spectra data is not available. Please load the spectra data first.")
         return
