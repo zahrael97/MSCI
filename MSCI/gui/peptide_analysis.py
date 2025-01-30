@@ -286,13 +286,9 @@ def plot_spectra():
         - **index1**: The index of the first spectrum compared.
         - **index2**: The index of the second spectrum compared.
         - **similarity_score**: The similarity score between the two spectra. A higher value indicates a greater similarity between the spectra.
-        - **mz_difference**: The difference in m/z (mass-to-charge ratio) values between the two spectra, representing how well the peaks align.
-        - **intensity_difference**: The difference in intensity values between the two spectra, indicating how similar the intensity distributions are.
-        - **combined_score**: A combined score based on the similarity score, m/z difference, and intensity difference, which provides an overall measure of similarity.
-        - **similarity_method**: The method used to calculate the similarity between the spectra, such as "Spectral Angle" or "Greedy Cosine Similarity."
-
-        The similarity scores and differences can help you identify peptide pairs that are likely to be identical or highly similar, which is crucial in identifying and confirming peptide identifications in mass spectrometry data.
-
+        - **mz_difference**: The difference in m/z (mass-to-charge ratio) values between the two spectra.
+        - **intensity_difference**: The difference in intensity values between the two spectra.
+        
         You can also download the results as a CSV file for further analysis or reporting.
         """)
         st.dataframe(st.session_state.analysis_results)
