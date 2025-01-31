@@ -150,9 +150,7 @@ def peptide_twins_analysis():
     For example, if a user works on Phosphoproteomics, they could utilize available prediction models (MS2 deep is available so far) and tailor it to their needs. 
     The user is also able to select from similarity scores; so far, we implemented the normalized spectral angle, along with greedy cosine. 
     This will output a data frame of colliding peptide pairs along with their m/z, iRT, and similarity score measures.
-    """)
     # Input File Format Description
-    st.markdown("""
     ### Input File Format
     - The input file should be a plain text (.txt) file containing a list of peptide sequences, 
     one per line, with no headers or additional formatting.
