@@ -226,10 +226,20 @@ def peptide_twins_analysis():
 
         try:
             with st.spinner("Running prediction..."):
+                # Create a progress bar
+                progress_bar = st.progress(0)
+
+                def update_progress(value):
+                    progress_bar.progress(value)
+
                 with tempfile.NamedTemporaryFile(delete=False, suffix=".msp") as temp_output:
                     output_msp_path = temp_output.name
-                    processor.process(output_msp_path)
+                    processor.process(output_msp_path, progress_callback=update_progress)
+
+                # Clear progress bar after completion
+                progress_bar.empty()
                 st.success("Prediction Completed Successfully")
+
 
             st.subheader("Spectra Analysis")
 
