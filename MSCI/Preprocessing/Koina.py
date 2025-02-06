@@ -311,25 +311,14 @@ class PeptideProcessor:
             msp_entry = self.format_msp(row['peptide_sequence'], row['charge'], row['collision_energy'], row['mz_values'], row['intensities'], irt)
             file.write(msp_entry)
 
-import time  
+    def process(self, output_filename):
+        peptides = pd.read_csv(self.input_file, header=None)[0].tolist()
+        batch_size = 1000
+        with open(output_filename, 'w') as file:
+            for start in range(0, len(peptides), batch_size):
+                batch_peptides = peptides[start:start + batch_size]
+                irt_values = self.get_irt_predictions(batch_peptides)
+                df = self.get_predictions(batch_peptides)
 
-def process(self, output_filename, progress_callback=None):
-    peptides = pd.read_csv(self.input_file, header=None)[0].tolist()
-    batch_size = 1000
-    total_batches = (len(peptides) // batch_size) + (1 if len(peptides) % batch_size != 0 else 0)
-
-    with open(output_filename, 'w') as file:
-        for i, start in enumerate(range(0, len(peptides), batch_size), start=1):
-            batch_peptides = peptides[start:start + batch_size]
-            irt_values = self.get_irt_predictions(batch_peptides)
-            df = self.get_predictions(batch_peptides)
-
-            if df is not None and irt_values is not None:
-                self.save_to_msp(df, file, irt_values)
-
-            # Update progress bar
-            if progress_callback:
-                progress_callback(i / total_batches)  
-
-            time.sleep(0.1)  # Small delay for smooth UI update
-
+                if df is not None and irt_values is not None:
+                    self.save_to_msp(df, file, irt_values)
