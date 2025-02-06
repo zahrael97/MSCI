@@ -49,9 +49,9 @@ def landing_page():
     st.subheader("Please Cite")
     st.write("""
     If you use the MSCI package for your research, please cite the following works:
+    MSCI: an open-source Python package for information content assessment of peptide fragmentation spectra, Zahra Elhamraoui 1,2, Eva Borràs 1,2, Mathias Wilhelm 3,4, Eduard Sabidó 1,2
     
-
-    Huber, F., Ridder, L., Verhoeven, S., Spaaks, J. H., Dijkstra, M., & Reijnders, M. J. (2021). matchms - processing and comparison of mass spectrometric data. Analytical Chemistry, 93(23), 8301-8308. https://doi.org/10.1021/acs.analchem.1c00685
+    matchms - processing and comparison of mass spectrometric data. Analytical Chemistry, 93(23), 8301-8308. https://doi.org/10.1021/acs.analchem.1c00685, Huber, F., Ridder, L., Verhoeven, S., Spaaks, J. H., Dijkstra, M., & Reijnders, M. J. (2021). 
     """)
 
 if __name__ == "__main__":
