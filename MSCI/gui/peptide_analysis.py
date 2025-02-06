@@ -113,9 +113,8 @@ def perform_analysis(mz_tolerance: float, irt_tolerance: float, use_ppm: bool):
                 st.warning("No valid spectrum pairs found for similarity calculation.")
                 return
 
-            # Initialize a progress bar
-            progress_placeholder = st.empty()
-            progress_bar = progress_placeholder.progress(0)
+            # ✅ Initialize a progress bar
+            progress_bar = st.progress(0)
             results = []
 
             with st.spinner("Calculating spectra similarities..."):
@@ -129,21 +128,22 @@ def perform_analysis(mz_tolerance: float, irt_tolerance: float, use_ppm: bool):
                     except Exception as e:
                         st.warning(f"Skipping pair ({idx1}, {idx2}) due to an error: {e}")
 
-                    # Update progress bar
+                    # ✅ Ensure real-time updates
                     progress_bar.progress(i / total_combinations)
-                    time.sleep(0.1)  # Small delay for smooth progress update
+                    time.sleep(0.1)  # Small delay to keep UI smooth
 
-                # Clear progress bar
-                progress_placeholder.empty()
+            # ✅ Clear progress bar after completion
+            progress_bar.empty()
 
-                if results:
-                    st.session_state.analysis_results = pd.concat(results, ignore_index=True)
-                    st.success("Spectra similarity calculations completed successfully!")
-                else:
-                    st.error("No valid results were generated.")
+            if results:
+                st.session_state.analysis_results = pd.concat(results, ignore_index=True)
+                st.success("Spectra similarity calculations completed successfully!")
+            else:
+                st.error("No valid results were generated.")
 
         except Exception as e:
             st.error(f"An error occurred during analysis: {str(e)}")
+
 
 import tempfile
 import requests
@@ -226,19 +226,22 @@ def peptide_twins_analysis():
 
         try:
             with st.spinner("Running prediction..."):
-                # Create a progress bar
+                # ✅ Initialize a progress bar
                 progress_bar = st.progress(0)
 
                 def update_progress(value):
-                    progress_bar.progress(value)
+                    progress_bar.progress(value)  # ✅ Real-time progress update
 
                 with tempfile.NamedTemporaryFile(delete=False, suffix=".msp") as temp_output:
                     output_msp_path = temp_output.name
                     processor.process(output_msp_path, progress_callback=update_progress)
 
-                # Clear progress bar after completion
+                # ✅ Remove the progress bar after completion
                 progress_bar.empty()
                 st.success("Prediction Completed Successfully")
+
+            st.subheader("Spectra Analysis")
+
 
 
             st.subheader("Spectra Analysis")
