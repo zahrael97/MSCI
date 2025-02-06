@@ -87,7 +87,7 @@ def filter_spectra_by_top_peaks(input_file_path: str, output_file_path: str, n_p
         return None
 
 def perform_analysis(mz_tolerance: float, irt_tolerance: float, use_ppm: bool):
-    """Perform the peptide twins analysis with detailed debugging."""
+    """Perform the peptide twins analysis with detailed debugging and progress tracking."""
     if not st.session_state.spectra_cache or st.session_state.mz_irt_df_cache.empty:
         st.error("Spectra data is missing or invalid. Please ensure the MSP file is correctly loaded.")
         return
@@ -99,34 +99,43 @@ def perform_analysis(mz_tolerance: float, irt_tolerance: float, use_ppm: bool):
             )
 
             st.write(f"Grouped data shape: {Groups_df.shape}")
-#            st.write(Groups_df.head())  # Log the first few rows for debugging
 
             if not {'index1', 'index2'}.issubset(Groups_df.columns):
-                st.error("No indistinguishable pairs")
+                st.error("No indistinguishable pairs found.")
                 return
 
             index_array = Groups_df[['index1', 'index2']].values.astype(int)
-#            st.write(f"Number of combinations: {len(index_array)}")
+            total_combinations = len(index_array)
+
+            if total_combinations == 0:
+                st.warning("No valid spectrum pairs found for similarity calculation.")
+                return
 
             similarity_progress = st.progress(0)
-            total_combinations = len(index_array)
             results = []
 
             with st.spinner("Calculating spectra similarities..."):
-                for i, (idx1, idx2) in enumerate(index_array):
-                    result = process_spectra_pairs(
-                        [(idx1, idx2)], st.session_state.spectra_cache, st.session_state.mz_irt_df_cache, tolerance=mz_tolerance, ppm=use_ppm
-                    )
+                for i, (idx1, idx2) in enumerate(index_array, start=1):
+                    try:
+                        result = process_spectra_pairs(
+                            [(idx1, idx2)], st.session_state.spectra_cache, 
+                            st.session_state.mz_irt_df_cache, tolerance=mz_tolerance, ppm=use_ppm
+                        )
+                        results.append(result)
+                    except Exception as e:
+                        st.warning(f"Skipping pair ({idx1}, {idx2}) due to an error: {e}")
 
-                    results.append(result)
-                    similarity_progress.progress((i + 1) / total_combinations)
+                    similarity_progress.progress(i / total_combinations)
 
-                st.session_state.analysis_results = pd.concat(results, ignore_index=True)
-#                st.subheader("Spectra Similarity Results:")
-#                st.dataframe(st.session_state.analysis_results)
+                if results:
+                    st.session_state.analysis_results = pd.concat(results, ignore_index=True)
+                    st.success("Spectra similarity calculations completed successfully!")
+                else:
+                    st.error("No valid results were generated.")
 
         except Exception as e:
             st.error(f"An error occurred during analysis: {str(e)}")
+
 
 
 import tempfile
