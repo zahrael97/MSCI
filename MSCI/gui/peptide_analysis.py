@@ -86,10 +86,8 @@ def filter_spectra_by_top_peaks(input_file_path: str, output_file_path: str, n_p
         st.error(f"An error occurred while filtering spectra: {e}")
         return None
 
-import time  # Ensure smooth progress updates
-
 def perform_analysis(mz_tolerance: float, irt_tolerance: float, use_ppm: bool):
-    """Perform the peptide twins analysis with detailed debugging and progress tracking."""
+    """Perform the peptide twins analysis with detailed debugging."""
     if not st.session_state.spectra_cache or st.session_state.mz_irt_df_cache.empty:
         st.error("Spectra data is missing or invalid. Please ensure the MSP file is correctly loaded.")
         return
@@ -101,51 +99,40 @@ def perform_analysis(mz_tolerance: float, irt_tolerance: float, use_ppm: bool):
             )
 
             st.write(f"Grouped data shape: {Groups_df.shape}")
+#            st.write(Groups_df.head())  # Log the first few rows for debugging
 
             if not {'index1', 'index2'}.issubset(Groups_df.columns):
-                st.error("No indistinguishable pairs found.")
+                st.error("No indistinguishable pairs")
                 return
 
             index_array = Groups_df[['index1', 'index2']].values.astype(int)
+#            st.write(f"Number of combinations: {len(index_array)}")
+
+            similarity_progress = st.progress(0)
             total_combinations = len(index_array)
-
-            if total_combinations == 0:
-                st.warning("No valid spectrum pairs found for similarity calculation.")
-                return
-
-            # ✅ Initialize a progress bar
-            progress_bar = st.progress(0)
             results = []
 
             with st.spinner("Calculating spectra similarities..."):
-                for i, (idx1, idx2) in enumerate(index_array, start=1):
-                    try:
-                        result = process_spectra_pairs(
-                            [(idx1, idx2)], st.session_state.spectra_cache, 
-                            st.session_state.mz_irt_df_cache, tolerance=mz_tolerance, ppm=use_ppm
-                        )
-                        results.append(result)
-                    except Exception as e:
-                        st.warning(f"Skipping pair ({idx1}, {idx2}) due to an error: {e}")
+                for i, (idx1, idx2) in enumerate(index_array):
+                    result = process_spectra_pairs(
+                        [(idx1, idx2)], st.session_state.spectra_cache, st.session_state.mz_irt_df_cache, tolerance=mz_tolerance, ppm=use_ppm
+                    )
 
-                    # ✅ Ensure real-time updates
-                    progress_bar.progress(i / total_combinations)
-                    time.sleep(0.1)  # Small delay to keep UI smooth
+                    results.append(result)
+                    similarity_progress.progress((i + 1) / total_combinations)
 
-            # ✅ Clear progress bar after completion
-            progress_bar.empty()
-
-            if results:
                 st.session_state.analysis_results = pd.concat(results, ignore_index=True)
-                st.success("Spectra similarity calculations completed successfully!")
-            else:
-                st.error("No valid results were generated.")
+#                st.subheader("Spectra Similarity Results:")
+#                st.dataframe(st.session_state.analysis_results)
 
         except Exception as e:
             st.error(f"An error occurred during analysis: {str(e)}")
 
 
 import tempfile
+
+import requests
+
 import requests
 
 def peptide_twins_analysis():
@@ -168,7 +155,7 @@ def peptide_twins_analysis():
     - The input file should be a plain text (.txt) file containing a list of peptide sequences, 
     one per line, with no headers or additional formatting.
     - Each sequence consists of **standard amino acids** (A, C, D, E, F, G, H, I, K, L, M, N, P, Q, R, S, T, V, W, Y).
-    - Peptide length should be adecquate to the prediction model selected for prosit **7 to 30 amino acids**.
+    - Peptide length should be **5 to 20 amino acids**.
 
     Please ensure your file follows this format for accurate analysis.
     """)
@@ -226,23 +213,10 @@ def peptide_twins_analysis():
 
         try:
             with st.spinner("Running prediction..."):
-                # ✅ Initialize a progress bar
-                progress_bar = st.progress(0)
-
-                def update_progress(value):
-                    progress_bar.progress(value)  # ✅ Real-time progress update
-
                 with tempfile.NamedTemporaryFile(delete=False, suffix=".msp") as temp_output:
                     output_msp_path = temp_output.name
-                    processor.process(output_msp_path, progress_callback=update_progress)
-
-                # ✅ Remove the progress bar after completion
-                progress_bar.empty()
+                    processor.process(output_msp_path)
                 st.success("Prediction Completed Successfully")
-
-            st.subheader("Spectra Analysis")
-
-
 
             st.subheader("Spectra Analysis")
 
