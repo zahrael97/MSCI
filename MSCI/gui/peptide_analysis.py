@@ -86,6 +86,8 @@ def filter_spectra_by_top_peaks(input_file_path: str, output_file_path: str, n_p
         st.error(f"An error occurred while filtering spectra: {e}")
         return None
 
+import time  # Ensure smooth progress updates
+
 def perform_analysis(mz_tolerance: float, irt_tolerance: float, use_ppm: bool):
     """Perform the peptide twins analysis with detailed debugging and progress tracking."""
     if not st.session_state.spectra_cache or st.session_state.mz_irt_df_cache.empty:
@@ -111,7 +113,9 @@ def perform_analysis(mz_tolerance: float, irt_tolerance: float, use_ppm: bool):
                 st.warning("No valid spectrum pairs found for similarity calculation.")
                 return
 
-            similarity_progress = st.progress(0)
+            # Initialize a progress bar
+            progress_placeholder = st.empty()
+            progress_bar = progress_placeholder.progress(0)
             results = []
 
             with st.spinner("Calculating spectra similarities..."):
@@ -125,7 +129,12 @@ def perform_analysis(mz_tolerance: float, irt_tolerance: float, use_ppm: bool):
                     except Exception as e:
                         st.warning(f"Skipping pair ({idx1}, {idx2}) due to an error: {e}")
 
-                    similarity_progress.progress(i / total_combinations)
+                    # Update progress bar
+                    progress_bar.progress(i / total_combinations)
+                    time.sleep(0.1)  # Small delay for smooth progress update
+
+                # Clear progress bar
+                progress_placeholder.empty()
 
                 if results:
                     st.session_state.analysis_results = pd.concat(results, ignore_index=True)
@@ -135,9 +144,6 @@ def perform_analysis(mz_tolerance: float, irt_tolerance: float, use_ppm: bool):
 
         except Exception as e:
             st.error(f"An error occurred during analysis: {str(e)}")
-
-
-
 
 import tempfile
 import requests
