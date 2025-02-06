@@ -87,7 +87,6 @@ def filter_spectra_by_top_peaks(input_file_path: str, output_file_path: str, n_p
         return None
 
 def perform_analysis(mz_tolerance: float, irt_tolerance: float, use_ppm: bool):
-    """Perform the peptide twins analysis with detailed debugging."""
     if not st.session_state.spectra_cache or st.session_state.mz_irt_df_cache.empty:
         st.error("Spectra data is missing or invalid. Please ensure the MSP file is correctly loaded.")
         return
@@ -97,17 +96,14 @@ def perform_analysis(mz_tolerance: float, irt_tolerance: float, use_ppm: bool):
             Groups_df = process_peptide_combinations(
                 st.session_state.mz_irt_df_cache, mz_tolerance, irt_tolerance, use_ppm=use_ppm
             )
-
+            
             st.write(f"Grouped data shape: {Groups_df.shape}")
-#            st.write(Groups_df.head())  # Log the first few rows for debugging
-
+            
             if not {'index1', 'index2'}.issubset(Groups_df.columns):
                 st.error("No indistinguishable pairs")
                 return
 
             index_array = Groups_df[['index1', 'index2']].values.astype(int)
-#            st.write(f"Number of combinations: {len(index_array)}")
-
             similarity_progress = st.progress(0)
             total_combinations = len(index_array)
             results = []
@@ -117,17 +113,14 @@ def perform_analysis(mz_tolerance: float, irt_tolerance: float, use_ppm: bool):
                     result = process_spectra_pairs(
                         [(idx1, idx2)], st.session_state.spectra_cache, st.session_state.mz_irt_df_cache, tolerance=mz_tolerance, ppm=use_ppm
                     )
-
                     results.append(result)
                     similarity_progress.progress((i + 1) / total_combinations)
 
                 st.session_state.analysis_results = pd.concat(results, ignore_index=True)
-#                st.subheader("Spectra Similarity Results:")
-#                st.dataframe(st.session_state.analysis_results)
+                st.success("Spectra similarity analysis completed!")
 
         except Exception as e:
             st.error(f"An error occurred during analysis: {str(e)}")
-
 
 import tempfile
 
