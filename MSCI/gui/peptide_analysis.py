@@ -138,10 +138,8 @@ def perform_analysis(mz_tolerance: float, irt_tolerance: float, use_ppm: bool):
 
 
 
+
 import tempfile
-
-import requests
-
 import requests
 
 def peptide_twins_analysis():
@@ -164,7 +162,7 @@ def peptide_twins_analysis():
     - The input file should be a plain text (.txt) file containing a list of peptide sequences, 
     one per line, with no headers or additional formatting.
     - Each sequence consists of **standard amino acids** (A, C, D, E, F, G, H, I, K, L, M, N, P, Q, R, S, T, V, W, Y).
-    - Peptide length should be **5 to 20 amino acids**.
+    - Peptide length should be adecquate to the prediction model selected for prosit **7 to 30 amino acids**.
 
     Please ensure your file follows this format for accurate analysis.
     """)
