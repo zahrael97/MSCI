@@ -149,7 +149,7 @@ def peptide_twins_analysis():
     - The input file should be a plain text (.txt) file containing a list of peptide sequences, 
     one per line, with no headers or additional formatting.
     - Each sequence consists of **standard amino acids** (A, C, D, E, F, G, H, I, K, L, M, N, P, Q, R, S, T, V, W, Y).
-    - Peptide length should be **5 to 20 amino acids**.
+    - Peptide length should be adequate to the prediction model for example for PROSIT **7 to 30 amino acids**.
 
     Please ensure your file follows this format for accurate analysis.
     """)
