@@ -311,7 +311,6 @@ class PeptideProcessor:
             msp_entry = self.format_msp(row['peptide_sequence'], row['charge'], row['collision_energy'], row['mz_values'], row['intensities'], irt)
             file.write(msp_entry)
 
-import streamlit as st
 import time  
 
 def process(self, output_filename, progress_callback=None):
@@ -333,3 +332,4 @@ def process(self, output_filename, progress_callback=None):
                 progress_callback(i / total_batches)  
 
             time.sleep(0.1)  # Small delay for smooth UI update
+
