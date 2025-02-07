@@ -75,10 +75,6 @@ def peptide_twins_checker():
     A user could enter a peptide of interest and select the organism of interest, collision energy, and charge. The tool then maps this information to our database for checking whether the peptide collides with other peptides and then parse the provided fasta file in order to identify proteins where these potential collisions occur.
     """)
     # Add a note about the datasets and analysis
-    st.markdown("""
-    **Note:** The datasets used in this tool and the detailed analysis can be found in our paper. 
-    Please refer to the paper for more information on the methodology and the data sources.
-    """)
 
     organism = st.selectbox("Select Universe:", options=list(DATASETS.keys()), key='Universe')
     energies = st.multiselect("Select Collision Energies:", options=list(DATASETS[organism].keys()), key='energies')
