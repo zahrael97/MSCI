@@ -290,7 +290,8 @@ Simulates tryptic digestion of protein sequence.
     **list** -- Resulting peptides
 
 Example Usage
------------
+=================
+
 
 .. code-block:: python
 
