@@ -81,7 +81,7 @@ def peptide_twins_checker():
 
     peptide = st.text_input("Enter Peptide:", key='peptide', value="SDPYGIIR")
     charge = st.number_input("Enter Charge:", min_value=1, step=1, value=2, key='charge')
-
+    st.markdown(""" The uploaded FASTA file is used to identify the proteins that contain the colliding peptides found in the selected dataset    """)
     fasta_file = st.file_uploader("Upload FASTA file with protein sequences", type=["fasta"])
 
     if st.button("Check twins"):
