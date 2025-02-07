@@ -138,14 +138,12 @@ def peptide_twins_analysis():
     st.header("Peptide Twins Analysis")
     # Input Description    
     st.markdown("""
-    ## Peptide Twins Analysis Tool
     A user can, using MSCI, drop a complete list of peptides to predict spectra from Koina. 
     User is able to adjust parameters such as collision energy, charge, and model used in predicting fragmentation intensity and indexed retention time. 
     For example, if a user works on Phosphoproteomics, they could utilize available prediction models (MS2 deep is available so far) and tailor it to their needs. 
     The user is also able to select from similarity scores; so far, we implemented the normalized spectral angle, along with greedy cosine. 
     This will output a data frame of colliding peptide pairs along with their m/z, iRT, and similarity score measures.
-    # Input File Format Description
-    ### Input File Format
+    ## Input File Format and Description
     - The input file should be a plain text (.txt) file containing a list of peptide sequences, 
     one per line, with no headers or additional formatting.
     - Each sequence consists of **standard amino acids** (A, C, D, E, F, G, H, I, K, L, M, N, P, Q, R, S, T, V, W, Y).
