@@ -69,17 +69,6 @@ Example workflow:
 For a full tutorial, visit our Colab notebook:
 https://colab.research.google.com/drive/1ny97RNgvnpD7ZrHW8TTRXWCAQvIcavkk
 
-Graphical User Interface (GUI)
-==============================
-
-MSCI includes a web-based GUI for non-programmers, accessible at:
-https://msci--proteomicsunit.streamlit.app/
-
-You can use the GUI for:
-
-- **Peptide Twin Analysis**: Identify indistinguishable peptide pairs.
-- **Peptide Twin Checker**: Search for similar peptides in precomputed databases.
-
 Contributing
 ============
 
