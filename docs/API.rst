@@ -5,11 +5,7 @@ MSCI Documentation
    :depth: 2
    :local:
 
-Preprocessing Data
-==================
 
-This module provides functionality to generate variable-length peptides from protein sequences
-and extract peptides from a FASTA file.
 
 Functions
 ---------
