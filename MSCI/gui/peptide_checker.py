@@ -79,7 +79,7 @@ def peptide_twins_checker():
     fasta_option = st.radio("FASTA Input Option:", ("Upload File", "Use Default (Human Proteome)"))
     fasta_file = None
     fasta_content = ""
-    
+    st.markdown("""The uploaded FASTA file is used to identify the proteins that contain the colliding peptides found in the selected dataset     """)   
     if fasta_option == "Upload File":
         fasta_file = st.file_uploader("Upload FASTA file with protein sequences", type=["fasta"])
     else:
