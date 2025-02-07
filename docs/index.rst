@@ -21,32 +21,6 @@ Contents
    GUI
    contributing
 
-Installation
-============
-
-Prerequisites:
-
-- Python 3.8 - 3.11
-- Anaconda
-- Matchms
-- Pyteomics
-- OpenMS
-- NumPy, Pandas, Biopython
-
-To install MSCI, run:
-
-.. code-block:: bash
-
-   pip install msci
-
-Alternatively, use Anaconda:
-
-.. code-block:: bash
-
-   conda create -n msci_env python=3.9
-   conda activate msci_env
-   pip install msci
-
 API
 ===
 
@@ -67,12 +41,6 @@ Example workflow:
 
 For a full tutorial, visit our Colab notebook:
 https://colab.research.google.com/drive/1ny97RNgvnpD7ZrHW8TTRXWCAQvIcavkk
-
-Contributing
-============
-
-We welcome contributions! Visit our GitHub repository for guidelines:
-https://github.com/zahrael97/MSCI
 
 License
 =======
