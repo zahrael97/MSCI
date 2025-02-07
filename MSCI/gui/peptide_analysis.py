@@ -276,7 +276,6 @@ def plot_spectra():
     if 'analysis_results' in st.session_state:
         st.subheader("Spectra Similarity Results:")
         st.markdown("""
-        ### Explanation of Spectra Similarity Results:
 
         The table below contains the results of the peptide twins analysis. Each row represents a pair of spectra and their similarity score based on the chosen similarity method (e.g., Spectral Angle or Greedy Cosine Similarity).
 
