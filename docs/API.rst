@@ -308,7 +308,7 @@ Example Usage
 
     # Parse FASTA and perform digestion
     result = parse_fasta_and_digest(
-        "https://github.com/proteomicsunitcrg/MSCI/blob/main/tutorial/sp_human_2023_04.fasta",
+        "https://raw.githubusercontent.com/proteomicsunitcrg/MSCI/refs/heads/main/tutorial/sp_human_2023_04.fastaa",
         digest_type="trypsin"
     )
     peptides_to_csv(result, "random_tryptic_peptides.txt")
