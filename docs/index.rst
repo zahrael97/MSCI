@@ -17,9 +17,8 @@ Contents
    :maxdepth: 2
 
    installation
-   usage
    API
-   examples
+   GUI
    contributing
 
 Installation
