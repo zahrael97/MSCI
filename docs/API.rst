@@ -258,8 +258,6 @@ Mutation Module
 
 Tools for processing proteins by simulating peptide digestion and introducing mutations.
 
-Classes and Functions
-~~~~~~~~~~~~~~~~~~~
 
 ProteinMutator
 --------------------
