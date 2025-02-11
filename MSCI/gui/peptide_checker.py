@@ -74,6 +74,12 @@ def peptide_twins_checker():
     energies = st.multiselect("Select Collision Energies:", options=list(DATASETS[organism].keys()), key='energies')
 
     peptide = st.text_input("Enter Peptide:", key='peptide', value="SDPYGIIR")
+
+    # Automatically convert to uppercase if the user enters lowercase letters
+    if peptide != peptide.upper():
+        st.warning(f"Peptide sequence converted to uppercase: `{peptide.upper()}`")
+        peptide = peptide.upper()
+
     charge = st.number_input("Enter Charge:", min_value=1, step=1, value=2, key='charge')
     
     fasta_option = st.radio("Upload FASTA for peptide-protein annotation", ("Upload File", "Use Default (Human Proteome)"))
