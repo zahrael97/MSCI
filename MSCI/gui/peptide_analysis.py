@@ -138,12 +138,14 @@ def peptide_twins_analysis():
     st.header("Peptide Twins Analysis")
     # Input Description    
     st.markdown("""
+    ## Peptide Twins Analysis Tool
     A user can, using MSCI, drop a complete list of peptides to predict spectra from Koina. 
     User is able to adjust parameters such as collision energy, charge, and model used in predicting fragmentation intensity and indexed retention time. 
     For example, if a user works on Phosphoproteomics, they could utilize available prediction models (MS2 deep is available so far) and tailor it to their needs. 
     The user is also able to select from similarity scores; so far, we implemented the normalized spectral angle, along with greedy cosine. 
     This will output a data frame of colliding peptide pairs along with their m/z, iRT, and similarity score measures.
-    ## Input File Format and Description
+    # Input File Format Description
+    ### Input File Format
     - The input file should be a plain text (.txt) file containing a list of peptide sequences, 
     one per line, with no headers or additional formatting.
     - Each sequence consists of **standard amino acids** (A, C, D, E, F, G, H, I, K, L, M, N, P, Q, R, S, T, V, W, Y).
@@ -175,10 +177,10 @@ def peptide_twins_analysis():
     else:
         st.error("Failed to load the example dataset. Please try again.")
 
-    # File uploader
-    st.subheader("Upload Your Peptide File")
-    uploaded_file = st.file_uploader("Upload a peptide text file", type=["txt"])
 
+    # File uploader with an option to load example data
+    uploaded_file = st.file_uploader("Upload your peptide file or use the example dataset", type=["txt"])
+    use_example = st.checkbox("Use our example Dataset", value=False)
 
     # Load example dataset if checkbox is checked
     if use_example and not uploaded_file:
@@ -236,9 +238,9 @@ def peptide_twins_analysis():
 
             st.subheader("Spectra Analysis")
 
-            mz_tolerance = st.number_input("Set Mass Tolerance default is Dalton", min_value=0.0, step=0.1, value=10.0)
+            mz_tolerance = st.number_input("Set Mass Tolerance", min_value=0.0, step=0.1, value=10.0)
             irt_tolerance = st.number_input("Set iRT Tolerance", min_value=0.0, step=0.1, value=10.0)
-            use_ppm = st.checkbox("Check the box if you want to use ppm instead of dalton", value=False)
+            use_ppm = st.checkbox("Use PPM for mass tolerance", value=False)
 
             similarity_method = st.selectbox(
                 "Select Similarity Method",
@@ -300,6 +302,7 @@ def plot_spectra():
     if 'analysis_results' in st.session_state:
         st.subheader("Spectra Similarity Results:")
         st.markdown("""
+        ### Explanation of Spectra Similarity Results:
 
         The table below contains the results of the peptide twins analysis. Each row represents a pair of spectra and their similarity score based on the chosen similarity method (e.g., Spectral Angle or Greedy Cosine Similarity).
 
@@ -328,8 +331,8 @@ def plot_spectra():
     st.subheader("Plot Spectra")
     st.write("Select two spectra indices to plot against each other:")
 
-    index1 = st.number_input("Enter first spectrum index: (index1)", min_value=0, max_value=len(st.session_state.spectra_cache) - 1, step=1, value=0)
-    index2 = st.number_input("Enter second spectrum index (index2):", min_value=0, max_value=len(st.session_state.spectra_cache) - 1, step=1, value=1)
+    index1 = st.number_input("Enter first spectrum index:", min_value=0, max_value=len(st.session_state.spectra_cache) - 1, step=1, value=0)
+    index2 = st.number_input("Enter second spectrum index:", min_value=0, max_value=len(st.session_state.spectra_cache) - 1, step=1, value=1)
 
     # Store the indices in session_state to persist across interactions
     st.session_state.index1 = index1
