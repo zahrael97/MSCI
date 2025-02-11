@@ -8,7 +8,6 @@ from MSCI.gui.peptide_analysis import peptide_twins_analysis, plot_spectra
 from MSCI.gui.peptide_checker import peptide_twins_checker
 
 
-
 def main():
     st.set_page_config(layout="wide")
     add_custom_css()
@@ -19,20 +18,30 @@ def main():
 
     with st.sidebar:
         if logo_image:
-            st.markdown(f"""
-            <p align="center">
-                <img src="data:image/png;base64,{logo_image}" alt="logo" width="300" height="300">
-            </p>
-            """, unsafe_allow_html=True)
+            st.markdown(
+                f"""
+                <p align="center">
+                    <a href="/?option=MSCI">
+                        <img src="data:image/png;base64,{logo_image}" alt="logo" width="300" height="300">
+                    </a>
+                </p>
+                """, unsafe_allow_html=True)
         st.header("MSCI")
-        option = st.radio("Choose an option", ("MSCI", "Peptide Twins Analysis", "Peptide Twins Checker"))
+        option = st.radio("Choose an option", ("Peptide Twins Analysis", "Peptide Twins Checker"))
 
-    if option == "MSCI":
+    # Default page
+    if "option" not in st.session_state:
+        st.session_state["option"] = "MSCI"
+
+    if option:
+        st.session_state["option"] = option
+    
+    if st.session_state["option"] == "MSCI":
         landing_page()
-    elif option == "Peptide Twins Analysis":
+    elif st.session_state["option"] == "Peptide Twins Analysis":
         peptide_twins_analysis()
         plot_spectra()
-    elif option == "Peptide Twins Checker":
+    elif st.session_state["option"] == "Peptide Twins Checker":
         peptide_twins_checker()
 
 if __name__ == "__main__":
