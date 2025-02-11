@@ -180,11 +180,6 @@ def peptide_twins_analysis():
     uploaded_file = st.file_uploader("Upload a peptide text file", type=["txt"])
 
 
-
-    # File uploader with an option to load example data
-    uploaded_file = st.file_uploader("Upload your peptide file or use the example dataset", type=["txt"])
-    use_example = st.checkbox("Use our example Dataset", value=False)
-
     # Load example dataset if checkbox is checked
     if use_example and not uploaded_file:
         example_url = "https://raw.githubusercontent.com/zahrael97/MSCI/master/random_tryptic_peptides.txt"
