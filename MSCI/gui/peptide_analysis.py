@@ -179,13 +179,7 @@ def peptide_twins_analysis():
     st.subheader("Upload Your Peptide File")
     uploaded_file = st.file_uploader("Upload a peptide text file", type=["txt"])
 
-    # Load uploaded file
-    if uploaded_file:
-        st.session_state.peptide_data = uploaded_file.read().decode("utf-8")
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".txt", mode='w') as temp_file:
-            temp_file.write(st.session_state.peptide_data)
-            st.session_state.temp_file_path = temp_file.name
-        st.success("File uploaded successfully!")
+
 
     # File uploader with an option to load example data
     uploaded_file = st.file_uploader("Upload your peptide file or use the example dataset", type=["txt"])
