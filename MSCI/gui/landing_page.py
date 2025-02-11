@@ -1,39 +1,59 @@
 import streamlit as st
 from pathlib import Path
-import base64
-import requests
-from MSCI.gui.utils import load_image_from_url, add_custom_css
-from MSCI.gui.landing_page import landing_page
-from MSCI.gui.peptide_analysis import peptide_twins_analysis, plot_spectra
-from MSCI.gui.peptide_checker import peptide_twins_checker
+import sys
+sys.path.append('Z:/zelhamraoui/MSCA_Package/MSCI_package/MSCI')
 
+from MSCI.gui.utils import load_image
 
-
-def main():
-    st.set_page_config(layout="wide")
-    add_custom_css()
+def landing_page():
+    """Render the landing page of the application."""
+    st.title("Welcome to MSCI")
 
     # URL of the image on GitHub
-    logo_url = "https://github.com/proteomicsunitcrg/MSCI/raw/main/docs/MSCI_logor.png"
-    logo_image = load_image_from_url(logo_url)
+    workflow_url = "https://github.com/proteomicsunitcrg/MSCI/raw/main/docs/INTRODUCTION.png"
 
-    with st.sidebar:
-        if logo_image:
-            st.markdown(f"""
-            <p align="center">
-                <img src="data:image/png;base64,{logo_image}" alt="logo" width="300" height="300">
-            </p>
-            """, unsafe_allow_html=True)
-        st.header("MSCI")
-        option = st.radio("Choose an option", ("MSCI", "Peptide Twins Analysis", "Peptide Twins Checker"))
+    st.write("""
+    The MSCI Python library was developed to address the challenges of peptide identification in mass spectrometry-based proteomics, particularly regarding the issue of indistinguishable peptides that exhibit similar analytical values and fragmentation patterns. MSCI provides a comprehensive toolset to streamline the workflow from data import to spectral analysis, enabling researchers to effectively evaluate fragmentation similarity scores, identify indistinguishable peptide pairs, and design data acquisition and analysis strategies that prioritize the most informative fragment ions for accurate peptide quantification.
+    """)
 
-    if option == "MSCI":
-        landing_page()
-    elif option == "Peptide Twins Analysis":
-        peptide_twins_analysis()
-        plot_spectra()
-    elif option == "Peptide Twins Checker":
-        peptide_twins_checker()
+    # Load image from URL
+    workflow_image = load_image(workflow_url)
+
+    if workflow_image:
+        st.markdown(f"""
+        <p align="center">
+            <img src="data:image/png;base64,{workflow_image}" alt="workflow illustration" width="1200">
+        </p>
+        """, unsafe_allow_html=True)
+    else:
+        st.error(f"Workflow image not found at {workflow_url}")
+
+    st.subheader("Installation")
+    st.write("""
+    **Prerequisites:**
+
+    - Python 3.8 - 3.11
+    - Matchms
+    """)
+
+    st.subheader("Implementation and Example")
+    st.write("""
+    **Open the Notebook**: Click on the following [link to Google Colab](https://colab.research.google.com/drive/1V5KSpkkrjVg41eCOkBZkVR_nUqBrHPl_?usp=sharing)
+    """)
+
+    st.subheader("Contribution")
+    st.write("""
+    If you would like to contribute to this project, feel free to fork the repository on GitHub and submit a pull request.
+    """)
+
+    st.subheader("Please Cite")
+    st.write("""
+    If you use the MSCI package for your research, please cite the following works:
+    
+    MSCI: an open-source Python package for information content assessment of peptide fragmentation spectra, Zahra Elhamraoui, Eva Borràs, Mathias Wilhelm, Eduard Sabidó
+    
+    matchms - processing and comparison of mass spectrometric data. Analytical Chemistry, 93(23), 8301-8308. https://doi.org/10.1021/acs.analchem.1c00685, Huber, F., Ridder, L., Verhoeven, S., Spaaks, J. H., Dijkstra, M., & Reijnders, M. J. (2021). 
+    """)
 
 if __name__ == "__main__":
-    main()
+    landing_page()
