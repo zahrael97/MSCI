@@ -190,17 +190,6 @@ def peptide_twins_analysis():
             st.write("### First 3 lines of the Example Dataset:")
             st.text("\n".join(example_lines))  # Display the first 3 lines
 
-               # Download button using the same data
-            st.download_button(
-                label="Download Example Peptide List (.txt)",
-                data=st.session_state.peptide_data.encode(),
-                file_name="example_peptides.txt",
-                mime="text/plain"
-                )
-
-            else:
-                st.error("Failed to load the example dataset. Please try again.")
-
 
             # Save the example data to a temporary file
             with tempfile.NamedTemporaryFile(delete=False, suffix=".txt", mode='w') as temp_file:
