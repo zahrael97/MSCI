@@ -154,7 +154,6 @@ def peptide_twins_analysis():
     Please ensure your file follows this format for accurate analysis.
     """)
     # **Download Example Dataset**
-    st.subheader("Example Dataset")
     example_url = "https://raw.githubusercontent.com/proteomicsunitcrg/MSCI/main/tutorial/test.txt"
 
     # Fetch the example file
@@ -165,7 +164,7 @@ def peptide_twins_analysis():
 
         # Add download button
         st.download_button(
-            label="Download Example Peptide File",
+            label="Download Example of a list of Peptides.txt file",
             data=example_data.encode(),
             file_name="example_peptides.txt",
             mime="text/plain"
