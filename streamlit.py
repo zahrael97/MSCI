@@ -3,7 +3,6 @@ from pathlib import Path
 import base64
 import requests
 from MSCI.gui.utils import load_image_from_url, add_custom_css
-from MSCI.gui.landing_page import landing_page
 from MSCI.gui.peptide_analysis import peptide_twins_analysis, plot_spectra
 from MSCI.gui.peptide_checker import peptide_twins_checker
 
@@ -16,9 +15,6 @@ def main():
     logo_url = "https://github.com/proteomicsunitcrg/MSCI/raw/main/docs/MSCI_logor.png"
     logo_image = load_image_from_url(logo_url)
 
-    # Display landing page automatically on app launch
-    landing_page()
-
     with st.sidebar:
         if logo_image:
             st.markdown(f"""
@@ -29,6 +25,7 @@ def main():
         st.header("MSCI")
         option = st.radio("Choose an option", ("Peptide Twins Analysis", "Peptide Twins Checker"))
 
+    # Render selected option only
     if option == "Peptide Twins Analysis":
         peptide_twins_analysis()
         plot_spectra()
