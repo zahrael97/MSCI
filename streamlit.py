@@ -19,8 +19,8 @@ def main():
         st.session_state.page = "Landing"
 
     # Check URL query parameters for navigation
-    query_params = st.experimental_get_query_params()
-    if "page" in query_params and query_params["page"][0] == "Landing":
+    query_params = st.query_params
+    if "page" in query_params and query_params["page"] == "Landing":
         st.session_state.page = "Landing"
 
     with st.sidebar:
