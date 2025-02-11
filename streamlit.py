@@ -27,7 +27,7 @@ def main():
         st.header("MSCI")
         option = st.radio("Choose an option", ("MSCI", "Peptide Twins Analysis", "Peptide Twins Checker"))
 
-    if option == " ":
+    if option == "MSCI":
         landing_page()
     elif option == "Peptide Twins Analysis":
         peptide_twins_analysis()
