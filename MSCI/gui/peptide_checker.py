@@ -16,7 +16,7 @@ DATASETS = {
     "Immunopeptidome": {
         28: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/HLA_peptides_HRHR_NSA_score.csv",
     },
-    "Mutated human proteome": {
+    "Reference Human Canonical proteome with natural variants": {
         28: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/mutation_peptides_HRHR_NSA_score.csv",
     },
     "Human Oral microbiome": {
