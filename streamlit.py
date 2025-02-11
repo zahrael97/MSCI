@@ -37,10 +37,8 @@ def main():
         st.header("MSCI")
         option = st.radio("Choose an option", ("Peptide Twins Analysis", "Peptide Twins Checker"))
 
-    # Handle navigation
-    if st.session_state.page == "Landing":
-        landing_page()
-    elif option == "Peptide Twins Analysis":
+
+    if option == "Peptide Twins Analysis":
         peptide_twins_analysis()
         plot_spectra()
     elif option == "Peptide Twins Checker":
