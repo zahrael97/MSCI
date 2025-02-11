@@ -104,7 +104,7 @@ The returned DataFrame contains the following columns:
 - **MW** -- Mass/charge of the spectrum
 - **iRT** -- Indexed retention time
 
-`Example Data <https://github.com/proteomicsunitcrg/MSCI/tree/main/Example_data>`_
+`Download Example Data <https://github.com/proteomicsunitcrg/MSCI/tree/main/Example_data>`
 
 ---
 
@@ -124,7 +124,7 @@ Each dictionary contains:
 - **MW**
 - **RT**
 
-`Example Data <https://github.com/proteomicsunitcrg/MSCI/tree/main/Example_data>`_
+`Download Example Data <https://github.com/proteomicsunitcrg/MSCI/tree/main/Example_data>`
 
 ---
 
@@ -137,7 +137,7 @@ Reads an MZML file and returns a list of processed spectrum data.
 :returns: A list of processed spectrum data
 :rtype: list[dict]
 
-`Example Data <https://github.com/proteomicsunitcrg/MSCI/tree/main/Example_data>`_
+`Download Example Data <https://github.com/proteomicsunitcrg/MSCI/tree/main/Example_data>`
 
 ---
 
