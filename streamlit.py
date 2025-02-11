@@ -21,14 +21,14 @@ def main():
 
     with st.sidebar:
         if logo_image:
-            if st.markdown(f"""
+            st.markdown(f"""
             <p align="center">
-                <a href="/?selected_option=MSCI">
+                <a href="#" onclick="window.location.reload();">
                     <img src="data:image/png;base64,{logo_image}" alt="logo" width="300" height="300">
                 </a>
             </p>
-            """, unsafe_allow_html=True):
-                st.session_state.selected_option = "MSCI"
+            """, unsafe_allow_html=True)
+            st.session_state.selected_option = "MSCI"
         
         st.header("MSCI")
         option = st.radio("Choose an option", ("Peptide Twins Analysis", "Peptide Twins Checker"))
