@@ -76,7 +76,7 @@ def peptide_twins_checker():
     peptide = st.text_input("Enter Peptide:", key='peptide', value="SDPYGIIR")
     charge = st.number_input("Enter Charge:", min_value=1, step=1, value=2, key='charge')
     
-    fasta_option = st.radio("FASTA Input Option:", ("Upload File", "Use Default (Human Proteome)"))
+    fasta_option = st.radio("Upload FASTA for peptide-protein annotation", ("Upload File", "Use Default (Human Proteome)"))
     fasta_file = None
     fasta_content = ""
     st.markdown("""The uploaded FASTA file is used to identify the proteins that contain the colliding peptides found in the selected dataset     """)   
