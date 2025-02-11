@@ -151,6 +151,41 @@ def peptide_twins_analysis():
 
     Please ensure your file follows this format for accurate analysis.
     """)
+    # **Download Example Dataset**
+    st.subheader("Example Dataset")
+    example_url = "https://raw.githubusercontent.com/proteomicsunitcrg/MSCI/main/tutorial/test.txt"
+
+    # Fetch the example file
+    response = requests.get(example_url)
+    if response.status_code == 200:
+        example_data = response.text
+        st.success("You can download an example dataset to test the analysis.")
+        
+        # Display the first few lines
+        example_lines = example_data.splitlines()[:5]
+        st.text("\n".join(example_lines))
+
+        # Add download button
+        st.download_button(
+            label="Download Example Peptide File",
+            data=example_data.encode(),
+            file_name="example_peptides.txt",
+            mime="text/plain"
+        )
+    else:
+        st.error("Failed to load the example dataset. Please try again.")
+
+    # File uploader
+    st.subheader("Upload Your Peptide File")
+    uploaded_file = st.file_uploader("Upload a peptide text file", type=["txt"])
+
+    # Load uploaded file
+    if uploaded_file:
+        st.session_state.peptide_data = uploaded_file.read().decode("utf-8")
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".txt", mode='w') as temp_file:
+            temp_file.write(st.session_state.peptide_data)
+            st.session_state.temp_file_path = temp_file.name
+        st.success("File uploaded successfully!")
 
     # File uploader with an option to load example data
     uploaded_file = st.file_uploader("Upload your peptide file or use the example dataset", type=["txt"])
@@ -212,9 +247,9 @@ def peptide_twins_analysis():
 
             st.subheader("Spectra Analysis")
 
-            mz_tolerance = st.number_input("Set Mass Tolerance", min_value=0.0, step=0.1, value=10.0)
+            mz_tolerance = st.number_input("Set Mass Tolerance default is Dalton", min_value=0.0, step=0.1, value=10.0)
             irt_tolerance = st.number_input("Set iRT Tolerance", min_value=0.0, step=0.1, value=10.0)
-            use_ppm = st.checkbox("Use PPM for mass tolerance", value=False)
+            use_ppm = st.checkbox("Check the box if you want to use ppm instead of dalton", value=False)
 
             similarity_method = st.selectbox(
                 "Select Similarity Method",
