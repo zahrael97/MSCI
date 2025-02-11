@@ -3,6 +3,7 @@ from pathlib import Path
 import base64
 import requests
 from MSCI.gui.utils import load_image_from_url, add_custom_css
+from MSCI.gui.landing_page import landing_page
 from MSCI.gui.peptide_analysis import peptide_twins_analysis, plot_spectra
 from MSCI.gui.peptide_checker import peptide_twins_checker
 
@@ -17,9 +18,13 @@ def main():
 
     with st.sidebar:
         if logo_image:
+            if st.button("", key="logo_button"):
+                landing_page()
             st.markdown(f"""
             <p align="center">
-                <img src="data:image/png;base64,{logo_image}" alt="logo" width="300" height="300">
+                <a href="#" onclick="window.location.reload();">
+                    <img src="data:image/png;base64,{logo_image}" alt="logo" width="300" height="300">
+                </a>
             </p>
             """, unsafe_allow_html=True)
         st.header("MSCI")
