@@ -8,7 +8,6 @@ from MSCI.gui.peptide_analysis import peptide_twins_analysis, plot_spectra
 from MSCI.gui.peptide_checker import peptide_twins_checker
 
 
-
 def main():
     st.set_page_config(layout="wide")
     add_custom_css()
@@ -16,6 +15,9 @@ def main():
     # URL of the image on GitHub
     logo_url = "https://github.com/proteomicsunitcrg/MSCI/raw/main/docs/MSCI_logor.png"
     logo_image = load_image_from_url(logo_url)
+
+    # Display landing page automatically on app launch
+    landing_page()
 
     with st.sidebar:
         if logo_image:
@@ -25,11 +27,9 @@ def main():
             </p>
             """, unsafe_allow_html=True)
         st.header("MSCI")
-        option = st.radio("Choose an option", ("MSCI", "Peptide Twins Analysis", "Peptide Twins Checker"))
+        option = st.radio("Choose an option", ("Peptide Twins Analysis", "Peptide Twins Checker"))
 
-    if option == "MSCI":
-        landing_page()
-    elif option == "Peptide Twins Analysis":
+    if option == "Peptide Twins Analysis":
         peptide_twins_analysis()
         plot_spectra()
     elif option == "Peptide Twins Checker":
