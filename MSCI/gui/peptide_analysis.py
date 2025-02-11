@@ -161,7 +161,6 @@ def peptide_twins_analysis():
     response = requests.get(example_url)
     if response.status_code == 200:
         example_data = response.text
-        st.success("")
         
 
         # Add download button
