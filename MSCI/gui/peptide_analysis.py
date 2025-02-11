@@ -304,8 +304,8 @@ def plot_spectra():
     st.subheader("Plot Spectra")
     st.write("Select two spectra indices to plot against each other:")
 
-    index1 = st.number_input("Enter first spectrum index:", min_value=0, max_value=len(st.session_state.spectra_cache) - 1, step=1, value=0)
-    index2 = st.number_input("Enter second spectrum index:", min_value=0, max_value=len(st.session_state.spectra_cache) - 1, step=1, value=1)
+    index1 = st.number_input("Enter first spectrum index: (index1)", min_value=0, max_value=len(st.session_state.spectra_cache) - 1, step=1, value=0)
+    index2 = st.number_input("Enter second spectrum index (index2):", min_value=0, max_value=len(st.session_state.spectra_cache) - 1, step=1, value=1)
 
     # Store the indices in session_state to persist across interactions
     st.session_state.index1 = index1
