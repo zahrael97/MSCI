@@ -7,8 +7,6 @@ from MSCI.gui.landing_page import landing_page
 from MSCI.gui.peptide_analysis import peptide_twins_analysis, plot_spectra
 from MSCI.gui.peptide_checker import peptide_twins_checker
 
-
-
 def main():
     st.set_page_config(layout="wide")
     add_custom_css()
@@ -25,9 +23,12 @@ def main():
             </p>
             """, unsafe_allow_html=True)
         st.header("MSCI")
-        option = st.radio("Choose an option", ("MSCI", "Peptide Twins Analysis", "Peptide Twins Checker"))
 
-    if option == "MSCI":
+        # Set the default option to an empty string
+        option = st.radio("Choose an option", ("", "Peptide Twins Analysis", "Peptide Twins Checker"), index=0)
+
+    # Default to landing_page when no option is selected
+    if option == "":
         landing_page()
     elif option == "Peptide Twins Analysis":
         peptide_twins_analysis()
