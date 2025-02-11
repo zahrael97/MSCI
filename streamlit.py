@@ -15,20 +15,30 @@ def main():
     logo_url = "https://github.com/proteomicsunitcrg/MSCI/raw/main/docs/MSCI_logor.png"
     logo_image = load_image_from_url(logo_url)
 
+    # Initialize session state for navigation
+    if "page" not in st.session_state:
+        st.session_state.page = "landing"
+
+    def go_to_landing():
+        st.session_state.page = "landing"
+        st.rerun()  # Refresh Streamlit to reflect changes
+
     with st.sidebar:
         if logo_image:
-            st.markdown(f"""
+            logo_html = f"""
             <p align="center">
-                <img src="data:image/png;base64,{logo_image}" alt="logo" width="300" height="300">
+                <a href="#" onclick="window.location.reload();">
+                    <img src="data:image/png;base64,{logo_image}" alt="logo" width="300" height="300">
+                </a>
             </p>
-            """, unsafe_allow_html=True)
-        st.header("MSCI")
+            """
+            st.markdown(logo_html, unsafe_allow_html=True)
 
-        # Set the default option to an empty string
+        st.header("MSCI")
         option = st.radio("Choose an option", ("", "Peptide Twins Analysis", "Peptide Twins Checker"), index=0)
 
-    # Default to landing_page when no option is selected
-    if option == "":
+    # Navigate based on user choice
+    if option == "" or st.session_state.page == "landing":
         landing_page()
     elif option == "Peptide Twins Analysis":
         peptide_twins_analysis()
