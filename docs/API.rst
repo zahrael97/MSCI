@@ -88,59 +88,70 @@ reading MS spectra
 
 This module provides functionality to read and process mass spectrometry files, including MSP, MGF, and MZML formats.
 
-Functions
-~~~~~~~~
 
-read_msp_file(filename)
---------------------
-
+read_msp_file
+-------------
 Reads an MSP file and returns a DataFrame containing the spectra information.
 
-:Parameters:
-    - **filename** (*str*) -- The path to the MSP file
+:param filename: The path to the MSP file
+:type filename: str
+:returns: A DataFrame with spectra information
+:rtype: pandas.DataFrame
 
-:Returns:
-    **pandas.DataFrame** with columns:
-        - **Name** -- The name of the spectrum
-        - **MW** -- Mass/charge of the spectrum
-        - **iRT** -- Indexed retention time
+The returned DataFrame contains the following columns:
 
-read_mgf_file(filename)
---------------------
+- **Name** -- The name of the spectrum
+- **MW** -- Mass/charge of the spectrum
+- **iRT** -- Indexed retention time
 
+`Example Data <https://github.com/proteomicsunitcrg/MSCI/tree/main/Example_data>`_
+
+---
+
+read_mgf_file
+-------------
 Reads an MGF file and returns a list of spectra data.
 
-:Parameters:
-    - **filename** (*str*) -- The path to the MGF file
+:param filename: The path to the MGF file
+:type filename: str
+:returns: A list of dictionaries containing spectra data
+:rtype: list[dict]
 
-:Returns:
-    **list** of dictionaries containing:
-        - mz_values
-        - intensities
-        - MW
-        - RT
+Each dictionary contains:
 
-read_mzml_file(filename)
---------------------
+- **mz_values**
+- **intensities**
+- **MW**
+- **RT**
 
+`Example Data <https://github.com/proteomicsunitcrg/MSCI/tree/main/Example_data>`_
+
+---
+
+read_mzml_file
+--------------
 Reads an MZML file and returns a list of processed spectrum data.
 
-:Parameters:
-    - **filename** (*str*) -- The path to the MZML file
+:param filename: The path to the MZML file
+:type filename: str
+:returns: A list of processed spectrum data
+:rtype: list[dict]
 
-:Returns:
-    **list** of dictionaries containing processed spectrum data
+`Example Data <https://github.com/proteomicsunitcrg/MSCI/tree/main/Example_data>`_
 
-read_ms_file(filename)
---------------------
+---
 
+read_ms_file
+------------
 Determines the file format and calls the appropriate function to read the mass spectrometry file.
 
-:Parameters:
-    - **filename** (*str*) -- The path to the mass spectrometry file
+:param filename: The path to the mass spectrometry file
+:type filename: str
+:returns: A DataFrame or a list depending on the file format
+:rtype: pandas.DataFrame | list
 
-:Returns:
-    **pandas.DataFrame** or **list** depending on the file format
+`Example Data <https://github.com/proteomicsunitcrg/MSCI/tree/main/Example_data>`_
+
 
 Grouping MS1 Module
 --------------------
