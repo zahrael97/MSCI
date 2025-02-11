@@ -18,12 +18,12 @@ def main():
 
     with st.sidebar:
         if logo_image:
+            if st.button(" ", key="logo_button"):
+                st.session_state["option"] = "MSCI"
             st.markdown(
                 f"""
                 <p align="center">
-                    <a href="/?option=MSCI">
-                        <img src="data:image/png;base64,{logo_image}" alt="logo" width="300" height="300">
-                    </a>
+                    <img src="data:image/png;base64,{logo_image}" alt="logo" width="300" height="300">
                 </p>
                 """, unsafe_allow_html=True)
         st.header("MSCI")
