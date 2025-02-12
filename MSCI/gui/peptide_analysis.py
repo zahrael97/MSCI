@@ -139,8 +139,7 @@ def peptide_twins_analysis():
     # Input Description    
     st.markdown("""
     ## Peptide Twins Analysis Tool
-    In the Peptide Twins Analysis tool a user can provide a complete list of peptides to check whether there are indistinguishable peptides among them. The user defines several parameters (e.g., collision energy, charge, fragmentation prediction model, iRT prediction model, similarity score function, and m/z and iRT tolerances) and MSCI will calculate similarity scores among the different peptide pairs and output the list of all peptide pairs based on their m/z, iRT, and fragmentation pattern similarity scores.
-    # Input File Format Description
+    In the Peptide Twins Analysis tool a user can provide a complete list of peptides to check whether there are indistinguishable peptides among them. The user defines several parameters (e.g., collision energy, charge, fragmentation prediction model, iRT prediction model, similarity score function, and m/z and iRT tolerances) and MSCI will calculate similarity scores among the different peptide pairs and output the list of all peptide pairs based on their m/z, iRT, and fragmentation pattern similarity scores.    # Input File Format Description
     ### Input File Format
     - The input file should be a plain text (.txt) file containing a list of peptide sequences, 
     one per line, with no headers or additional formatting.
