@@ -68,8 +68,7 @@ def peptide_twins_checker():
     """Render the Peptide Twins Checker page."""
     st.header("Peptide Twins Checker")
     st.markdown("""
-    a user could enter a peptide of interest and select the organism of interest, collision energy, and charge. The tool then maps this information to our database for checking whether the peptide collides with other peptides and then parse the provided fasta file in order to identify proteins where these potential collisions occur.
-    """)
+In the Peptide Twin Checker tool users can enter a peptide of interest whether the provided peptide is indistinguishable from any other peptide within a pre-calculated search space (e.g., human canonical proteome, human immunopeptidome)    """)
     
     organism = st.selectbox("Select Universe:", options=list(DATASETS.keys()), key='Universe')
     energies = st.multiselect("Select Collision Energies:", options=list(DATASETS[organism].keys()), key='energies')
