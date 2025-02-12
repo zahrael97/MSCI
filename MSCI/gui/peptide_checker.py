@@ -34,10 +34,10 @@ def find_colliding_peptides(df: pd.DataFrame, peptide: str, charge: int) -> set:
                   (df['y_peptide'].apply(lambda x: extract_peptide_and_charge(x) == (peptide, charge))))]
 
     colliding_peptides = {
-        (row['x_peptide'].rsplit('/', 1)[0], int(row['x_peptide'].rsplit('/', 1)[1]))
+        (row['x_peptide'].rsplit('/', 1)[0], int(row['x_peptide'].rsplit('/', 1)[1]), row['angle'])
         for _, row in matches.iterrows() if row['x_peptide'].rsplit('/', 1)[0] != peptide
     }.union({
-        (row['y_peptide'].rsplit('/', 1)[0], int(row['y_peptide'].rsplit('/', 1)[1]))
+        (row['y_peptide'].rsplit('/', 1)[0], int(row['y_peptide'].rsplit('/', 1)[1]), row['angle'])
         for _, row in matches.iterrows() if row['y_peptide'].rsplit('/', 1)[0] != peptide
     })
 
@@ -87,8 +87,8 @@ def peptide_twins_checker():
                 st.info(f"Peptides that are similar to {peptide} in charge {charge}:")
                 for energy, peptides in colliding_info.items():
                     st.write(f"**NCE {energy}:**")
-                    for colliding_peptide, colliding_charge in peptides:
-                        st.write(f"- {colliding_peptide} in charge {colliding_charge}")
+                    for colliding_peptide, colliding_charge, angle in peptides:
+                        st.write(f"- {colliding_peptide} in charge {colliding_charge} (Spectral Angle: {angle:.4f})")
             else:
                 st.success("No twin peptides detected in the selected energies.")
         else:
