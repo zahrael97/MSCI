@@ -25,10 +25,10 @@ def main():
         st.header("MSCI")
 
         # Set the default option to an empty string
-        option = st.radio("Choose an option", ("", "Peptide Twins Analysis", "Peptide Twins Checker"), index=0)
+        option = st.radio("Choose an option", ("HOME", "Peptide Twins Analysis", "Peptide Twins Checker"), index=0)
 
     # Default to landing_page when no option is selected
-    if option == "":
+    if option == "HOME":
         landing_page()
     elif option == "Peptide Twins Analysis":
         peptide_twins_analysis()
