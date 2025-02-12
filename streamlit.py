@@ -22,7 +22,6 @@ def main():
                 <img src="data:image/png;base64,{logo_image}" alt="logo" width="300" height="300">
             </p>
             """, unsafe_allow_html=True)
-        st.header("MSCI")
 
         # Set the default option to an empty string
         option = st.radio("Choose an option", ("HOME", "Peptide Twins Analysis", "Peptide Twins Checker"), index=0)
