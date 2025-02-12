@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 from typing import Dict, List, Tuple
-from Bio import SeqIO
-import io
 import requests
 
 DATASETS = {
@@ -16,7 +14,6 @@ DATASETS = {
     "Reference Human Canonical proteome with natural variants": {
         30: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/mutation_peptides_HRHR_NSA_score.csv",
     },
-
     "Immunopeptidome": {
         30: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/HLA_peptides_HRHR_NSA_score.csv",
     },
@@ -24,16 +21,15 @@ DATASETS = {
         30: "https://raw.githubusercontent.com/zahrael97/MSCI/master/Database/Oral_microbiom.csv",
     }
 }
+
 def extract_peptide_and_charge(peptide_str: str) -> Tuple[str, int]:
-    """Extract peptide sequence and charge from a string."""
     try:
         peptide, charge = peptide_str.rsplit('/', 1)
         return peptide, int(charge)
     except ValueError:
         return peptide_str, None
 
-def find_colliding_peptides(df: pd.DataFrame, peptide: str, charge: int) -> Set[Tuple[str, int]]:
-    """Find peptides that collide with the given peptide."""
+def find_colliding_peptides(df: pd.DataFrame, peptide: str, charge: int) -> set:
     matches = df[((df['x_peptide'].apply(lambda x: extract_peptide_and_charge(x) == (peptide, charge))) |
                   (df['y_peptide'].apply(lambda x: extract_peptide_and_charge(x) == (peptide, charge))))]
 
@@ -48,18 +44,23 @@ def find_colliding_peptides(df: pd.DataFrame, peptide: str, charge: int) -> Set[
     return colliding_peptides
 
 def peptide_twins_checker():
-    """Render the Peptide Twins Checker page."""
     st.header("Peptide Twins Checker")
     st.markdown("""
-    This tool checks whether a given peptide is indistinguishable from any other peptide within a selected dataset.
+    This tool checks whether a provided peptide is indistinguishable from any other peptide
+    within a pre-calculated search space (e.g., human canonical proteome, human immunopeptidome).
     """)
     
     organism = st.selectbox("Select Universe:", options=list(DATASETS.keys()), key='Universe')
     energies = st.multiselect("Select Collision Energies:", options=list(DATASETS[organism].keys()), key='energies')
 
-    peptide = st.text_input("Enter Peptide:", key='peptide', value="SDPYGIIR").upper()
-    charge = st.number_input("Enter Charge:", min_value=1, step=1, value=2, key='charge')
+    peptide = st.text_input("Enter Peptide:", key='peptide', value="SDPYGIIR")
     
+    if peptide != peptide.upper():
+        st.warning(f"Peptide sequence converted to uppercase: {peptide.upper()}")
+        peptide = peptide.upper()
+
+    charge = st.number_input("Enter Charge:", min_value=1, step=1, value=2, key='charge')
+
     if st.button("Check twins"):
         if peptide:
             colliding_info = {}
