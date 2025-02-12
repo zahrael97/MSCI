@@ -48,7 +48,7 @@ def landing_page():
 
     st.subheader("Please Cite")
     st.write("""
-    If you use the MSCI package for your research, please cite the following works:
+    If you use the MSCI package for your research, please cite the following work:
     
     MSCI: an open-source Python package for information content assessment of peptide fragmentation spectra, Zahra Elhamraoui, Eva Borràs, Mathias Wilhelm, Eduard Sabidó
     
