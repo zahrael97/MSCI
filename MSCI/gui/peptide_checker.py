@@ -29,15 +29,17 @@ def extract_peptide_and_charge(peptide_str: str) -> Tuple[str, int]:
     except ValueError:
         return peptide_str, None
 
-def find_colliding_peptides(df: pd.DataFrame, peptide: str, charge: int) -> set:
+def find_colliding_peptides(df: pd.DataFrame, peptide: str, charge: int, organism: str) -> set:
+    angle_available = organism in ["Reference Human Canonical proteome with natural variants", "Immunopeptidome"]
+
     matches = df[((df['x_peptide'].apply(lambda x: extract_peptide_and_charge(x) == (peptide, charge))) |
                   (df['y_peptide'].apply(lambda x: extract_peptide_and_charge(x) == (peptide, charge))))]
 
     colliding_peptides = {
-        (row['x_peptide'].rsplit('/', 1)[0], int(row['x_peptide'].rsplit('/', 1)[1]), row['angle'])
+        (row['x_peptide'].rsplit('/', 1)[0], int(row['x_peptide'].rsplit('/', 1)[1]), row['angle'] if angle_available else None)
         for _, row in matches.iterrows() if row['x_peptide'].rsplit('/', 1)[0] != peptide
     }.union({
-        (row['y_peptide'].rsplit('/', 1)[0], int(row['y_peptide'].rsplit('/', 1)[1]), row['angle'])
+        (row['y_peptide'].rsplit('/', 1)[0], int(row['y_peptide'].rsplit('/', 1)[1]), row['angle'] if angle_available else None)
         for _, row in matches.iterrows() if row['y_peptide'].rsplit('/', 1)[0] != peptide
     })
 
@@ -79,7 +81,7 @@ def peptide_twins_checker():
                     continue
 
                 with st.spinner(f"Checking for twins in NCE {energy}..."):
-                    colliding_peptides = find_colliding_peptides(df, peptide, charge)
+                    colliding_peptides = find_colliding_peptides(df, peptide, charge, organism)
                     if colliding_peptides:
                         colliding_info[energy] = colliding_peptides
 
@@ -88,7 +90,8 @@ def peptide_twins_checker():
                 for energy, peptides in colliding_info.items():
                     st.write(f"**NCE {energy}:**")
                     for colliding_peptide, colliding_charge, angle in peptides:
-                        st.write(f"- {colliding_peptide} in charge {colliding_charge} (Spectral Angle: {angle:.4f})")
+                        angle_text = f" (Spectral Angle: {angle:.4f})" if angle is not None else ""
+                        st.write(f"- {colliding_peptide} in charge {colliding_charge}{angle_text}")
             else:
                 st.success("No twin peptides detected in the selected energies.")
         else:
