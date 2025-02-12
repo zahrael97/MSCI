@@ -68,7 +68,7 @@ def peptide_twins_checker():
     """Render the Peptide Twins Checker page."""
     st.header("Peptide Twins Checker")
     st.markdown("""
-In the Peptide Twin Checker tool users can enter a peptide of interest whether the provided peptide is indistinguishable from any other peptide within a pre-calculated search space (e.g., human canonical proteome, human immunopeptidome)    """)
+    In the Peptide Twin Checker tool users can enter a peptide of interest whether the provided peptide is indistinguishable from any other peptide within a pre-calculated search space (e.g., human canonical proteome, human immunopeptidome)    """)
     
     organism = st.selectbox("Select Universe:", options=list(DATASETS.keys()), key='Universe')
     energies = st.multiselect("Select Collision Energies:", options=list(DATASETS[organism].keys()), key='energies')
