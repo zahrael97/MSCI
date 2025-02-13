@@ -9,7 +9,7 @@ You can install MSCI directly using pip, which will also handle the necessary de
 
 .. code-block:: bash
 
-    pip install MSCI==0.2.0
+    pip install MSCI==0.2.3
 
 If you're working in a Jupyter notebook or a Colab environment, you may need to adjust the Python path to include the MSCI module:
 
