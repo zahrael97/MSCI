@@ -33,7 +33,6 @@ def landing_page():
     **Prerequisites:**
 
     - Python 3.8 - 3.11
-    - Matchms
     """)
 
     st.subheader("Implementation and Example")
