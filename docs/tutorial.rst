@@ -1,8 +1,5 @@
-.. container::
-
-   .. container::
-
-      ::
+Example of usage 
+======
 
          MSCI is a Python package designed to evaluate the information content of peptide fragmentation spectra. Our objective was to compute an information-content index for all peptides within a given proteome. This would allow us to devise data acquisition and analysis strategies that generate and prioritize the most informative fragment ions for peptide quantification.
 
@@ -45,7 +42,7 @@
     
 
 Import
-======
+------
 
 .. code:: python
 
@@ -61,7 +58,7 @@ Import
     
 
 Generate predicted dataset
-==========================
+---------------------------
 
 Parse fasta file
 ----------------
@@ -886,7 +883,7 @@ Calculate similarity within fragment tolerance
 
 
 Plot results
-============
+---------
 
 Plot spectra of interest using matchms
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
