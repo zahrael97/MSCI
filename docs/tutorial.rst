@@ -18,8 +18,7 @@ Example of usage
 .. code:: python
 
     ! pip install MSCI==0.2.0
-    ! pip install biopython
-    ! pip install matchms
+
 
 
 .. parsed-literal::
