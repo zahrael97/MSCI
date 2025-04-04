@@ -17,6 +17,7 @@ Contents
    :maxdepth: 2
 
    installation
+   tutorial
    API
    GUI
    contributing
