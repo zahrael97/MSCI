@@ -1,5 +1,5 @@
 Example of usage 
-======
+================
 
          MSCI is a Python package designed to evaluate the information content of peptide fragmentation spectra. Our objective was to compute an information-content index for all peptides within a given proteome. This would allow us to devise data acquisition and analysis strategies that generate and prioritize the most informative fragment ions for peptide quantification.
 
@@ -144,7 +144,7 @@ If available your own list of peptides
     processor.process('random_tryptic_peptides.msp')
 
 Load dataset
-============
+------------
 
 .. code:: python
 
@@ -159,7 +159,7 @@ Load dataset
 
 
 Group within MS1 tolerance
-==========================
+----------------
 
 .. code:: python
 
@@ -520,7 +520,7 @@ Group within MS1 tolerance
 
 
 Calculate similarity within fragment tolerance
-==============================================
+----------------
 
 .. code:: python
 
