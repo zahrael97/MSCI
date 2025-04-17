@@ -38,7 +38,7 @@ For full API documentation, see :doc:`API`.
 Usage
 =====
 
-Example workflow:
+Example workflow: Visit https://msci.readthedocs.io/en/latest/tutorial.html 
 
 For a full tutorial, visit our Colab notebook:
 https://colab.research.google.com/drive/1ny97RNgvnpD7ZrHW8TTRXWCAQvIcavkk
