@@ -41,12 +41,18 @@ def landing_page():
     """)
 
 
-    st.subheader("Usage")st.write("""
-    Example workflow: Visit https://msci.readthedocs.io/en/latest/tutorial.html 
-    For a full tutorial, visit our Colab notebook:
-    https://colab.research.google.com/drive/1ny97RNgvnpD7ZrHW8TTRXWCAQvIcavkk
-    For Code and datasets visit https://github.com/proteomicsunitcrg/MSCI
-    """)
+st.subheader("Usage")
+
+st.write("""
+Example workflow: Visit [MSCI Tutorial](https://msci.readthedocs.io/en/latest/tutorial.html)
+
+For a full tutorial, visit our Colab notebook:  
+[Colab Notebook](https://colab.research.google.com/drive/1ny97RNgvnpD7ZrHW8TTRXWCAQvIcavkk)
+
+For code and datasets, visit our GitHub repo:  
+[GitHub - proteomicsunitcrg/MSCI](https://github.com/proteomicsunitcrg/MSCI)
+""")
+
 
 
     
