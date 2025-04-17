@@ -46,6 +46,12 @@ https://colab.research.google.com/drive/1ny97RNgvnpD7ZrHW8TTRXWCAQvIcavkk
 
 For Code and datasets visit https://github.com/proteomicsunitcrg/MSCI
 
+Graphical User Interface (GUI)
+==============================
+
+MSCI includes a web-based GUI for non-programmers, accessible at:
+https://msci--proteomicsunit.streamlit.app/
+
 
 License
 =======
