@@ -40,6 +40,17 @@ def landing_page():
     **Open the Notebook**: Click on the following [link to Google Colab](https://colab.research.google.com/drive/1ny97RNgvnpD7ZrHW8TTRXWCAQvIcavkk)
     """)
 
+
+    st.subheader("Usage")st.write("""
+    Example workflow: Visit https://msci.readthedocs.io/en/latest/tutorial.html 
+    For a full tutorial, visit our Colab notebook:
+    https://colab.research.google.com/drive/1ny97RNgvnpD7ZrHW8TTRXWCAQvIcavkk
+    For Code and datasets visit https://github.com/proteomicsunitcrg/MSCI
+    """)
+
+
+    
+
     st.subheader("Contribution")
     st.write("""
     If you would like to contribute to this project, feel free to fork the repository on GitHub and submit a pull request.
